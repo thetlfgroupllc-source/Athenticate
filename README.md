@@ -117,7 +117,7 @@ Athenticate/
 
 ## Contact
 
-**Website:** [thetlfgroupllc-source.github.io/Athenticate](https://thetlfgroupllc-source.github.io/Athenticate/)
+**Website:** [athenticate.co](https://athenticate.co)
 **Built by:** TLF Group LLC
 
 ---

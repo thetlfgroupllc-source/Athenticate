@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Top 10 agents per sport and top 5 agencies — ranked entirely from verified professional athlete reviews. No paid placements. No sponsored results.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Agent Rankings — ATHenticate">
+<meta property="og:description" content="Top 10 agents per sport and top 5 agencies — ranked entirely from verified professional athlete reviews. No paid placements. No sponsored results.">
+<meta property="og:url" content="https://athenticate.co/rankings.html">
+<meta property="og:image" content="https://athenticate.co/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ATHenticate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<meta name="twitter:creator" content="@athenticate">
+<meta name="twitter:title" content="Agent Rankings — ATHenticate">
+<meta name="twitter:description" content="Top 10 agents per sport and top 5 agencies — ranked entirely from verified professional athlete reviews. No paid placements. No sponsored results.">
+<meta name="twitter:image" content="https://athenticate.co/og-image.jpg">
+<link rel="canonical" href="https://athenticate.co/rankings.html">
+<title>Agent Rankings — ATHenticate</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #020B18;
+    --bg-card: #071E36;
+    --bg-mid: #061A2E;
+    --cyan: #00C8FF;
+    --teal: #0AEFFF;
+    --cyan-dim: rgba(0,200,255,0.08);
+    --white: #F0F8FF;
+    --grey: #7A9BB5;
+    --grey-light: #9BB8D0;
+    --border: rgba(0,200,255,0.14);
+    --success: #00E5A0;
+    --gold: #FFB800;
+    --silver: #A8B8C8;
+    --bronze: #CD7F32;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg-deep); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,200,255,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 30% at 85% 80%, rgba(10,239,255,0.03) 0%, transparent 60%);
+  }
+  .circuit-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.05;
+    background-image: linear-gradient(var(--cyan) 1px, transparent 1px), linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 70%);
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(2,11,24,0.92); backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--cyan); }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--grey); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-back:hover { color: var(--cyan); }
+  .nav-back svg { width: 1rem; height: 1rem; }
+  .nav-unlock-btn { background: linear-gradient(135deg, var(--cyan), var(--teal)); color: var(--bg-deep); border: none; padding: 0.55rem 1.4rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; clip-path: polygon(7px 0%, 100% 0%, calc(100% - 7px) 100%, 0% 100%); transition: all 0.2s; box-shadow: 0 0 18px rgba(0,200,255,0.2); text-decoration: none; display: inline-block; }
+  .nav-unlock-btn:hover { box-shadow: 0 0 28px rgba(0,200,255,0.45); transform: translateY(-1px); }
+
+  /* PAGE HEADER */
+  .page-header {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    padding: 4rem 4rem 2rem;
+  }
+  .page-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem; }
+  .page-label::before { content: ''; width: 20px; height: 1px; background: var(--cyan); opacity: 0.6; }
+  .page-header h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; text-transform: uppercase; line-height: 0.92; margin-bottom: 1rem; }
+  .page-header h1 span { color: var(--cyan); }
+  .page-header p { color: var(--grey); font-size: 1rem; line-height: 1.7; max-width: 580px; }
+
+  /* PAYWALL NOTICE */
+  .paywall-notice {
+    position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 4rem 2rem;
+  }
+  .paywall-banner {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    border: 1px solid rgba(255,184,0,0.25); background: rgba(255,184,0,0.04);
+    padding: 1.2rem 1.8rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .paywall-banner-left { display: flex; align-items: center; gap: 0.9rem; }
+  .paywall-banner-icon { width: 1.3rem; height: 1.3rem; color: var(--gold); flex-shrink: 0; }
+  .paywall-banner-text { font-size: 0.88rem; color: var(--grey-light); line-height: 1.5; }
+  .paywall-banner-text strong { color: var(--white); font-weight: 600; }
+  .btn-unlock {
+    background: linear-gradient(135deg, var(--cyan), var(--teal)); color: var(--bg-deep); border: none;
+    padding: 0.6rem 1.6rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(7px 0%, 100% 0%, calc(100% - 7px) 100%, 0% 100%);
+    transition: all 0.2s; box-shadow: 0 4px 18px rgba(0,200,255,0.25); white-space: nowrap;
+  }
+  .btn-unlock:hover { box-shadow: 0 8px 28px rgba(0,200,255,0.45); transform: translateY(-1px); }
+
+  /* SPORT TABS */
+  .tabs-wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 4rem 2.5rem; }
+  .gender-toggle { display: inline-flex; margin-bottom: 1rem; border: 1px solid var(--border); overflow: hidden; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+  .gender-btn { background: transparent; border: none; color: var(--grey); padding: 0.5rem 1.4rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .gender-btn:first-child { border-right: 1px solid var(--border); }
+  .gender-btn.active { background: var(--cyan-dim); color: var(--cyan); }
+  .sport-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .sport-tab { background: rgba(6,26,46,0.9); border: 1px solid var(--border); color: var(--grey); padding: 0.5rem 1.1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%); transition: all 0.18s; }
+  .sport-tab:hover { color: var(--white); background: rgba(0,200,255,0.08); border-color: rgba(0,200,255,0.3); }
+  .sport-tab.active { background: var(--cyan-dim); color: var(--cyan); border-color: rgba(0,200,255,0.4); }
+
+  /* MAIN CONTENT */
+  .content-wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 4rem 6rem; }
+  .rankings-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start; }
+
+  /* AGENTS LIST */
+  .rankings-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+  .rankings-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+  .rankings-subtitle { font-size: 0.78rem; color: var(--grey); }
+
+  .agent-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .agent-row {
+    display: flex; align-items: center; gap: 1rem;
+    border: 1px solid var(--border); background: rgba(6,26,46,0.5);
+    padding: 1rem 1.4rem;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: border-color 0.2s, background 0.2s; position: relative; overflow: hidden;
+  }
+  .agent-row:hover { border-color: rgba(0,200,255,0.28); background: rgba(0,200,255,0.04); }
+  .agent-rank {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 900;
+    min-width: 2rem; text-align: center; flex-shrink: 0;
+  }
+  .rank-1 { color: var(--gold); text-shadow: 0 0 12px rgba(255,184,0,0.4); }
+  .rank-2 { color: var(--silver); }
+  .rank-3 { color: var(--bronze); }
+  .rank-other { color: var(--grey); }
+  .agent-avatar {
+    width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px solid var(--border);
+    background: var(--bg-card); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--grey);
+  }
+  .agent-avatar svg { width: 1.1rem; height: 1.1rem; }
+  .agent-info { flex: 1; min-width: 0; }
+  .agent-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .agent-agency { font-size: 0.75rem; color: var(--grey); margin-top: 0.1rem; }
+  .agent-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.3rem; }
+  .agent-tag { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--grey); padding: 0.15rem 0.5rem; clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%); }
+  .agent-score { text-align: right; flex-shrink: 0; }
+  .agent-score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--cyan); line-height: 1; }
+  .agent-score-label { font-size: 0.65rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.08em; }
+  .agent-reviews { font-size: 0.72rem; color: var(--grey); text-align: right; margin-top: 0.2rem; }
+
+  /* BLURRED LOCKED ROWS */
+  .agent-row.locked { filter: blur(4px); pointer-events: none; user-select: none; }
+  .locked-overlay-wrap { position: relative; }
+  .locked-overlay {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+    background: linear-gradient(to bottom, rgba(2,11,24,0.1) 0%, rgba(2,11,24,0.85) 40%, rgba(2,11,24,0.97) 100%);
+    text-align: center; padding: 1rem;
+  }
+  .locked-overlay-icon { width: 1.8rem; height: 1.8rem; color: var(--cyan); margin-bottom: 0.2rem; }
+  .locked-overlay h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
+  .locked-overlay p { font-size: 0.82rem; color: var(--grey); line-height: 1.5; max-width: 300px; }
+  .locked-overlay p strong { color: var(--white); }
+
+  /* AGENCIES SIDEBAR */
+  .agencies-card {
+    border: 1px solid var(--border); background: rgba(6,26,46,0.6);
+    padding: 1.8rem; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    position: sticky; top: 5rem;
+  }
+  .agencies-card-header { margin-bottom: 1.4rem; }
+  .agencies-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
+  .agencies-card-sub { font-size: 0.75rem; color: var(--grey); }
+  .agency-list { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.5rem; }
+  .agency-row {
+    display: flex; align-items: center; gap: 0.9rem;
+    border: 1px solid var(--border); background: rgba(2,11,24,0.4);
+    padding: 0.85rem 1rem;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    transition: border-color 0.2s;
+  }
+  .agency-row:hover { border-color: rgba(0,200,255,0.25); }
+  .agency-rank { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 900; min-width: 1.5rem; flex-shrink: 0; }
+  .agency-info { flex: 1; min-width: 0; }
+  .agency-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .agency-agents { font-size: 0.7rem; color: var(--grey); margin-top: 0.1rem; }
+  .agency-score { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 900; color: var(--cyan); flex-shrink: 0; }
+
+  .agencies-unlock-note {
+    border: 1px solid var(--border); background: rgba(0,200,255,0.03);
+    padding: 1rem 1.2rem; text-align: center;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .agencies-unlock-note p { font-size: 0.8rem; color: var(--grey); line-height: 1.55; margin-bottom: 0.8rem; }
+  .agencies-unlock-note p strong { color: var(--white); }
+  .btn-full-access {
+    width: 100%; background: transparent; border: 1.5px solid rgba(0,200,255,0.35); color: var(--cyan);
+    padding: 0.65rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .btn-full-access:hover { background: var(--cyan-dim); border-color: var(--cyan); }
+
+  /* FOOTER */
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 900; letter-spacing: 0.08em; }
+  .footer-logo span { color: var(--cyan); }
+  .footer-tagline { font-size: 0.72rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.14em; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.78rem; color: var(--grey); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .page-header, .paywall-notice, .tabs-wrap, .content-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .rankings-layout { grid-template-columns: 1fr; }
+    .agencies-card { position: static; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  /* MOBILE NAV */
+  .mobile-nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 5px; padding: 4px;
+  }
+  .mobile-nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white); border-radius: 2px; transition: all 0.3s;
+  }
+  .mobile-nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(2,11,24,0.97); backdrop-filter: blur(18px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    padding: 2rem;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-overlay a {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-nav-overlay a:hover { color: var(--cyan); }
+  .mobile-nav-overlay .mobile-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); padding: 0.9rem 2.5rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    font-size: 1.1rem;
+  }
+  .mobile-nav-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; color: var(--grey); font-size: 1.5rem;
+    cursor: pointer; line-height: 1; transition: color 0.2s;
+  }
+  .mobile-nav-close:hover { color: var(--white); }
+  @media (max-width: 900px) {
+    .mobile-nav-toggle { display: flex; }
+    .nav-links { display: none !important; }
+    .nav-submit-btn { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="circuit-bg"></div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./index.html#features" onclick="closeMobileNav()">Features</a>
+  <a href="./index.html#future" onclick="closeMobileNav()">What's Coming</a>
+  <a href="./future-athletes.html" onclick="closeMobileNav()">Future Athletes</a>
+  <a href="./future-agents.html" onclick="closeMobileNav()">For Agents</a>
+  <a href="./index.html#waitlist" onclick="closeMobileNav()">Waitlist</a>
+  <a href="./submit-review.html" class="mobile-submit" onclick="closeMobileNav()">Submit a Review</a>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="./index.html"><span>ATH</span>enticate</a>
+  <div class="nav-right">
+    <a class="nav-back" href="./index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+    <a class="nav-unlock-btn" href="./index.html#waitlist">Get Full Access</a>
+  </div>
+<button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-label">Agent Rankings</div>
+  <h1>Top Agents &<br><span>Agencies.</span></h1>
+  <p>Rankings built entirely from verified professional athlete reviews — no sponsored placements, no paid positioning. Every rank is earned.</p>
+</div>
+
+<!-- PAYWALL NOTICE -->
+<div class="paywall-notice">
+  <div class="paywall-banner">
+    <div class="paywall-banner-left">
+      <div class="paywall-banner-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <p class="paywall-banner-text"><strong>Free: Top 10 agents per sport + Top 5 agencies overall.</strong> Full access — search all agents, read complete reviews, and filter by category — requires a paid subscription.</p>
+    </div>
+    <button class="btn-unlock" onclick="document.getElementById('waitlistModal').style.display='flex'">Unlock Full Access</button>
+  </div>
+</div>
+
+<!-- SPORT TABS -->
+<div class="tabs-wrap">
+  <div class="gender-toggle">
+    <button class="gender-btn active" id="genderMen" onclick="switchGender('men')">Men's</button>
+    <button class="gender-btn" id="genderWomen" onclick="switchGender('women')">Women's</button>
+  </div>
+  <div class="sport-tabs" id="mensTabs">
+    <button class="sport-tab active" onclick="selectSport(this,'NFL')">NFL</button>
+    <button class="sport-tab" onclick="selectSport(this,'NBA')">NBA</button>
+    <button class="sport-tab" onclick="selectSport(this,'MLB')">MLB</button>
+    <button class="sport-tab" onclick="selectSport(this,'NHL')">NHL</button>
+    <button class="sport-tab" onclick="selectSport(this,'MLS')">MLS</button>
+    <button class="sport-tab" onclick="selectSport(this,'CFL')">CFL</button>
+    <button class="sport-tab" onclick="selectSport(this,'XFL')">XFL / USFL</button>
+  </div>
+  <div class="sport-tabs" id="womensTabs" style="display:none">
+    <button class="sport-tab" onclick="selectSport(this,'WNBA')">WNBA</button>
+    <button class="sport-tab" onclick="selectSport(this,'NWSL')">NWSL</button>
+    <button class="sport-tab" onclick="selectSport(this,'PWHL')">PWHL</button>
+    <button class="sport-tab" onclick="selectSport(this,'LOVB')">LOVB</button>
+    <button class="sport-tab" onclick="selectSport(this,'WTA')">WTA</button>
+    <button class="sport-tab" onclick="selectSport(this,'AU')">Athletes Unlimited</button>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content-wrap">
+  <div class="rankings-layout">
+
+    <!-- AGENTS -->
+    <div>
+      <div class="rankings-header">
+        <div>
+          <div class="rankings-title" id="rankingsTitle">Top 10 NFL Agents</div>
+          <div class="rankings-subtitle">Ranked by verified player reviews · Updated as reviews come in</div>
+        </div>
+      </div>
+
+      <!-- Top 5 visible -->
+      <div class="agent-list" id="agentList">
+        <div class="agent-row">
+          <div class="agent-rank rank-1">1</div>
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="agent-info">
+            <div class="agent-name">Coming Soon</div>
+            <div class="agent-agency">Rankings populate as reviews come in</div>
+            <div class="agent-tags"><span class="agent-tag">Responsive</span><span class="agent-tag">Strong Negotiator</span></div>
+          </div>
+          <div class="agent-score"><div class="agent-score-num">—</div><div class="agent-score-label">Overall</div><div class="agent-reviews">— reviews</div></div>
+        </div>
+        <div class="agent-row">
+          <div class="agent-rank rank-2">2</div>
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="agent-info">
+            <div class="agent-name">Coming Soon</div>
+            <div class="agent-agency">Rankings populate as reviews come in</div>
+            <div class="agent-tags"><span class="agent-tag">Honest</span><span class="agent-tag">Available</span></div>
+          </div>
+          <div class="agent-score"><div class="agent-score-num">—</div><div class="agent-score-label">Overall</div><div class="agent-reviews">— reviews</div></div>
+        </div>
+        <div class="agent-row">
+          <div class="agent-rank rank-3">3</div>
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="agent-info">
+            <div class="agent-name">Coming Soon</div>
+            <div class="agent-agency">Rankings populate as reviews come in</div>
+            <div class="agent-tags"><span class="agent-tag">Real Relationships</span></div>
+          </div>
+          <div class="agent-score"><div class="agent-score-num">—</div><div class="agent-score-label">Overall</div><div class="agent-reviews">— reviews</div></div>
+        </div>
+        <div class="agent-row">
+          <div class="agent-rank rank-other">4</div>
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="agent-info">
+            <div class="agent-name">Coming Soon</div>
+            <div class="agent-agency">Rankings populate as reviews come in</div>
+            <div class="agent-tags"><span class="agent-tag">Long-Term Thinker</span></div>
+          </div>
+          <div class="agent-score"><div class="agent-score-num">—</div><div class="agent-score-label">Overall</div><div class="agent-reviews">— reviews</div></div>
+        </div>
+        <div class="agent-row">
+          <div class="agent-rank rank-other">5</div>
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="agent-info">
+            <div class="agent-name">Coming Soon</div>
+            <div class="agent-agency">Rankings populate as reviews come in</div>
+            <div class="agent-tags"><span class="agent-tag">Transparent on Fees</span></div>
+          </div>
+          <div class="agent-score"><div class="agent-score-num">—</div><div class="agent-score-label">Overall</div><div class="agent-reviews">— reviews</div></div>
+        </div>
+      </div>
+
+      <!-- Slots 6–10 blurred with overlay -->
+      <div class="locked-overlay-wrap" style="margin-top:0.6rem">
+        <div class="agent-list">
+          <div class="agent-row locked">
+            <div class="agent-rank rank-other">6</div>
+            <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="agent-info"><div class="agent-name">Agent Name Hidden</div><div class="agent-agency">Agency Hidden</div></div>
+            <div class="agent-score"><div class="agent-score-num">4.6</div><div class="agent-score-label">Overall</div></div>
+          </div>
+          <div class="agent-row locked">
+            <div class="agent-rank rank-other">7</div>
+            <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="agent-info"><div class="agent-name">Agent Name Hidden</div><div class="agent-agency">Agency Hidden</div></div>
+            <div class="agent-score"><div class="agent-score-num">4.5</div><div class="agent-score-label">Overall</div></div>
+          </div>
+          <div class="agent-row locked">
+            <div class="agent-rank rank-other">8</div>
+            <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="agent-info"><div class="agent-name">Agent Name Hidden</div><div class="agent-agency">Agency Hidden</div></div>
+            <div class="agent-score"><div class="agent-score-num">4.4</div><div class="agent-score-label">Overall</div></div>
+          </div>
+          <div class="agent-row locked">
+            <div class="agent-rank rank-other">9</div>
+            <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="agent-info"><div class="agent-name">Agent Name Hidden</div><div class="agent-agency">Agency Hidden</div></div>
+            <div class="agent-score"><div class="agent-score-num">4.3</div><div class="agent-score-label">Overall</div></div>
+          </div>
+          <div class="agent-row locked">
+            <div class="agent-rank rank-other">10</div>
+            <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="agent-info"><div class="agent-name">Agent Name Hidden</div><div class="agent-agency">Agency Hidden</div></div>
+            <div class="agent-score"><div class="agent-score-num">4.2</div><div class="agent-score-label">Overall</div></div>
+          </div>
+        </div>
+        <div class="locked-overlay">
+          <div class="locked-overlay-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h4>Spots 6–10 Require Full Access</h4>
+          <p>Join the waitlist to get notified when <strong>full access launches</strong> — search every agent, read complete reviews, and see the full top 10.</p>
+          <button class="btn-unlock" style="margin-top:0.5rem" onclick="document.getElementById('waitlistModal').style.display='flex'">Get Full Access</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENCIES SIDEBAR -->
+    <div>
+      <div class="agencies-card">
+        <div class="agencies-card-header">
+          <div class="agencies-card-title">Top 5 Agencies</div>
+          <div class="agencies-card-sub">Overall · All sports combined</div>
+        </div>
+        <div class="agency-list">
+          <div class="agency-row">
+            <div class="agency-rank rank-1">1</div>
+            <div class="agency-info">
+              <div class="agency-name">Coming Soon</div>
+              <div class="agency-agents">Populates as reviews come in</div>
+            </div>
+            <div class="agency-score">—</div>
+          </div>
+          <div class="agency-row">
+            <div class="agency-rank rank-2">2</div>
+            <div class="agency-info">
+              <div class="agency-name">Coming Soon</div>
+              <div class="agency-agents">Populates as reviews come in</div>
+            </div>
+            <div class="agency-score">—</div>
+          </div>
+          <div class="agency-row">
+            <div class="agency-rank rank-3">3</div>
+            <div class="agency-info">
+              <div class="agency-name">Coming Soon</div>
+              <div class="agency-agents">Populates as reviews come in</div>
+            </div>
+            <div class="agency-score">—</div>
+          </div>
+          <div class="agency-row">
+            <div class="agency-rank rank-other">4</div>
+            <div class="agency-info">
+              <div class="agency-name">Coming Soon</div>
+              <div class="agency-agents">Populates as reviews come in</div>
+            </div>
+            <div class="agency-score">—</div>
+          </div>
+          <div class="agency-row">
+            <div class="agency-rank rank-other">5</div>
+            <div class="agency-info">
+              <div class="agency-name">Coming Soon</div>
+              <div class="agency-agents">Populates as reviews come in</div>
+            </div>
+            <div class="agency-score">—</div>
+          </div>
+        </div>
+        <div class="agencies-unlock-note">
+          <p>Want to see <strong>every agency ranked</strong> with sport-specific breakdowns and full review access?</p>
+          <button class="btn-full-access" onclick="document.getElementById('waitlistModal').style.display='flex'">Join Waitlist for Full Access</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WAITLIST MODAL -->
+<div id="waitlistModal" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(2,11,24,0.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:2rem;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="max-width:480px;width:100%;border:1px solid var(--border);background:rgba(6,26,46,0.95);padding:2.5rem;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);position:relative;">
+    <button onclick="document.getElementById('waitlistModal').style.display='none'" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:var(--grey);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.6rem;">Full Access</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:0.8rem;">Unlock Everything.</h2>
+    <p style="font-size:0.88rem;color:var(--grey);line-height:1.65;margin-bottom:1.8rem;">Join the waitlist and be first to access the full platform — search all agents, read complete reviews, and see the entire top 10 for every sport.</p>
+    <div style="display:flex;gap:0;margin-bottom:0.8rem;">
+      <input type="email" placeholder="Your email address" style="flex:1;background:var(--bg-card);border:1.5px solid var(--border);border-right:none;color:var(--white);padding:0.8rem 1rem;font-family:'Barlow',sans-serif;font-size:0.9rem;outline:none;" />
+      <button onclick="this.closest('div').previousElementSibling.style.display='none';document.getElementById('waitlistModal').querySelector('.modal-success').style.display='block'" style="background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--bg-deep);border:none;padding:0.8rem 1.4rem;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">Join</button>
+    </div>
+    <div class="modal-success" style="display:none;text-align:center;padding:1rem 0;">
+      <div style="color:var(--success);font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">You're on the list.</div>
+      <p style="font-size:0.82rem;color:var(--grey);margin-top:0.4rem;">We'll notify you when full access launches.</p>
+    </div>
+    <p style="font-size:0.72rem;color:var(--grey);">No spam. Just a heads-up when the platform goes live.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo"><span>ATH</span>enticate</div>
+    <div class="footer-tagline">Players Protecting Players</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./submit-review.html">Submit Review</a></li>
+    <li><a href="./future-athletes.html">Future Athletes</a></li>
+    <li><a href="./future-agents.html">For Agents</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#a8cbc7c6dcc9cbdce8c9dcc0cdc6dcc1cbc9dccd86cbc7c5">Contact</a></li>
+  </ul>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function switchGender(gender) {
+    const isMen = gender === 'men';
+    document.getElementById('genderMen').classList.toggle('active', isMen);
+    document.getElementById('genderWomen').classList.toggle('active', !isMen);
+    document.getElementById('mensTabs').style.display = isMen ? 'flex' : 'none';
+    document.getElementById('womensTabs').style.display = !isMen ? 'flex' : 'none';
+    const grp = isMen ? document.getElementById('mensTabs') : document.getElementById('womensTabs');
+    grp.querySelectorAll('.sport-tab').forEach(t => t.classList.remove('active'));
+    const first = grp.querySelector('.sport-tab');
+    first.classList.add('active');
+    selectSport(first, first.textContent.trim());
+  }
+
+  function selectSport(el, sport) {
+    el.closest('.sport-tabs').querySelectorAll('.sport-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const label = sport ==

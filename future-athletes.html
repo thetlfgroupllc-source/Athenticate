@@ -3,7 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="College athletes preparing to go pro: see how ATHenticate will help you research agents, find the right representation, and walk into signing day fully informed.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Future Athletes — ATHenticate">
+<meta property="og:description" content="College athletes preparing to go pro: see how ATHenticate will help you research agents, find the right representation, and walk into signing day fully informed.">
+<meta property="og:url" content="https://athenticate.co/future-athletes.html">
+<meta property="og:image" content="https://athenticate.co/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ATHenticate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<meta name="twitter:creator" content="@athenticate">
+<meta name="twitter:title" content="Future Athletes — ATHenticate">
+<meta name="twitter:description" content="College athletes preparing to go pro: see how ATHenticate will help you research agents, find the right representation, and walk into signing day fully informed.">
+<meta name="twitter:image" content="https://athenticate.co/og-image.jpg">
+<link rel="canonical" href="https://athenticate.co/future-athletes.html">
 <title>Future Athletes — ATHenticate</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -119,10 +138,67 @@
     .phase-card { flex-direction: column; gap: 0.8rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
   }
+
+  /* MOBILE NAV */
+  .mobile-nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 5px; padding: 4px;
+  }
+  .mobile-nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white); border-radius: 2px; transition: all 0.3s;
+  }
+  .mobile-nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(2,11,24,0.97); backdrop-filter: blur(18px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    padding: 2rem;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-overlay a {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-nav-overlay a:hover { color: var(--cyan); }
+  .mobile-nav-overlay .mobile-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); padding: 0.9rem 2.5rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    font-size: 1.1rem;
+  }
+  .mobile-nav-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; color: var(--grey); font-size: 1.5rem;
+    cursor: pointer; line-height: 1; transition: color 0.2s;
+  }
+  .mobile-nav-close:hover { color: var(--white); }
+  @media (max-width: 900px) {
+    .mobile-nav-toggle { display: flex; }
+    .nav-links { display: none !important; }
+    .nav-submit-btn { display: none !important; }
+  }
 </style>
 </head>
 <body>
 <div class="circuit-bg"></div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./index.html#features" onclick="closeMobileNav()">Features</a>
+  <a href="./index.html#future" onclick="closeMobileNav()">What's Coming</a>
+  <a href="./future-athletes.html" onclick="closeMobileNav()">Future Athletes</a>
+  <a href="./future-agents.html" onclick="closeMobileNav()">For Agents</a>
+  <a href="./index.html#waitlist" onclick="closeMobileNav()">Waitlist</a>
+  <a href="./submit-review.html" class="mobile-submit" onclick="closeMobileNav()">Submit a Review</a>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
 
 <div class="success-overlay" id="successOverlay">
   <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
@@ -137,6 +213,9 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Home
   </a>
+<button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -406,8 +485,4 @@
     <li><a href="./index.html">Home</a></li>
     <li><a href="./future-agents.html">For Agents</a></li>
     <li><a href="./submit-review.html">Submit Review</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</footer>
-</body>
-</html>
+    <li><a href="/cdn-cgi/l/email-protection#bfdcd0d1cbdedccbffdecbd7dad1cbd6dcdecbda91dcd0d2">Conta
