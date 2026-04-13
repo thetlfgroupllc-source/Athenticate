@@ -40,7 +40,7 @@ ATHenticate changes that.
 | Separate review submission page | ✅ Live |
 | Men's and women's major leagues (13 total) | ✅ Live |
 | Full anonymous review form (6 sections) | ✅ Live |
-| Future Athletes vision page | ✅ Live |
+| Future Professionals vision page | ✅ Live |
 | Future Agents vision page | ✅ Live |
 | Agent rankings page | ✅ Built — launches when database has depth |
 | Backend / database integration | 🔄 In progress |
@@ -107,7 +107,7 @@ Education, community, and full ecosystem. Contract resources, webinars, communit
 Athenticate/
 ├── index.html              # Main landing page
 ├── submit-review.html      # Full review submission page
-├── future-athletes.html    # Vision page for college athletes
+├── future-professionals.html    # Vision page for college athletes
 ├── future-agents.html      # Vision page for agents
 ├── rankings.html           # Agent rankings (launches with database)
 └── README.md
