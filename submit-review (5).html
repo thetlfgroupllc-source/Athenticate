@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Rate your agent anonymously. Share what working with them was really like — your experience protects the next player who doesn't know what you know.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Submit a Review — ATHenticate">
+<meta property="og:description" content="Rate your agent anonymously. Share what working with them was really like — your experience protects the next player who doesn't know what you know.">
+<meta property="og:url" content="https://athenticate.co/submit-review.html">
+<meta property="og:image" content="https://athenticate.co/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ATHenticate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<meta name="twitter:creator" content="@athenticate">
+<meta name="twitter:title" content="Submit a Review — ATHenticate">
+<meta name="twitter:description" content="Rate your agent anonymously. Share what working with them was really like — your experience protects the next player who doesn't know what you know.">
+<meta name="twitter:image" content="https://athenticate.co/og-image.jpg">
+<link rel="canonical" href="https://athenticate.co/submit-review.html">
+<title>Submit a Review — ATHenticate</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #020B18;
+    --bg-mid: #061A2E;
+    --bg-card: #071E36;
+    --cyan: #00C8FF;
+    --teal: #0AEFFF;
+    --cyan-dim: rgba(0,200,255,0.08);
+    --cyan-glow: rgba(0,200,255,0.35);
+    --white: #F0F8FF;
+    --grey: #7A9BB5;
+    --grey-light: #9BB8D0;
+    --border: rgba(0,200,255,0.14);
+    --border-focus: rgba(0,200,255,0.5);
+    --success: #00E5A0;
+    --warning: #FFB800;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg-deep); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; min-height: 100vh; }
+
+  /* background atmosphere */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% -10%, rgba(0,200,255,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 30% at 90% 90%, rgba(10,239,255,0.03) 0%, transparent 60%);
+  }
+  .circuit-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.045;
+    background-image: linear-gradient(var(--cyan) 1px, transparent 1px), linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(2,11,24,0.92); backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--cyan); }
+  .nav-back {
+    display: flex; align-items: center; gap: 0.5rem;
+    color: var(--grey); text-decoration: none; font-size: 0.85rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--cyan); }
+  .nav-back svg { width: 1rem; height: 1rem; }
+
+  /* PAGE LAYOUT */
+  .page {
+    position: relative; z-index: 1;
+    max-width: 780px; margin: 0 auto;
+    padding: 3.5rem 2rem 6rem;
+  }
+
+  /* PAGE HEADER */
+  .page-header { margin-bottom: 3rem; }
+  .page-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .page-label::before { content: ''; width: 20px; height: 1px; background: var(--cyan); opacity: 0.6; }
+  .page-header h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 900; text-transform: uppercase; line-height: 0.95; margin-bottom: 1rem;
+  }
+  .page-header h1 span { color: var(--cyan); }
+  .page-header p { color: var(--grey); font-size: 1rem; line-height: 1.7; max-width: 540px; }
+
+  /* ANON NOTICE */
+  .progress-bar-wrap {
+    position: sticky; top: 65px; z-index: 50;
+    background: rgba(2,11,24,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0; margin: 0 -2rem 2.5rem; padding-left: 2rem; padding-right: 2rem;
+  }
+  .progress-bar-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .progress-bar-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); }
+  .progress-bar-count { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+  .progress-track { width: 100%; height: 3px; background: rgba(0,200,255,0.1); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--teal)); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-steps { display: flex; justify-content: space-between; margin-top: 0.5rem; }
+  .progress-step { font-size: 0.62rem; color: var(--grey); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.5; transition: all 0.3s; cursor: default; }
+  .progress-step.active { color: var(--cyan); opacity: 1; font-weight: 700; }
+  .progress-step.done { color: var(--success); opacity: 0.8; }
+    display: flex; align-items: center; gap: 0.8rem;
+    background: rgba(0,200,255,0.05); border: 1px solid rgba(0,200,255,0.18);
+    padding: 1rem 1.4rem; margin-bottom: 2.5rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .anon-notice svg { width: 1.2rem; height: 1.2rem; color: var(--cyan); flex-shrink: 0; }
+  .anon-notice p { font-size: 0.85rem; color: var(--grey-light); line-height: 1.5; }
+  .anon-notice p strong { color: var(--white); font-weight: 500; }
+
+  /* FORM SECTIONS */
+  .form-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+  .form-section:last-of-type { border-bottom: none; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)} }
+  .form-section:nth-child(1) { animation-delay: 0.05s; }
+  .form-section:nth-child(2) { animation-delay: 0.1s; }
+  .form-section:nth-child(3) { animation-delay: 0.15s; }
+  .form-section:nth-child(4) { animation-delay: 0.2s; }
+  .form-section:nth-child(5) { animation-delay: 0.25s; }
+  .form-section:nth-child(6) { animation-delay: 0.3s; }
+
+  .form-section-header { margin-bottom: 1.5rem; }
+  .form-section-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.3rem;
+  }
+  .form-section-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .form-section-desc { font-size: 0.83rem; color: var(--grey); line-height: 1.55; margin-top: 0.3rem; }
+
+  /* GENDER TOGGLE */
+  .gender-toggle {
+    display: inline-flex; margin-bottom: 1rem;
+    border: 1px solid var(--border); overflow: hidden;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .gender-btn {
+    background: transparent; border: none; color: var(--grey);
+    padding: 0.5rem 1.5rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; position: relative;
+  }
+  .gender-btn:first-child { border-right: 1px solid var(--border); }
+  .gender-btn.active { background: var(--cyan-dim); color: var(--cyan); }
+  .gender-btn:hover:not(.active) { color: var(--white); background: rgba(255,255,255,0.03); }
+
+  /* SPORT TABS */
+  .sport-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .sport-tab {
+    background: rgba(6,26,46,0.9); border: 1px solid var(--border); color: var(--grey);
+    padding: 0.5rem 1.1rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    transition: all 0.18s;
+  }
+  .sport-tab:hover { color: var(--white); background: rgba(0,200,255,0.08); border-color: rgba(0,200,255,0.3); }
+  .sport-tab.active { background: var(--cyan-dim); color: var(--cyan); border-color: rgba(0,200,255,0.4); }
+
+  /* FORM FIELDS */
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .field-row.single { grid-template-columns: 1fr; }
+  .field-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .field-label .optional {
+    font-size: 0.6rem; color: rgba(122,155,181,0.5); font-weight: 400;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .field-input {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--white);
+    padding: 0.8rem 1rem; font-family: 'Barlow', sans-serif; font-size: 0.92rem;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    appearance: none;
+  }
+  .field-input:focus { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(0,200,255,0.06); }
+  .field-input::placeholder { color: rgba(122,155,181,0.4); }
+  textarea.field-input { height: 130px; resize: vertical; min-height: 100px; }
+  select.field-input { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A9BB5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+
+  /* STAR RATINGS */
+  .ratings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .rating-item {
+    background: var(--bg-card); border: 1px solid var(--border); padding: 1.2rem 1.4rem;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: border-color 0.2s;
+  }
+  .rating-item:hover { border-color: rgba(0,200,255,0.28); }
+  .rating-item-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.07em; color: var(--white); margin-bottom: 0.3rem;
+  }
+  .rating-item-desc { font-size: 0.72rem; color: var(--grey); line-height: 1.4; margin-bottom: 0.8rem; }
+  .star-row { display: flex; gap: 5px; }
+  .star-btn {
+    background: none; border: none; cursor: pointer; padding: 0;
+    color: rgba(0,200,255,0.15); font-size: 1.5rem; transition: color 0.12s, transform 0.1s;
+    line-height: 1;
+  }
+  .star-btn:hover { transform: scale(1.15); }
+
+  /* RECOMMEND TOGGLE */
+  .recommend-row { display: flex; gap: 1rem; }
+  .recommend-btn {
+    flex: 1; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border);
+    color: var(--grey); font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .recommend-btn svg { width: 1.1rem; height: 1.1rem; }
+  .recommend-btn:hover { border-color: rgba(0,200,255,0.35); color: var(--white); }
+  .recommend-btn.yes.active { background: rgba(0,229,160,0.1); border-color: var(--success); color: var(--success); }
+  .recommend-btn.no.active { background: rgba(255,80,80,0.08); border-color: rgba(255,80,80,0.5); color: #FF6B6B; }
+
+  /* RED FLAGS CHECKLIST */
+  .flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .flag-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 0.7rem 1rem; cursor: pointer; transition: all 0.18s;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    user-select: none;
+  }
+  .flag-item:hover { border-color: rgba(0,200,255,0.28); }
+  .flag-item.selected { background: rgba(0,200,255,0.07); border-color: rgba(0,200,255,0.4); color: var(--white); }
+  .flag-check {
+    width: 1rem; height: 1rem; border: 1.5px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; transition: all 0.18s;
+  }
+  .flag-item.selected .flag-check { border-color: var(--cyan); background: var(--cyan-dim); }
+  .flag-check svg { width: 0.6rem; height: 0.6rem; color: var(--cyan); opacity: 0; transition: opacity 0.18s; }
+  .flag-item.selected .flag-check svg { opacity: 1; }
+  .flag-label { font-size: 0.82rem; color: var(--grey); line-height: 1.3; }
+  .flag-item.selected .flag-label { color: var(--white); }
+
+  /* STRENGTHS CHECKLIST */
+  .strengths-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; }
+  .strength-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 0.6rem 0.9rem; cursor: pointer; transition: all 0.18s;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    user-select: none;
+  }
+  .strength-item:hover { border-color: rgba(0,200,255,0.28); }
+  .strength-item.selected { background: rgba(0,229,160,0.06); border-color: rgba(0,229,160,0.35); }
+  .strength-check { width: 0.85rem; height: 0.85rem; border: 1.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.18s; }
+  .strength-item.selected .strength-check { border-color: var(--success); background: rgba(0,229,160,0.1); }
+  .strength-check svg { width: 0.55rem; height: 0.55rem; color: var(--success); opacity: 0; transition: opacity 0.18s; }
+  .strength-item.selected .strength-check svg { opacity: 1; }
+  .strength-label { font-size: 0.78rem; color: var(--grey); }
+  .strength-item.selected .strength-label { color: var(--white); }
+
+  /* OVERALL SCORE */
+  .overall-score-wrap { text-align: center; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%); position: relative; overflow: hidden; }
+  .overall-score-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+  .overall-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); margin-bottom: 1rem; }
+  .overall-stars { display: flex; justify-content: center; gap: 8px; }
+  .overall-star { font-size: 2.8rem; cursor: pointer; color: rgba(0,200,255,0.15); transition: color 0.12s, transform 0.1s; line-height: 1; background: none; border: none; }
+  .overall-star:hover { transform: scale(1.1); }
+  .overall-score-value { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--grey); margin-top: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; min-height: 1.4rem; }
+
+  /* SUBMIT */
+  .submit-wrap {
+    background: rgba(0,200,255,0.03); border: 1px solid var(--border);
+    padding: 2rem 2.5rem; clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    position: relative; overflow: hidden;
+  }
+  .submit-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+  .submit-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .submit-anon { display: flex; align-items: center; gap: 0.6rem; }
+  .submit-anon svg { width: 1.1rem; height: 1.1rem; color: var(--cyan); }
+  .submit-anon-text { font-size: 0.8rem; color: var(--grey); line-height: 1.4; }
+  .submit-anon-text strong { color: var(--white); display: block; font-weight: 600; font-size: 0.85rem; }
+
+  .btn-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); border: none; padding: 1rem 3rem;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 900;
+    letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.25s; box-shadow: 0 6px 30px rgba(0,200,255,0.28);
+    white-space: nowrap;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0,200,255,0.45); }
+
+  /* SUCCESS STATE */
+  .success-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(2,11,24,0.97); backdrop-filter: blur(12px);
+    align-items: center; justify-content: center; flex-direction: column;
+    text-align: center; padding: 2rem;
+  }
+  .success-overlay.show { display: flex; }
+  .success-icon { width: 4rem; height: 4rem; color: var(--success); margin-bottom: 1.5rem; }
+  .success-overlay h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .success-overlay h2 span { color: var(--cyan); }
+  .success-overlay p { color: var(--grey); font-size: 1rem; line-height: 1.7; max-width: 480px; margin-bottom: 2rem; }
+  .success-overlay p strong { color: var(--white); }
+  .btn-return { background: transparent; border: 1.5px solid var(--border); color: var(--grey); padding: 0.8rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-return:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* RESPONSIVE */
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.2rem; }
+    .mobile-nav-toggle { display: flex; }
+    .nav-links { display: none !important; }
+    .nav-submit-btn { display: none !important; }
+    .progress-bar-wrap { margin: 0 -1.2rem 2rem; padding-left: 1.2rem; padding-right: 1.2rem; top: 58px; }
+    .progress-steps { display: none; }
+  }
+  @media (max-width: 700px) {
+    .page { padding: 2rem 1.2rem 6rem; }
+    .page-header h1 { font-size: 2.5rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .field-row.triple { grid-template-columns: 1fr; }
+    .ratings-grid { grid-template-columns: 1fr; }
+    .flags-grid { grid-template-columns: 1fr; }
+    .strengths-grid { grid-template-columns: 1fr 1fr; }
+    .recommend-row { flex-direction: column; gap: 0.8rem; }
+    .recommend-btn { width: 100%; justify-content: center; padding: 1rem; }
+    .submit-top { flex-direction: column; gap: 1.2rem; align-items: stretch; }
+    .btn-submit { width: 100%; text-align: center; font-size: 1rem; padding: 1rem; }
+    .submit-anon { font-size: 0.8rem; }
+    .overall-stars { gap: 0.5rem; }
+    .overall-star { font-size: 2rem; }
+    .sport-tabs { gap: 0.4rem; flex-wrap: wrap; }
+    .sport-tab { font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+    .gender-toggle { gap: 0.5rem; }
+    .gender-btn { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+    .star-row { gap: 0.3rem; }
+    .star-btn { font-size: 1.6rem; min-width: 2rem; min-height: 2rem; }
+    .form-section { padding: 1.5rem; }
+    .faq-modal { padding: 1rem; }
+    .faq-modal-inner { padding: 1rem 0 3rem; }
+    .faq-modal-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .faq-modal-title { font-size: 1.5rem; }
+    .success-overlay { padding: 1.5rem; }
+    .success-overlay h2 { font-size: 2.2rem; }
+  }
+  @media (max-width: 480px) {
+    .strengths-grid { grid-template-columns: 1fr; }
+    .progress-bar-wrap { padding: 0.7rem 1.2rem; }
+    .flag-item, .strength-item { padding: 0.7rem 0.9rem; }
+    .section-title { font-size: 1.6rem; }
+  }
+
+  /* MOBILE NAV */
+  .mobile-nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 5px; padding: 4px;
+  }
+  .mobile-nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white); border-radius: 2px; transition: all 0.3s;
+  }
+  .mobile-nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(2,11,24,0.97); backdrop-filter: blur(18px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    padding: 2rem;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-overlay a {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-nav-overlay a:hover { color: var(--cyan); }
+  .mobile-nav-overlay .mobile-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); padding: 0.9rem 2.5rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    font-size: 1.1rem;
+  }
+  .mobile-nav-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; color: var(--grey); font-size: 1.5rem;
+    cursor: pointer; line-height: 1; transition: color 0.2s;
+  }
+  .mobile-nav-close:hover { color: var(--white); }
+  @media (max-width: 900px) {
+    .mobile-nav-toggle { display: flex; }
+    .nav-links { display: none !important; }
+    .nav-submit-btn { display: none !important; }
+  }
+
+  .faq-modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(2,11,24,0.97); backdrop-filter: blur(12px); overflow-y: auto; padding: 2rem; }
+  .faq-modal.open { display: block; }
+  .faq-modal-inner { max-width: 680px; margin: 0 auto; padding: 2rem 0 4rem; }
+  .faq-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
+  .faq-modal-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; text-transform: uppercase; color: var(--white); }
+  .faq-modal-title span { color: var(--cyan); }
+  .faq-modal-close { background: none; border: 1px solid var(--border); color: var(--grey); padding: 0.5rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; clip-path: polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%); transition: all 0.2s; }
+  .faq-modal-close:hover { border-color: var(--cyan); color: var(--cyan); }
+  .faq-group-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .faq-item { border: 1px solid var(--border); background: rgba(6,26,46,0.5); margin-bottom: 0.6rem; clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); overflow: hidden; }
+  .faq-item.open { border-color: rgba(0,200,255,0.35); background: rgba(0,200,255,0.03); }
+  .faq-item.open::before { content: ''; display: block; height: 2px; background: linear-gradient(90deg,transparent,var(--cyan),transparent); }
+  .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.4rem; cursor: pointer; gap: 1rem; }
+  .faq-question h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); line-height: 1.3; }
+  .faq-icon { width: 1rem; height: 1rem; color: var(--cyan); flex-shrink: 0; transition: transform 0.3s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer { display: none; padding: 0 1.4rem 1.1rem; }
+  .faq-item.open .faq-answer { display: block; }
+  .faq-answer p { font-size: 0.88rem; color: var(--grey-light); line-height: 1.75; margin-bottom: 0.5rem; }
+  .faq-answer p:last-child { margin-bottom: 0; }
+  .faq-answer strong { color: var(--white); font-weight: 500; }
+  .faq-group { margin-bottom: 2rem; }
+
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.8rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 0.2rem; }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.08em; }
+  .footer-logo span { color: var(--cyan); }
+  .footer-tagline { font-size: 0.65rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.14em; }
+  .footer-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.72rem; color: var(--grey); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+  @media (max-width: 600px) {
+    footer { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
+    .footer-links { justify-content: center; gap: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="circuit-bg"></div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./index.html#features" onclick="closeMobileNav()">Features</a>
+  <a href="./index.html#future" onclick="closeMobileNav()">What's Coming</a>
+  <a href="./future-professionals.html" onclick="closeMobileNav()">Future Professionals</a>
+  <a href="./future-agents.html" onclick="closeMobileNav()">For Agents</a>
+  <a href="./index.html#waitlist" onclick="closeMobileNav()">Waitlist</a>
+  <a href="./submit-review.html" class="mobile-submit" onclick="closeMobileNav()">Submit a Review</a>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+
+// League options per sport
+  const leagueOptions = {
+    // Men's
+    NFL:  ['NFL (Active)', 'NFL (Former)', 'Practice Squad / PS', 'CFL', 'Arena / Indoor'],
+    NBA:  ['NBA (Active)', 'NBA (Former)', 'G-League', 'Overseas'],
+    MLB:  ['MLB (Active)', 'MLB (Former)', 'Triple-A', 'Double-A', 'Independent'],
+    NHL:  ['NHL (Active)', 'NHL (Former)', 'AHL', 'ECHL'],
+    MLS:  ['MLS (Active)', 'MLS (Former)', 'USL Championship', 'USL League One', 'International'],
+    EPL:  ['Premier League (Active)', 'Premier League (Former)', 'Championship', 'League One', 'International'],
+    CFL:  ['CFL (Active)', 'CFL (Former)'],
+    XFL:  ['XFL (Active)', 'XFL (Former)', 'USFL (Active)', 'USFL (Former)'],
+    // Women's
+    WNBA: ['WNBA (Active)', 'WNBA (Former)', 'Overseas / International'],
+    NWSL: ['NWSL (Active)', 'NWSL (Former)', 'USL Super League', 'International'],
+    WSL:  ["Women's Super League (Active)", "Women's Super League (Former)", "Championship Women's", "International"],
+    PWHL: ['PWHL (Active)', 'PWHL (Former)', 'NWHL / PHF (Former)'],
+    LOVB: ['LOVB (Active)', 'LOVB (Former)', 'PVF', 'International / Overseas'],
+    WTA:  ['WTA Tour', 'ITF Circuit', 'Retired / Former'],
+    AU:   ['Athletes Unlimited Softball', 'Athletes Unlimited Volleyball', 'Athletes Unlimited Lacrosse', 'Athletes Unlimited Basketball'],
+  };
+
+  let currentGender = 'men';
+
+  function switchGender(gender) {
+    currentGender = gender;
+    document.getElementById('genderMen').classList.toggle('active', gender === 'men');
+    document.getElementById('genderWomen').classList.toggle('active', gender === 'women');
+    document.getElementById('mensTabs').style.display = gender === 'men' ? 'flex' : 'none';
+    document.getElementById('womensTabs').style.display = gender === 'women' ? 'flex' : 'none';
+    // activate first tab of new group
+    const activeGroup = gender === 'men' ? document.getElementById('mensTabs') : document.getElementById('womensTabs');
+    const firstTab = activeGroup.querySelector('.sport-tab');
+    activeGroup.querySelectorAll('.sport-tab').forEach(t => t.classList.remove('active'));
+    firstTab.classList.add('active');
+    firstTab.click();
+  }
+
+  function selectSport(el, sport) {
+    const parentTabs = el.closest('.sport-tabs');
+    parentTabs.querySelectorAll('.sport-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const sel = document.getElementById('leagueSelect');
+    sel.innerHTML = '<option value="" disabled selected>Select level</option>';
+    (leagueOptions[sport] || []).forEach(o => {
+      const opt = document.createElement('option');
+      opt.textContent = o;
+      sel.appendChild(opt);
+    });
+  }
+
+  // Flags & strengths — kept outside DOMContentLoaded for onclick access
+  function toggleFlag(el) { el.classList.toggle('selected'); }
+  function toggleStrength(el) { el.classList.toggle('selected'); }
+  function setRecommend(val, el) {
+    document.querySelectorAll('.recommend-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Category star ratings
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.ratings-grid .star-row').forEach(row => {
+      const stars = row.querySelectorAll('.star-btn');
+      const refresh = () => {
+        const sel = parseInt(row.dataset.selected ?? -1);
+        stars.forEach((s, j) => s.style.color = j <= sel ? 'var(--cyan)' : 'rgba(0,200,255,0.15)');
+      };
+      stars.forEach((star, i) => {
+        star.addEventListener('mouseenter', () => stars.forEach((s,j) => s.style.color = j <= i ? 'var(--cyan)' : 'rgba(0,200,255,0.15)'));
+        star.addEventListener('mouseleave', refresh);
+        star.addEventListener('click', () => { row.dataset.selected = i; refresh(); });
+      });
+    });
+
+    // Overall star rating
+    const overallLabels = ['Poor', 'Below Average', 'Average', 'Good', 'Excellent'];
+    const overallStars = document.querySelectorAll('#overallStars .overall-star');
+    const overallLabel = document.getElementById('overallScoreLabel');
+    let overallSelected = -1;
+    const refreshOverall = () => overallStars.forEach((s,j) => s.style.color = j <= overallSelected ? 'var(--cyan)' : 'rgba(0,200,255,0.15)');
+    overallStars.forEach((star, i) => {
+      star.addEventListener('mouseenter', () => {
+        overallStars.forEach((s,j) => s.style.color = j <= i ? 'var(--cyan)' : 'rgba(0,200,255,0.15)');
+        overallLabel.textContent = overallLabels[i];
+      });
+      star.addEventListener('mouseleave', () => {
+        refreshOverall();
+        overallLabel.textContent = overallSelected >= 0 ? overallLabels[overallSelected] : 'Tap to rate';
+      });
+      star.addEventListener('click', () => {
+        overallSelected = i;
+        refreshOverall();
+        overallLabel.textContent = overallLabels[i];
+      });
+    });
+
+    // Progress bar
+    const sections = document.querySelectorAll('.form-section');
+    const steps = ['step1','step2','step3','step4','step5','step6'];
+    const labels = ['Sport','Agent Info','Ratings','Experience','Patterns','Overall'];
+    function updateProgress() {
+      let current = 0;
+      sections.forEach((sec, i) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.5) current = i;
+      });
+      const pct = Math.round(((current) / 5) * 100);
+      const fill = document.getElementById('progressFill');
+      const label = document.getElementById('progressLabel');
+      const percent = document.getElementById('progressPercent');
+      if (fill) fill.style.width = pct + '%';
+      if (label) label.textContent = 'Section ' + (current + 1) + ' of 6 — ' + labels[current];
+      if (percent) percent.textContent = pct + '% Complete';
+      steps.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.remove('active','done');
+          if (i < current) el.classList.add('done');
+          else if (i === current) el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+  });
+
+  // Submit
+  function submitReview() {
+    const instagram = document.getElementById('verifyInstagram').value.trim();
+    const email = document.getElementById('verifyEmail').value.trim();
+    if (!instagram && !email) {
+      document.getElementById('verifyError').style.display = 'block';
+      document.getElementById('verifyInstagram').style.borderColor = 'rgba(255,107,107,0.6)';
+      document.getElementById('verifyEmail').style.borderColor = 'rgba(255,107,107,0.6)';
+      document.getElementById('verifyInstagram').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    document.getElementById('verifyError').style.display = 'none';
+    // If email provided, update success message to confirm notification signup
+    if (email) {
+      document.getElementById('successEmailNote').style.display = 'block';
+    }
+    document.getElementById('successOverlay').classList.add('show');
+    window.scrollTo(0, 0);
+  }
+</script>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  </div>
+  <h2>Review<br><span>Submitted.</span></h2>
+  <p><strong>You just protected the next player</strong> who doesn't know what you know. That's exactly what this is built for.</p>
+  <p id="successEmailNote" style="display:none;font-size:0.85rem;color:var(--cyan);margin-top:-1rem;margin-bottom:1rem;">✓ We'll email you when your league unlocks.</p>
+  <div style="border:1px solid rgba(0,200,255,0.2);background:rgba(0,200,255,0.04);padding:1.5rem 2rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);max-width:420px;width:100%;margin-bottom:1.5rem;text-align:left;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.5rem;">Know another player?</div>
+    <p style="font-size:0.83rem;color:var(--grey);line-height:1.6;margin-bottom:0.9rem;">Send them this link. Every review gets your league closer to full access.</p>
+    <div style="display:flex;gap:0;">
+      <input id="shareUrl" type="text" value="https://athenticate.co/submit-review.html" readonly style="flex:1;background:rgba(6,26,46,0.9);border:1px solid var(--border);border-right:none;color:var(--grey);padding:0.6rem 0.9rem;font-family:'Barlow',sans-serif;font-size:0.75rem;outline:none;" />
+      <button onclick="navigator.clipboard.writeText(document.getElementById('shareUrl').value);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)" style="background:var(--cyan-dim);border:1px solid rgba(0,200,255,0.3);color:var(--cyan);padding:0.6rem 1rem;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;">Copy Link</button>
+    </div>
+  </div>
+  <a class="btn-return" href="./index.html">← Back to ATHenticate</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="./index.html"><span>ATH</span>enticate</a>
+  <a class="nav-back" href="./index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+<button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="page-label">Submit a Review</div>
+    <h1>Rate Your<br><span>Agent.</span></h1>
+    <p>Share what working with your agent was really like. Good or bad, your experience helps the next player make a smarter decision. Everything here is completely anonymous.</p>
+  </div>
+
+  <!-- ANON NOTICE -->
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar-wrap" id="progressBar">
+    <div class="progress-bar-meta">
+      <span class="progress-bar-label" id="progressLabel">Section 1 of 6</span>
+      <span class="progress-bar-count" id="progressPercent">0% Complete</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-steps">
+      <span class="progress-step active" id="step1">Sport</span>
+      <span class="progress-step" id="step2">Agent</span>
+      <span class="progress-step" id="step3">Ratings</span>
+      <span class="progress-step" id="step4">Experience</span>
+      <span class="progress-step" id="step5">Patterns</span>
+      <span class="progress-step" id="step6">Overall</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: SPORT -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 01</div>
+      <div class="form-section-title">Your Sport</div>
+      <div class="form-section-desc">Select the sport you played at a professional level when working with this agent.</div>
+    </div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="genderMen" onclick="switchGender('men')">Men's</button>
+      <button class="gender-btn" id="genderWomen" onclick="switchGender('women')">Women's</button>
+    </div>
+    <div class="sport-tabs" id="mensTabs">
+      <button class="sport-tab active" onclick="selectSport(this,'NFL')">NFL</button>
+      <button class="sport-tab" onclick="selectSport(this,'NBA')">NBA</button>
+      <button class="sport-tab" onclick="selectSport(this,'MLB')">MLB</button>
+      <button class="sport-tab" onclick="selectSport(this,'NHL')">NHL</button>
+      <button class="sport-tab" onclick="selectSport(this,'MLS')">MLS</button>
+      <button class="sport-tab" onclick="selectSport(this,'EPL')">Premier League</button>
+      <button class="sport-tab" onclick="selectSport(this,'CFL')">CFL</button>
+      <button class="sport-tab" onclick="selectSport(this,'XFL')">XFL / USFL</button>
+    </div>
+    <div class="sport-tabs" id="womensTabs" style="display:none">
+      <button class="sport-tab" onclick="selectSport(this,'WNBA')">WNBA</button>
+      <button class="sport-tab" onclick="selectSport(this,'NWSL')">NWSL</button>
+      <button class="sport-tab" onclick="selectSport(this,'WSL')">Women's Super League</button>
+      <button class="sport-tab" onclick="selectSport(this,'PWHL')">PWHL</button>
+      <button class="sport-tab" onclick="selectSport(this,'LOVB')">LOVB</button>
+      <button class="sport-tab" onclick="selectSport(this,'WTA')">WTA</button>
+      <button class="sport-tab" onclick="selectSport(this,'AU')">Athletes Unlimited</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: AGENT INFO -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 02</div>
+      <div class="form-section-title">Agent Information</div>
+      <div class="form-section-desc">Tell us who you're reviewing. Fill in as much as you know.</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Agent Name</label>
+        <input class="field-input" type="text" placeholder="e.g. John Smith" />
+      </div>
+      <div class="field">
+        <label class="field-label">Agency / Firm <span class="optional">optional</span></label>
+        <input class="field-input" type="text" placeholder="e.g. CAA Sports, Roc Nation" />
+      </div>
+    </div>
+    <div class="field-row triple">
+      <div class="field">
+        <label class="field-label">Your League / Level</label>
+        <select class="field-input" id="leagueSelect">
+          <option value="" disabled selected>Select level</option>
+          <option>NFL (Active)</option>
+          <option>NFL (Former)</option>
+          <option>Practice Squad / PS</option>
+          <option>CFL</option>
+          <option>Arena / Indoor</option>
+          <option>Other Pro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field-label">How Long Were They Your Agent?</label>
+        <select class="field-input">
+          <option value="" disabled selected>Select range</option>
+          <option>Less than 1 year</option>
+          <option>1–2 years</option>
+          <option>3–5 years</option>
+          <option>6–10 years</option>
+          <option>11+ years</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field-label">Are They Still Your Agent?</label>
+        <select class="field-input">
+          <option value="" disabled selected>Select</option>
+          <option>Yes, currently</option>
+          <option>No, I moved on</option>
+          <option>My career has ended</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Have You Worked With Other Agents? <span class="optional">optional</span></label>
+        <select class="field-input">
+          <option value="" disabled selected>Select</option>
+          <option>Yes</option>
+          <option>No — this is my only agent</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: CATEGORY RATINGS -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 03</div>
+      <div class="form-section-title">Category Ratings</div>
+      <div class="form-section-desc">Rate your agent in each area. Click the star that reflects your experience.</div>
+    </div>
+    <div class="ratings-grid">
+      <div class="rating-item">
+        <div class="rating-item-label">Communication</div>
+        <div class="rating-item-desc">Did they keep you informed and return calls promptly?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Contract Performance</div>
+        <div class="rating-item-desc">Did they negotiate effectively and fight for your value?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Loyalty & Honesty</div>
+        <div class="rating-item-desc">Were they straight with you, even when it wasn't easy?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Network & Access</div>
+        <div class="rating-item-desc">Did they have real relationships that opened doors for you?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Endorsements & Off-Field</div>
+        <div class="rating-item-desc">Did they pursue sponsorships, endorsements, and opportunities beyond the contract?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Availability</div>
+        <div class="rating-item-desc">Were they there when it mattered — cuts, injuries, free agency?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Career Guidance</div>
+        <div class="rating-item-desc">Did they help you think long-term, not just the next deal?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Combine & Draft Prep</div>
+        <div class="rating-item-desc">Did they prepare you for the combine, draft process, and what to expect going pro?</div>
+        <div class="star-row" data-selected="-1">
+          <button class="star-btn" data-val="0">★</button>
+          <button class="star-btn" data-val="1">★</button>
+          <button class="star-btn" data-val="2">★</button>
+          <button class="star-btn" data-val="3">★</button>
+          <button class="star-btn" data-val="4">★</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: WRITTEN EXPERIENCE -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 04</div>
+      <div class="form-section-title">Your Experience</div>
+      <div class="form-section-desc">In your own words — what was it really like working with them? What do you wish you'd known before signing?</div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label class="field-label">Your Story <span class="optional">be as detailed as you want</span></label>
+        <textarea class="field-input" style="height:160px" placeholder="Share what working with this agent was actually like. Did they show up when it counted? Were the promises real? What would you tell a younger player before they sign with this person?"></textarea>
+      </div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label class="field-label">Anything They Did Particularly Well <span class="optional">optional</span></label>
+        <textarea class="field-input" placeholder="Highlight a moment or quality that stood out in a positive way..."></textarea>
+      </div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label class="field-label">Anything You Wish Had Been Different <span class="optional">optional</span></label>
+        <textarea class="field-input" placeholder="A situation where you felt unsupported, misled, or let down..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: FLAGS & STRENGTHS -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 05</div>
+      <div class="form-section-title">Patterns & Tags</div>
+      <div class="form-section-desc">Select anything that matches your experience. These tags help surface patterns across reviews.</div>
+    </div>
+
+    <p style="font-size:0.75rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-bottom:0.8rem;">Areas of Concern</p>
+    <div class="flags-grid" style="margin-bottom:1.5rem">
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Didn't return calls or messages</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Made promises they didn't keep</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Disappeared during critical moments</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Contract terms weren't explained clearly</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Overstated their relationships</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Prioritized other clients over me</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Left me without options at key moments</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">Not transparent about fees or commissions</span>
+      </div>
+      <div class="flag-item" onclick="toggleFlag(this)">
+        <div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="flag-label">No help with combine or pro day prep</span>
+      </div>
+    </div>
+
+    <p style="font-size:0.75rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-bottom:0.8rem;">Notable Strengths</p>
+    <div class="strengths-grid">
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Always available</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Strong negotiator</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Honest & direct</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Real relationships</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Long-term thinker</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Transparent on fees</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Invested in combine / pro day prep</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Secured endorsements & off-field deals</span>
+      </div>
+      <div class="strength-item" onclick="toggleStrength(this)">
+        <div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div>
+        <span class="strength-label">Kept me informed without me asking</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: OVERALL + RECOMMEND -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 06</div>
+      <div class="form-section-title">Overall Rating</div>
+      <div class="form-section-desc">Your overall impression — everything considered.</div>
+    </div>
+
+    <div class="overall-score-wrap" style="margin-bottom:1.5rem">
+      <div class="overall-label">Overall Score</div>
+      <div class="overall-stars" id="overallStars">
+        <button class="overall-star" data-val="0">★</button>
+        <button class="overall-star" data-val="1">★</button>
+        <button class="overall-star" data-val="2">★</button>
+        <button class="overall-star" data-val="3">★</button>
+        <button class="overall-star" data-val="4">★</button>
+      </div>
+      <div class="overall-score-value" id="overallScoreLabel">Tap to rate</div>
+    </div>
+
+    <p style="font-size:0.75rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-bottom:0.8rem;">Would You Recommend This Agent to Another Player?</p>
+    <div class="recommend-row">
+      <button class="recommend-btn yes" onclick="setRecommend('yes', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Yes, I'd recommend them
+      </button>
+      <button class="recommend-btn no" onclick="setRecommend('no', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        No, I wouldn't
+      </button>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap">
+
+    <!-- VERIFICATION CONTACT -->
+    <div style="margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid var(--border);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem;">Verification Contact</div>
+      <p style="font-size:0.82rem;color:var(--grey);line-height:1.6;margin-bottom:1.2rem;">Provide at least one — Instagram or email. Used only to verify you're a professional athlete. <strong style="color:var(--white);font-weight:500;">Never displayed publicly.</strong> If you provide your email, we'll also notify you when your league unlocks. <a href="javascript:void(0)" onclick="document.getElementById('faqModal').classList.add('open');return false;" style="color:var(--cyan);text-decoration:none;font-weight:600;">Have questions? Read our FAQ →</a></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <label style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);display:flex;align-items:center;gap:0.4rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:0.85rem;height:0.85rem;color:var(--cyan);"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram Handle
+          </label>
+          <input id="verifyInstagram" class="field-input" type="text" placeholder="@yourhandle" style="background:var(--bg-card);border:1px solid var(--border);color:var(--white);padding:0.78rem 1rem;font-family:'Barlow',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;appearance:none;" onfocus="this.style.borderColor='rgba(0,200,255,0.5)'" onblur="this.style.borderColor='var(--border)'" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;">
+          <label style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);display:flex;align-items:center;gap:0.4rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:0.85rem;height:0.85rem;color:var(--cyan);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Address <span style="font-size:0.58rem;color:var(--cyan);font-weight:600;letter-spacing:0.06em;">+ league updates</span>
+          </label>
+          <input id="verifyEmail" class="field-input" type="email" placeholder="your@email.com" style="background:var(--bg-card);border:1px solid var(--border);color:var(--white);padding:0.78rem 1rem;font-family:'Barlow',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;appearance:none;" onfocus="this.style.borderColor='rgba(0,200,255,0.5)'" onblur="this.style.borderColor='var(--border)'" />
+        </div>
+      </div>
+      <p id="verifyError" style="display:none;font-size:0.78rem;color:#FF6B6B;margin-top:0.7rem;">Please provide at least your Instagram handle or email address before submitting.</p>
+    </div>
+
+    <div class="submit-top">
+      <div class="submit-anon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div class="submit-anon-text">
+          <strong>Verified. Never displayed.</strong>
+          Your identity confirms you're a professional athlete. It is never shown, shared, or visible to anyone.
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitReview()">Submit Review</button>
+    </div>
+  </div>
+
+</div><!-- end .page -->
+
+
+
+<!-- FAQ MODAL -->
+<div class="faq-modal" id="faqModal">
+  <div class="faq-modal-inner">
+    <div class="faq-modal-header">
+      <div class="faq-modal-title">Frequently <span>Asked.</span></div>
+      <button class="faq-modal-close" onclick="document.getElementById('faqModal').classList.remove('open')">← Back to Review</button>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-label">Anonymity & Privacy</div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Is my review really anonymous?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Yes. Your review is published without any identifying information. No name, no handle, no league — nothing that connects it back to you publicly. The verification contact you provide is stored separately and used only to confirm you are a professional athlete.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Can my agent find out I submitted a review?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p><strong>No.</strong> Agents do not have access to reviewer identities under any circumstance. Your verification contact is never accessible to agents or any third party.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>What do you do with my Instagram or email?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Used solely to verify you are a professional athlete. We may reach out once to confirm your submission. We do not add you to any mailing list, share your contact with third parties, or use it for marketing.</p></div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-label">Submitting a Review</div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>What happens after I submit?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Your review goes through a manual verification process. Once confirmed, it contributes to your league's database. When enough reviews exist in your sport, full access unlocks for everyone in that league.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Is this only for negative experiences?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p><strong>Not at all.</strong> ATHenticate is built to reward the right agents and hold the rest accountable. If your agent was excellent, that record matters just as much. Great agents deserve to be found.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Can I review more than one agent?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Yes. If you have worked with multiple agents, each experience is worth recording. Submit a separate review for each agent.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Can I edit or remove my review after submitting?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Yes. Contact us at <strong><a href="mailto:contact@athenticate.co"><span >[email&#160;protected]</span></a></strong> and we will process your request within 30 days. Include the agent name and the verification contact you used when submitting.</p></div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-label">The Platform</div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Is it free to submit a review?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p><strong>Always.</strong> Submitting a review is free for every professional athlete in every league. Full platform access requires a subscription when those features launch.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>When does my league unlock?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Each league unlocks when enough verified reviews exist to make the database genuinely useful. Each league unlocks when enough verified reviews exist to make the database genuinely useful. The more players in your league who submit, the faster it opens.</p></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<footer>
+  <div>
+    <div class="footer-logo"><span>ATH</span>enticate</div>
+    <div class="footer-tagline">Players Protecting Players</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./faq.html">FAQ</a></li>
+    <li><a href="./privacy.html">Privacy</a></li>
+    <li><a href="./terms.html">Terms</a></li>
+    <li><a href="mailto:contact@athenticate.co">Contact</a></li>
+  </ul>
+</footer>
+</body>
+</html>
