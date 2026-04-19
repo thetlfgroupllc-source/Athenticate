@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Professionals — ATHenticate</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="College athletes preparing to go pro: see how ATHenticate will help you research agents, find the right representation, and walk into signing day fully informed.">
+<meta property="og:title" content="Future Professionals — ATHenticate">
+<meta property="og:url" content="https://athenticate.co/future-professionals.html">
+<meta property="og:image" content="https://athenticate.co/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<link rel="canonical" href="https://athenticate.co/future-professionals.html">
+<style>
+  :root { --bg-deep:#020B18;--bg-card:#071E36;--cyan:#00C8FF;--teal:#0AEFFF;--cyan-dim:rgba(0,200,255,0.08);--white:#F0F8FF;--grey:#7A9BB5;--grey-light:#9BB8D0;--border:rgba(0,200,255,0.14);--success:#00E5A0;--gold:#FFB800; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg-deep);color:var(--white);font-family:'Saira',sans-serif;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,200,255,0.07) 0%,transparent 70%);}
+  .circuit-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.05;background-image:linear-gradient(var(--cyan) 1px,transparent 1px),linear-gradient(90deg,var(--cyan) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 70%);}
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(2,11,24,0.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:900;letter-spacing:0.08em;color:var(--white);text-decoration:none;}
+  .nav-logo span{color:var(--cyan);}
+  .nav-back{display:flex;align-items:center;gap:0.5rem;color:var(--grey);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-back:hover{color:var(--cyan);}
+  .nav-back svg{width:1rem;height:1rem;}
+  .mobile-nav-toggle{display:none;background:none;border:1px solid rgba(0,200,255,0.25);cursor:pointer;flex-direction:column;align-items:center;gap:4px;padding:6px 10px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+  .mobile-nav-toggle span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;}
+  .mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(2,11,24,0.97);backdrop-filter:blur(18px);flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:2rem;}
+  .mobile-nav-overlay.open{display:flex;}
+  .mobile-nav-overlay a{font-family:'Chakra Petch',sans-serif;font-size:2rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);text-decoration:none;}
+  .mobile-nav-overlay a:hover{color:var(--cyan);}
+  .mobile-nav-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;}
+  .hero{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;}
+  .coming-soon-badge{display:inline-flex;align-items:center;gap:0.6rem;border:1px solid rgba(255,184,0,0.3);background:rgba(255,184,0,0.06);padding:0.4rem 1.2rem;font-family:'Chakra Petch',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+  .coming-soon-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 6px rgba(255,184,0,0.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .hero-label{font-family:'Chakra Petch',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.7rem;}
+  .hero > .hero-label{font-size:1.5rem;letter-spacing:0.12em;margin-bottom:1rem;}
+  .hero h1{font-family:'Chakra Petch',sans-serif;font-size:clamp(2.6rem,7vw,4.5rem);font-weight:900;text-transform:uppercase;line-height:0.92;margin-bottom:1.2rem;}
+  .hero h1 span{color:var(--cyan);}
+  .hero-desc{color:var(--grey);font-size:1rem;line-height:1.75;max-width:620px;}
+  .hero-desc strong{color:var(--white);font-weight:500;}
+  .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,200,255,0.2),transparent);}
+  .section{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:4rem 2rem;}
+  .section-label{font-family:'Chakra Petch',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.7rem;}
+  .section-title{font-family:'Chakra Petch',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:0.8rem;}
+  .section-desc{color:var(--grey);font-size:1rem;line-height:1.7;max-width:580px;margin-bottom:2rem;}
+  .roadmap{display:flex;flex-direction:column;gap:1rem;}
+  .phase-card{border:1px solid var(--border);background:rgba(6,26,46,0.5);padding:1.6rem 1.8rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);display:flex;gap:1.6rem;align-items:flex-start;position:relative;overflow:hidden;}
+  .phase-card.active-phase{border-color:rgba(0,200,255,0.35);background:rgba(0,200,255,0.04);}
+  .phase-card.active-phase::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+  .phase-num{font-family:'Chakra Petch',sans-serif;font-size:2.2rem;font-weight:900;color:var(--cyan);opacity:0.2;line-height:1;flex-shrink:0;width:2.8rem;}
+  .phase-card.active-phase .phase-num{opacity:1;}
+  .phase-content{flex:1;}
+  .phase-status{display:inline-block;font-family:'Chakra Petch',sans-serif;font-size:0.6rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.7rem;margin-bottom:0.5rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+  .status-live{background:rgba(0,229,160,0.12);color:var(--success);border:1px solid rgba(0,229,160,0.3);}
+  .status-building{background:rgba(0,200,255,0.1);color:var(--cyan);border:1px solid rgba(0,200,255,0.25);}
+  .status-future{background:rgba(122,155,181,0.08);color:var(--grey);border:1px solid var(--border);}
+  .phase-title{font-family:'Chakra Petch',sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4rem;}
+  .phase-desc{font-size:0.87rem;color:var(--grey);line-height:1.6;margin-bottom:0.8rem;}
+  .phase-features{display:flex;flex-wrap:wrap;gap:0.4rem;}
+  .phase-feature{font-size:0.66rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);color:var(--grey);padding:0.2rem 0.6rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+  .phase-card.active-phase .phase-feature{color:var(--grey-light);border-color:rgba(0,200,255,0.2);}
+  .features-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .feature-card{border:1px solid var(--border);background:rgba(6,26,46,0.5);padding:1.5rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);position:relative;overflow:hidden;}
+  .feature-card::after{content:'Coming Soon';position:absolute;top:0.8rem;right:1rem;font-family:'Chakra Petch',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);opacity:0.7;}
+  .feature-icon{width:1.6rem;height:1.6rem;color:var(--cyan);margin-bottom:0.8rem;opacity:0.6;}
+  .feature-icon svg{width:100%;height:100%;}
+  .feature-card h3{font-family:'Chakra Petch',sans-serif;font-size:0.95rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4rem;color:var(--grey-light);}
+  .feature-card p{font-size:0.82rem;color:var(--grey);line-height:1.6;}
+  .pricing-note{border:1px solid rgba(255,184,0,0.2);background:rgba(255,184,0,0.04);padding:1.2rem 1.5rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:2rem;}
+  .pricing-note-icon{width:1.2rem;height:1.2rem;color:var(--gold);flex-shrink:0;margin-top:0.1rem;}
+  .pricing-note p{font-size:0.85rem;color:var(--grey-light);line-height:1.6;}
+  .pricing-note p strong{color:var(--white);}
+  .form-section{position:relative;z-index:1;background:linear-gradient(135deg,rgba(6,26,46,0.95) 0%,rgba(2,11,24,0.95) 100%);border-top:1px solid var(--border);padding:4rem 2rem;}
+  .form-inner{max-width:600px;margin:0 auto;}
+  .form-card{border:1px solid var(--border);background:rgba(0,200,255,0.02);padding:2rem;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);position:relative;}
+  .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .form-group{display:flex;flex-direction:column;gap:0.4rem;}
+  .form-label{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);}
+  .form-input{background:var(--bg-card);border:1px solid var(--border);color:var(--white);padding:0.75rem 1rem;font-family:'Saira',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;appearance:none;}
+  .form-input:focus{border-color:rgba(0,200,255,0.5);}
+  .form-input::placeholder{color:rgba(122,155,181,0.4);}
+  select.form-input{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A9BB5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;}
+  .form-submit-row{display:flex;align-items:center;justify-content:space-between;margin-top:1.2rem;flex-wrap:wrap;gap:1rem;}
+  .form-note{font-size:0.75rem;color:var(--grey);max-width:280px;line-height:1.5;}
+  .btn-submit{background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--bg-deep);border:none;padding:0.85rem 2rem;font-family:'Chakra Petch',sans-serif;font-size:0.95rem;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all 0.25s;box-shadow:0 6px 24px rgba(0,200,255,0.25);white-space:nowrap;}
+  .btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,200,255,0.45);}
+  .success-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(2,11,24,0.97);backdrop-filter:blur(12px);align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem;}
+  .success-overlay.show{display:flex;}
+  .success-icon{width:3.5rem;height:3.5rem;color:var(--success);margin-bottom:1.2rem;}
+  .success-overlay h2{font-family:'Chakra Petch',sans-serif;font-size:2.5rem;font-weight:900;text-transform:uppercase;margin-bottom:0.7rem;}
+  .success-overlay h2 span{color:var(--cyan);}
+  .success-overlay p{color:var(--grey);font-size:0.95rem;line-height:1.7;max-width:420px;margin-bottom:1.8rem;}
+  .success-overlay p strong{color:var(--white);}
+  .btn-return{background:transparent;border:1.5px solid var(--border);color:var(--grey);padding:0.75rem 1.8rem;font-family:'Chakra Petch',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all 0.2s;text-decoration:none;display:inline-block;}
+  .btn-return:hover{border-color:var(--cyan);color:var(--cyan);}
+  footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-logo{font-family:'Chakra Petch',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:0.08em;}
+  .footer-logo span{color:var(--cyan);}
+  .footer-tagline{font-size:0.68rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.14em;}
+  .footer-links{display:flex;gap:1.2rem;list-style:none;flex-wrap:wrap;}
+  .footer-links a{font-size:0.72rem;color:var(--grey);text-decoration:none;text-transform:uppercase;letter-spacing:0.06em;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--cyan);}
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-back{display:none;}
+    .mobile-nav-toggle{display:flex;}
+    .hero{padding:4rem 1.5rem 2.5rem;}
+    .section{padding:3rem 1.5rem;}
+    .phase-card{flex-direction:column;gap:0.7rem;padding:1.2rem;}
+    .phase-num{font-size:1.6rem;width:auto;}
+    .features-grid{grid-template-columns:1fr;}
+    .form-section{padding:3rem 1.5rem;}
+    .form-grid{grid-template-columns:1fr;}
+    .form-submit-row{flex-direction:column;align-items:stretch;}
+    .btn-submit{width:100%;text-align:center;}
+    footer{flex-direction:column;align-items:center;text-align:center;padding:1.5rem;}
+    .footer-links{justify-content:center;}
+  }
+  @media(max-width:480px){
+    .hero h1{font-size:clamp(2rem,12vw,3rem);}
+    .section-title{font-size:1.6rem;}
+    .phase-features{gap:0.3rem;}
+    .pricing-note{flex-direction:column;}
+    .features-grid{grid-template-columns:1fr;}
+    .hero > .hero-label{font-size:1.2rem;}
+  }
+</style>
+</head>
+<body>
+<div class="circuit-bg"></div>
+
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+  <h2>You're<br><span>On the List.</span></h2>
+  <p>We'll reach out when these features launch. <strong>In the meantime, spread the word</strong> — every review a professional athlete submits makes this platform stronger for you when it opens.</p>
+  <a class="btn-return" href="./index.html">← Back to ATHenticate</a>
+</div>
+
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./index.html#features" onclick="closeMobileNav()">Features</a>
+  <a href="./index.html#future" onclick="closeMobileNav()">What's Coming</a>
+  <a href="./future-agents.html" onclick="closeMobileNav()">For Agents</a>
+  <a href="./submit-review.html" onclick="closeMobileNav()">Rate Your Agent</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="./index.html"><span>ATH</span>enticate</a>
+  <a class="nav-back" href="./index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+  <button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="hero">
+  <div class="coming-soon-badge">In Development</div>
+  <div class="hero-label">Future Professionals</div>
+  <h1>The Full Platform<br>Is Being<br><span>Built for You.</span></h1>
+  <p class="hero-desc">ATHenticate starts with one mission — <strong>building a verified review database for professional athletes.</strong> The full vision goes further. Future professionals preparing to go pro will have a complete platform to find, evaluate, and connect with the right agent.</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-label">Platform Roadmap</div>
+  <h2 class="section-title">Building in Phases.</h2>
+  <p class="section-desc">Each phase builds on the one before it. The review database being built right now is what makes everything else credible.</p>
+
+  <div class="roadmap">
+    <div class="phase-card active-phase">
+      <div class="phase-num">01</div>
+      <div class="phase-content">
+        <div class="phase-status status-live">Live Now</div>
+        <div class="phase-title">Build the Review Database</div>
+        <p class="phase-desc">Professional athletes submit anonymous, verified reviews of their agents. Identity is verified to protect platform integrity — never displayed. Always free to review. This is the foundation everything else is built on.</p>
+        <div class="phase-features">
+          <span class="phase-feature">Anonymous Reviews</span>
+          <span class="phase-feature">Identity Verified</span>
+          <span class="phase-feature">Men's & Women's Leagues</span>
+          <span class="phase-feature">Always Free to Review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">02</div>
+      <div class="phase-content">
+        <div class="phase-status status-building">Next Up</div>
+        <div class="phase-title">Agent Search, Rankings & Full Access</div>
+        <p class="phase-desc">The platform opens to subscribers. Search any agent, read full reviews, see verified rankings built entirely from player feedback. Full access requires a subscription. The reviews being submitted right now are what power this.</p>
+        <div class="phase-features">
+          <span class="phase-feature">Agent Search</span>
+          <span class="phase-feature">Top 10 Per Sport</span>
+          <span class="phase-feature">Full Review Access</span>
+          <span class="phase-feature">Red Flag Alerts</span>
+          <span class="phase-feature">Category Ratings</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">03</div>
+      <div class="phase-content">
+        <div class="phase-status status-future">Future</div>
+        <div class="phase-title">Future Professional Profiles & Agent Matching</div>
+        <p class="phase-desc">Athletes preparing to go pro create verified profiles — sport, position, school, eligibility, highlights, stats, and agent preferences. A compatibility algorithm matches athletes with agents based on their goals and career stage. Both sides connect on merit, not who they happen to know.</p>
+        <div class="phase-features">
+          <span class="phase-feature">Athlete Profiles</span>
+          <span class="phase-feature">Matching Algorithm</span>
+          <span class="phase-feature">Highlight Reel Links</span>
+          <span class="phase-feature">Social Media Integration</span>
+          <span class="phase-feature">Agent Preferences</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">04</div>
+      <div class="phase-content">
+        <div class="phase-status status-future">Future</div>
+        <div class="phase-title">Direct Communication & Scheduling</div>
+        <p class="phase-desc">Secure in-app messaging between athletes and agents — no personal contact information exchanged. Set availability windows and schedule video calls directly on the platform. No cold calls. No intermediaries. Just the right fit.</p>
+        <div class="phase-features">
+          <span class="phase-feature">In-App Messaging</span>
+          <span class="phase-feature">Video Calls</span>
+          <span class="phase-feature">Availability Scheduling</span>
+          <span class="phase-feature">No Personal Info Shared</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">05</div>
+      <div class="phase-content">
+        <div class="phase-status status-future">Future</div>
+        <div class="phase-title">Education, Community & Resources</div>
+        <p class="phase-desc">A full resource library covering how to select an agent, understanding contracts, combine prep, NFL prep, and personal branding. Community forums, peer referrals, virtual events, and a legal expert directory. Everything you need before and after you sign.</p>
+        <div class="phase-features">
+          <span class="phase-feature">Contract Resources</span>
+          <span class="phase-feature">Combine & Draft Prep</span>
+          <span class="phase-feature">Webinars & Workshops</span>
+          <span class="phase-feature">Community Forums</span>
+          <span class="phase-feature">Legal Expert Directory</span>
+          <span class="phase-feature">Event Calendar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-num">06</div>
+      <div class="phase-content">
+        <div class="phase-status status-future">Future</div>
+        <div class="phase-title">Analytics, Referrals & Full Ecosystem</div>
+        <p class="phase-desc">Profile views, agent engagement metrics, peer referral system, push notifications, and success stories. A complete ecosystem where players protect each other — from the review database all the way through career development.</p>
+        <div class="phase-features">
+          <span class="phase-feature">Profile Analytics</span>
+          <span class="phase-feature">Peer Referrals</span>
+          <span class="phase-feature">Push Notifications</span>
+          <span class="phase-feature">Success Stories</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-label">What's Being Built for You</div>
+  <h2 class="section-title">Features Coming<br>for Future Professionals</h2>
+
+  <div class="pricing-note">
+    <div class="pricing-note-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+    <p><strong>On pricing:</strong> Submitting reviews is always free for professional athletes. Access to the full platform — agent search, profiles, matching, messaging, and educational resources — requires a subscription.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h3>Verified Profile</h3>
+      <p>Create a profile with your sport, position, school, eligibility, stats, highlights, and agent preferences. Visible to verified agents actively seeking new clients.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <h3>Full Agent Search</h3>
+      <p>Search any agent by name, sport, location, specialty, or experience level. Read verified reviews from professional athletes who've worked with them.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3>Compatibility Matching</h3>
+      <p>An algorithm matches you with agents based on your sport, career stage, goals, and preferences — surfacing the most relevant connections, not just the most popular.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3>Direct Messaging & Video</h3>
+      <p>Communicate with agents through secure in-app messaging and video calls. Set availability windows and schedule calls on your terms — no personal contact shared.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+      <h3>Highlight & Social Links</h3>
+      <p>Link your Hudl, YouTube, or social media directly to your profile so agents can see your game and public presence before making contact.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <h3>Combine & Draft Prep Resources</h3>
+      <p>A library of articles, webinars, and workshops covering combine prep, NFL and NBA draft process, contract understanding, and managing your personal brand.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <h3>Red Flag Alerts</h3>
+      <p>Warning patterns that appear across multiple player reviews surface automatically — so you see the red flags before you sign anything.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3>Peer Referral System</h3>
+      <p>Athletes recommend agents to each other based on real experiences. The most credible recommendation you can get — from a player who's been where you are.</p>
+    </div>
+  </div>
+</div>
+
+<div class="form-section">
+  <div class="form-inner">
+    <div class="section-label">Stay in the Loop</div>
+    <h2 class="section-title" style="margin-bottom:0.6rem">Want to Know<br>When This Launches?</h2>
+    <p style="color:var(--grey);font-size:0.95rem;line-height:1.7;margin-bottom:1.8rem;max-width:480px;">Leave your info and we'll reach out when future professional features go live.</p>
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" placeholder="First name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" placeholder="Last name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">School / University</label>
+          <input class="form-input" type="text" placeholder="e.g. University of Alabama" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Sport</label>
+          <select class="form-input">
+            <option value="" disabled selected>Select sport</option>
+            <option>Football</option>
+            <option>Basketball (Men's)</option>
+            <option>Basketball (Women's)</option>
+            <option>Baseball</option>
+            <option>Hockey</option>
+            <option>Soccer</option>
+            <option>Tennis</option>
+            <option>Volleyball</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Expected Pro Year</label>
+          <select class="form-input">
+            <option value="" disabled selected>Select year</option>
+            <option>2025</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-submit-row">
+        <p class="form-note">Your info stays private. We'll only use it to notify you at launch.</p>
+        <button class="btn-submit" onclick="document.getElementById('successOverlay').classList.add('show');window.scrollTo(0,0)">Notify Me at Launch</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo"><span>ATH</span>enticate</div>
+    <div class="footer-tagline">Players Protecting Players</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./future-agents.html">For Agents</a></li>
+    <li><a href="./faq.html">FAQ</a></li>
+    <li><a href="./privacy.html">Privacy</a></li>
+    <li><a href="./terms.html">Terms</a></li>
+    <li><a href="mailto:contact@athenticate.co">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function openMobileNav(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden';}
+  function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow='';}
+</script>
+</body>
+</html>
