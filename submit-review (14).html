@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Rate your agent anonymously. Share what working with them was really like — your experience protects the next player who doesn't know what you know.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rate Your Agent — ATHenticate">
+<meta property="og:description" content="Rate your agent anonymously. Your experience protects the next player who doesn't know what you know.">
+<meta property="og:url" content="https://athenticate.co/submit-review.html">
+<meta property="og:image" content="https://athenticate.co/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ATHenticate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<meta name="twitter:title" content="Rate Your Agent — ATHenticate">
+<meta name="twitter:description" content="Rate your agent anonymously. Your experience protects the next player who doesn't know what you know.">
+<meta name="twitter:image" content="https://athenticate.co/og-image.jpg">
+<link rel="canonical" href="https://athenticate.co/submit-review.html">
+<title>Rate Your Agent — ATHenticate</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:#020B18; --bg-mid:#061A2E; --bg-card:#071E36;
+    --cyan:#00C8FF; --teal:#0AEFFF; --cyan-dim:rgba(0,200,255,0.08);
+    --white:#F0F8FF; --grey:#7A9BB5; --grey-light:#9BB8D0;
+    --border:rgba(0,200,255,0.14); --border-focus:rgba(0,200,255,0.5);
+    --success:#00E5A0; --warning:#FFB800; --error:#FF6B6B;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg-deep);color:var(--white);font-family:'Saira',sans-serif;overflow-x:hidden;min-height:100vh;}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(0,200,255,0.06) 0%,transparent 70%);}
+  .circuit-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.045;background-image:linear-gradient(var(--cyan) 1px,transparent 1px),linear-gradient(90deg,var(--cyan) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 75%);}
+
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(2,11,24,0.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Chakra Petch',sans-serif;font-size:1.5rem;font-weight:900;letter-spacing:0.08em;color:var(--white);text-decoration:none;}
+  .nav-logo span{color:var(--cyan);}
+  .nav-back{display:flex;align-items:center;gap:0.5rem;color:var(--grey);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-back:hover{color:var(--cyan);}
+  .nav-back svg{width:1rem;height:1rem;}
+  .mobile-nav-toggle{display:none;background:none;border:1px solid rgba(0,200,255,0.25);cursor:pointer;flex-direction:column;align-items:center;gap:4px;padding:6px 10px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+  .mobile-nav-toggle span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;}
+  .mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(2,11,24,0.97);backdrop-filter:blur(18px);flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:2rem;}
+  .mobile-nav-overlay.open{display:flex;}
+  .mobile-nav-overlay a{font-family:'Chakra Petch',sans-serif;font-size:2rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);text-decoration:none;}
+  .mobile-nav-overlay a:hover{color:var(--cyan);}
+  .mobile-nav-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;}
+
+  .progress-bar-wrap{position:sticky;top:57px;z-index:90;background:rgba(2,11,24,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0.7rem 2rem;}
+  .progress-track{height:3px;background:rgba(0,200,255,0.1);border-radius:2px;margin-bottom:0.5rem;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--teal));border-radius:2px;transition:width 0.4s ease;width:0%;}
+  .progress-meta{display:flex;justify-content:space-between;align-items:center;}
+  .progress-label{font-family:'Chakra Petch',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);}
+  .progress-pct{font-family:'Chakra Petch',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;color:var(--cyan);}
+
+  .page{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:3rem 2rem 6rem;}
+  .page-header{margin-bottom:2.5rem;}
+  .page-label{font-family:'Chakra Petch',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem;}
+  .page-label::before{content:'';width:20px;height:1px;background:var(--cyan);opacity:0.6;}
+  .page-header h1{font-family:'Chakra Petch',sans-serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:900;text-transform:uppercase;line-height:0.9;margin-bottom:1rem;}
+  .page-header h1 span{color:var(--cyan);}
+  .page-trust{display:flex;gap:1.5rem;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--grey);font-weight:500;}
+  .trust-item svg{width:0.8rem;height:0.8rem;color:var(--cyan);}
+
+  .form-section{border:1px solid var(--border);background:rgba(6,26,46,0.5);padding:2rem;margin-bottom:1.2rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);position:relative;overflow:hidden;}
+  .form-section::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,200,255,0.3),transparent);}
+  .form-section-header{margin-bottom:1.5rem;}
+  .form-section-num{font-family:'Chakra Petch',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);opacity:0.7;margin-bottom:0.3rem;}
+  .form-section-title{font-family:'Chakra Petch',sans-serif;font-size:1.3rem;font-weight:900;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.3rem;}
+  .form-section-desc{font-size:0.82rem;color:var(--grey);line-height:1.55;}
+
+  .gender-toggle{display:flex;gap:0.5rem;margin-bottom:1.2rem;}
+  .gender-btn{font-family:'Chakra Petch',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.6rem;background:transparent;border:1.5px solid var(--border);color:var(--grey);cursor:pointer;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:all 0.2s;}
+  .gender-btn.active{background:var(--cyan-dim);border-color:var(--cyan);color:var(--white);}
+
+  .sport-tabs{display:flex;flex-wrap:wrap;gap:0.4rem;}
+  .sport-tab{font-family:'Chakra Petch',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.45rem 0.9rem;background:transparent;border:1px solid var(--border);color:var(--grey);cursor:pointer;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);transition:all 0.2s;}
+  .sport-tab.active,.sport-tab:hover{background:var(--cyan-dim);border-color:rgba(0,200,255,0.4);color:var(--white);}
+
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .field-row.single{grid-template-columns:1fr;}
+  .field{display:flex;flex-direction:column;gap:0.4rem;}
+  .field-label{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);}
+  .optional{font-size:0.58rem;color:rgba(122,155,181,0.5);letter-spacing:0.06em;font-weight:400;}
+  .field-input{background:var(--bg-card);border:1px solid var(--border);color:var(--white);padding:0.78rem 1rem;font-family:'Saira',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;appearance:none;}
+  .field-input:focus{border-color:var(--border-focus);}
+  .field-input::placeholder{color:rgba(122,155,181,0.35);}
+  textarea.field-input{height:180px;resize:none;line-height:1.6;}
+
+  .radio-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.2rem;}
+  .radio-pill{position:relative;}
+  .radio-pill input{position:absolute;opacity:0;width:0;height:0;}
+  .radio-pill label{display:block;font-family:'Chakra Petch',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 1.1rem;border:1px solid var(--border);color:var(--grey);cursor:pointer;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);transition:all 0.2s;user-select:none;}
+  .radio-pill input:checked + label{background:var(--cyan-dim);border-color:var(--cyan);color:var(--white);}
+  .radio-pill label:hover{border-color:rgba(0,200,255,0.3);color:var(--grey-light);}
+
+  .date-range{display:flex;align-items:center;gap:0.6rem;}
+  .date-range select{flex:1;min-width:0;}
+  .date-range-sep{font-size:0.75rem;color:var(--grey);white-space:nowrap;flex-shrink:0;}
+
+  .ratings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .rating-item{background:rgba(2,11,24,0.4);border:1px solid var(--border);padding:1.2rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+  .rating-item-label{font-family:'Chakra Petch',sans-serif;font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.2rem;}
+  .rating-item-desc{font-size:0.72rem;color:var(--grey);line-height:1.4;margin-bottom:0.7rem;}
+  .star-row{display:flex;gap:0.3rem;justify-content:space-between;}
+  .star-col{display:flex;flex-direction:column;align-items:center;gap:0.4rem;flex:1;min-width:0;}
+  .star-btn{background:none;border:none;font-size:1.5rem;color:rgba(0,200,255,0.15);cursor:pointer;padding:0.1rem;transition:color 0.15s;line-height:1;width:100%;display:flex;justify-content:center;align-items:center;}
+  .star-label{font-size:0.62rem;color:var(--grey);font-weight:500;letter-spacing:0.02em;text-transform:uppercase;opacity:0.7;text-align:center;line-height:1.2;max-width:100%;overflow-wrap:normal;}
+  .rating-item-footer{display:flex;justify-content:flex-end;margin-top:0.8rem;}
+  .na-btn{background:transparent;border:1px solid var(--border);color:var(--grey);font-family:'Chakra Petch',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.8rem;cursor:pointer;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);transition:all 0.2s;}
+  .na-btn:hover{border-color:rgba(0,200,255,0.3);color:var(--grey-light);}
+  .na-btn.active{background:var(--cyan-dim);border-color:var(--cyan);color:var(--white);}
+  .rating-item.na-active .star-row{opacity:0.22;pointer-events:none;}
+  .rating-item.na-active .star-label{opacity:0.35;}
+
+  .prompts{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.8rem;}
+  .prompt-item{font-size:0.78rem;color:var(--grey);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.5;}
+  .prompt-item::before{content:'→';color:var(--cyan);opacity:0.5;flex-shrink:0;}
+
+  .tags-label{font-size:0.7rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:0.7rem;margin-top:1.2rem;}
+  .tags-label:first-child{margin-top:0;}
+  .flags-grid,.strengths-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.5rem;}
+  .flag-item,.strength-item{display:flex;align-items:center;gap:0.6rem;padding:0.65rem 0.9rem;border:1px solid var(--border);background:rgba(2,11,24,0.3);cursor:pointer;transition:all 0.2s;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+  .flag-item:hover{border-color:rgba(255,107,107,0.3);}
+  .strength-item:hover{border-color:rgba(0,200,255,0.3);}
+  .flag-item.selected{background:rgba(255,107,107,0.06);border-color:rgba(255,107,107,0.4);}
+  .strength-item.selected{background:var(--cyan-dim);border-color:rgba(0,200,255,0.35);}
+  .flag-check,.strength-check{width:1rem;height:1rem;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+  .flag-check svg,.strength-check svg{width:0.55rem;height:0.55rem;opacity:0;transition:opacity 0.15s;}
+  .flag-item.selected .flag-check{background:rgba(255,107,107,0.15);border-color:rgba(255,107,107,0.5);}
+  .flag-item.selected .flag-check svg{opacity:1;stroke:#FF6B6B;}
+  .strength-item.selected .strength-check{background:var(--cyan-dim);border-color:var(--cyan);}
+  .strength-item.selected .strength-check svg{opacity:1;stroke:var(--cyan);}
+  .flag-label,.strength-label{font-size:0.78rem;color:var(--grey);line-height:1.35;}
+  .flag-item.selected .flag-label,.strength-item.selected .strength-label{color:var(--white);}
+
+  .overall-wrap{display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:1.5rem 0;}
+  .overall-stars{display:flex;gap:0.4rem;}
+  .overall-star{background:none;border:none;font-size:2.5rem;color:rgba(0,200,255,0.15);cursor:pointer;padding:0.2rem;transition:color 0.15s;line-height:1;min-width:3rem;min-height:3rem;}
+  .overall-label{font-family:'Chakra Petch',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey);}
+
+  .recommend-wrap{margin-top:1.2rem;}
+  .recommend-label-text{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);margin-bottom:0.6rem;}
+  .recommend-options{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.8rem;}
+  .rec-btn{font-family:'Chakra Petch',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.55rem 1.4rem;background:transparent;border:1.5px solid var(--border);color:var(--grey);cursor:pointer;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:all 0.2s;}
+  .rec-btn.active-yes{background:rgba(0,229,160,0.08);border-color:rgba(0,229,160,0.4);color:var(--success);}
+  .rec-btn.active-no{background:rgba(255,107,107,0.06);border-color:rgba(255,107,107,0.35);color:#FF6B6B;}
+  .rec-btn.active-depends{background:var(--cyan-dim);border-color:rgba(0,200,255,0.35);color:var(--white);}
+  #dependsField{display:none;margin-top:0.6rem;}
+
+  .verify-wrap{border:1px solid rgba(0,200,255,0.2);background:rgba(0,200,255,0.02);padding:1.8rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);position:relative;}
+  .verify-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+  .verify-options{display:flex;flex-direction:column;gap:0.8rem;margin-top:1rem;}
+  .verify-option{display:flex;flex-direction:column;gap:0.4rem;}
+  .verify-option-label{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);display:flex;align-items:center;gap:0.4rem;}
+  .verify-option-label svg{width:0.85rem;height:0.85rem;color:var(--cyan);}
+  .verify-note{font-size:0.72rem;color:rgba(122,155,181,0.6);margin-top:0.2rem;line-height:1.4;}
+  .verify-note strong{color:var(--cyan);}
+  .verify-or{text-align:center;font-size:0.72rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;padding:0.3rem 0;}
+
+  .confirm-list{display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.5rem;}
+  .confirm-item{display:flex;align-items:flex-start;gap:0.8rem;cursor:pointer;}
+  .confirm-item input[type="checkbox"]{width:1.1rem;height:1.1rem;accent-color:var(--cyan);flex-shrink:0;margin-top:0.1rem;cursor:pointer;}
+  .confirm-item span{font-size:0.82rem;color:var(--grey);line-height:1.55;}
+  .confirm-item input:checked ~ span{color:var(--grey-light);}
+
+  .submit-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+  .submit-anon{display:flex;align-items:center;gap:0.6rem;flex:1;}
+  .submit-anon svg{width:1.1rem;height:1.1rem;color:var(--cyan);flex-shrink:0;}
+  .submit-anon-text{font-size:0.78rem;color:var(--grey);line-height:1.4;}
+  .submit-anon-text strong{color:var(--white);display:block;font-weight:600;font-size:0.82rem;}
+  .btn-submit{background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--bg-deep);border:none;padding:1rem 2.5rem;font-family:'Chakra Petch',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all 0.25s;box-shadow:0 6px 30px rgba(0,200,255,0.28);white-space:nowrap;}
+  .btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,200,255,0.45);}
+  .error-msg{display:none;font-size:0.78rem;color:var(--error);margin-top:0.6rem;}
+
+  .success-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(2,11,24,0.97);backdrop-filter:blur(12px);align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem;}
+  .success-overlay.show{display:flex;}
+  .success-icon{width:4rem;height:4rem;color:var(--success);margin-bottom:1.5rem;}
+  .success-overlay h2{font-family:'Chakra Petch',sans-serif;font-size:3rem;font-weight:900;text-transform:uppercase;margin-bottom:0.8rem;}
+  .success-overlay h2 span{color:var(--cyan);}
+  .success-overlay p{color:var(--grey);font-size:1rem;line-height:1.7;max-width:480px;margin-bottom:0.5rem;}
+  .success-overlay p strong{color:var(--white);}
+  .success-email-note{font-size:0.85rem;color:var(--cyan);margin-bottom:1.5rem;display:none;}
+  .share-box{border:1px solid rgba(0,200,255,0.2);background:rgba(0,200,255,0.04);padding:1.5rem 2rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);max-width:420px;width:100%;margin-bottom:1.5rem;text-align:left;}
+  .share-box-label{font-family:'Chakra Petch',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.4rem;}
+  .share-box p{font-size:0.82rem;color:var(--grey);line-height:1.6;margin-bottom:0.8rem;}
+  .share-input-row{display:flex;}
+  .share-input{flex:1;background:rgba(6,26,46,0.9);border:1px solid var(--border);border-right:none;color:var(--grey);padding:0.6rem 0.9rem;font-family:'Saira',sans-serif;font-size:0.75rem;outline:none;}
+  .btn-copy{background:var(--cyan-dim);border:1px solid rgba(0,200,255,0.3);color:var(--cyan);padding:0.6rem 1rem;font-family:'Chakra Petch',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;}
+  .btn-return{background:transparent;border:1.5px solid var(--border);color:var(--grey);padding:0.8rem 2rem;font-family:'Chakra Petch',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all 0.2s;text-decoration:none;display:inline-block;}
+  .btn-return:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  .faq-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(2,11,24,0.97);backdrop-filter:blur(12px);overflow-y:auto;padding:2rem;}
+  .faq-modal.open{display:block;}
+  .faq-modal-inner{max-width:680px;margin:0 auto;padding:2rem 0 4rem;}
+  .faq-modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;}
+  .faq-modal-title{font-family:'Chakra Petch',sans-serif;font-size:2rem;font-weight:900;text-transform:uppercase;color:var(--white);}
+  .faq-modal-title span{color:var(--cyan);}
+  .faq-modal-close{background:none;border:1px solid var(--border);color:var(--grey);padding:0.5rem 1rem;font-family:'Chakra Petch',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);transition:all 0.2s;}
+  .faq-modal-close:hover{border-color:var(--cyan);color:var(--cyan);}
+  .faq-group{margin-bottom:2rem;}
+  .faq-group-label{font-family:'Chakra Petch',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+  .faq-item{border:1px solid var(--border);background:rgba(6,26,46,0.5);margin-bottom:0.6rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);overflow:hidden;}
+  .faq-item.open{border-color:rgba(0,200,255,0.35);background:rgba(0,200,255,0.03);}
+  .faq-item.open::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+  .faq-question{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;cursor:pointer;gap:1rem;}
+  .faq-question h3{font-family:'Chakra Petch',sans-serif;font-size:0.95rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);line-height:1.3;}
+  .faq-icon{width:1rem;height:1rem;color:var(--cyan);flex-shrink:0;transition:transform 0.3s;}
+  .faq-item.open .faq-icon{transform:rotate(45deg);}
+  .faq-answer{display:none;padding:0 1.4rem 1.1rem;}
+  .faq-item.open .faq-answer{display:block;}
+  .faq-answer p{font-size:0.88rem;color:var(--grey-light);line-height:1.75;margin-bottom:0.5rem;}
+  .faq-answer p:last-child{margin-bottom:0;}
+  .faq-answer strong{color:var(--white);font-weight:500;}
+  .faq-answer a{color:var(--cyan);text-decoration:none;}
+
+  .feedback-box{margin-top:1.8rem;padding:1.4rem;border:1px solid rgba(0,200,255,0.25);background:rgba(0,200,255,0.03);clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);position:relative;}
+  .feedback-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,200,255,0.4),transparent);}
+  .feedback-header{margin-bottom:0.8rem;}
+  .feedback-title{font-family:'Chakra Petch',sans-serif;font-size:0.9rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:0.3rem;}
+  .feedback-subtitle{font-size:0.78rem;color:var(--grey);line-height:1.5;}
+
+  footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-logo{font-family:'Chakra Petch',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:0.08em;}
+  .footer-logo span{color:var(--cyan);}
+  .footer-tagline{font-size:0.68rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.14em;}
+  .footer-links{display:flex;gap:1.2rem;list-style:none;flex-wrap:wrap;}
+  .footer-links a{font-size:0.72rem;color:var(--grey);text-decoration:none;text-transform:uppercase;letter-spacing:0.06em;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--cyan);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.2rem;}
+    .mobile-nav-toggle{display:flex;}
+    .nav-back{display:none;}
+    .progress-bar-wrap{top:55px;padding:0.6rem 1.2rem;}
+  }
+  @media(max-width:700px){
+    .page{padding:2rem 1.2rem 5rem;}
+    .page-header h1{font-size:2.2rem;}
+    .field-row{grid-template-columns:1fr;}
+    .ratings-grid{grid-template-columns:1fr;}
+    .flags-grid,.strengths-grid{grid-template-columns:1fr;}
+    .submit-row{flex-direction:column;align-items:stretch;}
+    .btn-submit{width:100%;text-align:center;font-size:1rem;padding:1rem;}
+    .overall-star{font-size:2rem;min-width:2.5rem;}
+    .form-section{padding:1.5rem;}
+    .faq-modal{padding:1rem;}
+    .faq-modal-header{flex-direction:column;align-items:flex-start;gap:1rem;}
+    .faq-modal-title{font-size:1.5rem;}
+    .success-overlay h2{font-size:2.2rem;}
+    footer{flex-direction:column;align-items:center;text-align:center;padding:1.5rem;}
+    .footer-links{justify-content:center;}
+    .date-range{flex-wrap:wrap;}
+    .star-label{font-size:0.6rem;letter-spacing:0.02em;white-space:normal;}
+    .star-row{gap:0.25rem;}
+    .star-col{gap:0.35rem;}
+  }
+  @media(max-width:480px){
+    .radio-pill label{font-size:0.75rem;padding:0.45rem 0.85rem;}
+    .recommend-options{flex-direction:column;}
+    .rec-btn{text-align:center;}
+    .page-trust{gap:1rem;}
+    .gender-btn{padding:0.5rem 1.2rem;font-size:0.82rem;}
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+<script>
+  const supabaseClient = supabase.createClient(
+    'https://pyodgmfrqfxsjdacsvzo.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM'
+  );
+</script>
+</head>
+<body>
+<div class="circuit-bg"></div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+  <h2>Review<br><span>Submitted.</span></h2>
+  <p><strong>You just protected the next player</strong> who doesn't know what you know. That's exactly what this is built for.</p>
+  <p class="success-email-note" id="successEmailNote">✓ We'll email you when your league unlocks.</p>
+  <div class="share-box">
+    <div class="share-box-label">Know another player?</div>
+    <p>Send them this link. Every review gets your league closer to full access.</p>
+    <div class="share-input-row">
+      <input class="share-input" id="shareUrl" type="text" value="https://athenticate.co/submit-review.html" readonly />
+      <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('shareUrl').value);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</button>
+    </div>
+  </div>
+  <a class="btn-return" href="./index.html">← Back to ATHenticate</a>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./index.html#features" onclick="closeMobileNav()">Features</a>
+  <a href="./faq.html" onclick="closeMobileNav()">FAQ</a>
+  <a href="mailto:contact@athenticate.co">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="./index.html"><span>ATH</span>enticate</a>
+  <a class="nav-back" href="./index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+  <button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-meta">
+    <span class="progress-label" id="progressLabel">Section 1 of 8 — Sport &amp; League</span>
+    <span class="progress-pct" id="progressPercent">0% Complete</span>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <div class="page-header">
+    <div class="page-label">Submit a Review</div>
+    <h1>Rate Your<br><span>Agent.</span></h1>
+    <p style="font-size:1rem;color:var(--grey-light);line-height:1.7;max-width:540px;margin-bottom:1.2rem;">Share what working with your agent was really like. Good or bad, your experience helps the next player make a smarter decision. <strong style="color:var(--white);font-weight:500;">Everything here is completely anonymous.</strong></p>
+    <div class="page-trust">
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Anonymous</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Verified</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Always free</div>
+    </div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 01</div>
+      <div class="form-section-title">Sport &amp; League</div>
+    </div>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="genderMen" onclick="switchGender('men')">Men's</button>
+      <button class="gender-btn" id="genderWomen" onclick="switchGender('women')">Women's</button>
+    </div>
+    <div class="sport-tabs" id="mensTabs">
+      <button class="sport-tab active" onclick="selectSport(this,'NFL')">NFL</button>
+      <button class="sport-tab" onclick="selectSport(this,'NBA')">NBA</button>
+      <button class="sport-tab" onclick="selectSport(this,'MLB')">MLB</button>
+      <button class="sport-tab" onclick="selectSport(this,'NHL')">NHL</button>
+      <button class="sport-tab" onclick="selectSport(this,'MLS')">MLS</button>
+      <button class="sport-tab" onclick="selectSport(this,'EPL')">Premier League</button>
+      <button class="sport-tab" onclick="selectSport(this,'CFL')">CFL</button>
+      <button class="sport-tab" onclick="selectSport(this,'XFL')">XFL / USFL</button>
+    </div>
+    <div class="sport-tabs" id="womensTabs" style="display:none">
+      <button class="sport-tab" onclick="selectSport(this,'WNBA')">WNBA</button>
+      <button class="sport-tab" onclick="selectSport(this,'NWSL')">NWSL</button>
+      <button class="sport-tab" onclick="selectSport(this,'WSL')">Women's Super League</button>
+      <button class="sport-tab" onclick="selectSport(this,'PWHL')">PWHL</button>
+      <button class="sport-tab" onclick="selectSport(this,'LOVB')">LOVB</button>
+      <button class="sport-tab" onclick="selectSport(this,'WTA')">WTA</button>
+      <button class="sport-tab" onclick="selectSport(this,'AU')">Athletes Unlimited</button>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 02</div>
+      <div class="form-section-title">Agent</div>
+      <div class="form-section-desc">Fill in as much as you know.</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Agent's Full Name</label>
+        <input id="agentName" class="field-input" type="text" placeholder="e.g. John Smith" />
+      </div>
+      <div class="field">
+        <label class="field-label">Agency / Firm <span class="optional">optional</span></label>
+        <input id="agentAgency" class="field-input" type="text" placeholder="e.g. CAA Sports, Roc Nation" />
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Relationship Status</label>
+        <div class="radio-row">
+          <div class="radio-pill"><input type="radio" name="relStatus" id="relCurrent" value="current" onchange="toggleEndedField()"><label for="relCurrent">Current Client</label></div>
+          <div class="radio-pill"><input type="radio" name="relStatus" id="relFormer" value="former" onchange="toggleEndedField()"><label for="relFormer">Former Client</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Was This Your First Agent?</label>
+        <div class="radio-row">
+          <div class="radio-pill"><input type="radio" name="firstAgent" id="faYes" value="yes"><label for="faYes">Yes</label></div>
+          <div class="radio-pill"><input type="radio" name="firstAgent" id="faNo" value="no"><label for="faNo">No</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row single" id="endedFieldRow" style="display:none;">
+      <div class="field">
+        <label class="field-label">How Did It End?</label>
+        <div class="radio-row">
+          <div class="radio-pill"><input type="radio" name="howEnded" id="heContract" value="contract_ended"><label for="heContract">Contract ended naturally</label></div>
+          <div class="radio-pill"><input type="radio" name="howEnded" id="heIFired" value="i_left"><label for="heIFired">I left them</label></div>
+          <div class="radio-pill"><input type="radio" name="howEnded" id="heDropped" value="they_dropped_me"><label for="heDropped">They dropped me</label></div>
+          <div class="radio-pill"><input type="radio" name="howEnded" id="heMutual" value="mutual"><label for="heMutual">Mutual</label></div>
+          <div class="radio-pill"><input type="radio" name="howEnded" id="heOther" value="other"><label for="heOther">Other</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label class="field-label">Years Represented</label>
+        <div class="date-range">
+          <select id="yearsStart" class="field-input">
+            <option value="" disabled selected>From</option>
+            <option>2000</option><option>2001</option><option>2002</option><option>2003</option>
+            <option>2004</option><option>2005</option><option>2006</option><option>2007</option>
+            <option>2008</option><option>2009</option><option>2010</option><option>2011</option>
+            <option>2012</option><option>2013</option><option>2014</option><option>2015</option>
+            <option>2016</option><option>2017</option><option>2018</option><option>2019</option>
+            <option>2020</option><option>2021</option><option>2022</option><option>2023</option>
+            <option>2024</option><option>2025</option><option>2026</option>
+          </select>
+          <span class="date-range-sep">to</span>
+          <select id="yearsEnd" class="field-input">
+            <option value="" disabled selected>To</option>
+            <option>2000</option><option>2001</option><option>2002</option><option>2003</option>
+            <option>2004</option><option>2005</option><option>2006</option><option>2007</option>
+            <option>2008</option><option>2009</option><option>2010</option><option>2011</option>
+            <option>2012</option><option>2013</option><option>2014</option><option>2015</option>
+            <option>2016</option><option>2017</option><option>2018</option><option>2019</option>
+            <option>2020</option><option>2021</option><option>2022</option><option>2023</option>
+            <option>2024</option><option>2025</option><option>2026</option>
+            <option>Present</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label class="field-label">Contract Type <span class="optional">select all that apply</span></label>
+        <div class="radio-row">
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctPreDraft" value="pre_draft"><label for="ctPreDraft">Pre-Draft</label></div>
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctRookie" value="rookie"><label for="ctRookie">Rookie</label></div>
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctUDFA" value="udfa"><label for="ctUDFA">UDFA</label></div>
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctPracticeSquad" value="practice_squad"><label for="ctPracticeSquad">Practice Squad</label></div>
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctVet" value="veteran"><label for="ctVet">Veteran</label></div>
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctFreeAgent" value="free_agent"><label for="ctFreeAgent">Free Agent</label></div>
+          <div class="radio-pill"><input type="checkbox" name="contractType" id="ctExtension" value="extension"><label for="ctExtension">Extension</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 03</div>
+      <div class="form-section-title">Ratings</div>
+      <div class="form-section-desc">Tap a star. 1 = poor, 5 = excellent.</div>
+    </div>
+    <div class="ratings-grid">
+      <div class="rating-item">
+        <div class="rating-item-label">Communication &amp; Availability</div>
+        <div class="rating-item-desc">Returning calls, being reachable, keeping you informed.</div>
+        <div class="star-row" data-selected="-1">
+          <div class="star-col">
+            <button class="star-btn" data-val="1">★</button>
+            <span class="star-label">Bad</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="2">★</button>
+            <span class="star-label">Weak</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="3">★</button>
+            <span class="star-label">Got it done</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="4">★</button>
+            <span class="star-label">Strong</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="5">★</button>
+            <span class="star-label">Elite</span>
+          </div>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Contract &amp; Negotiation</div>
+        <div class="rating-item-desc">Getting you paid. Reading the market. Knowing your value.</div>
+        <div class="star-row" data-selected="-1">
+          <div class="star-col">
+            <button class="star-btn" data-val="1">★</button>
+            <span class="star-label">Bad</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="2">★</button>
+            <span class="star-label">Weak</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="3">★</button>
+            <span class="star-label">Got it done</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="4">★</button>
+            <span class="star-label">Strong</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="5">★</button>
+            <span class="star-label">Elite</span>
+          </div>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Honesty &amp; Loyalty</div>
+        <div class="rating-item-desc">Straight with you. Yours first, not the agency's.</div>
+        <div class="star-row" data-selected="-1">
+          <div class="star-col">
+            <button class="star-btn" data-val="1">★</button>
+            <span class="star-label">Bad</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="2">★</button>
+            <span class="star-label">Weak</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="3">★</button>
+            <span class="star-label">Got it done</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="4">★</button>
+            <span class="star-label">Strong</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="5">★</button>
+            <span class="star-label">Elite</span>
+          </div>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Career Development</div>
+        <div class="rating-item-desc">Network, access, guidance, off-field opportunities.</div>
+        <div class="star-row" data-selected="-1">
+          <div class="star-col">
+            <button class="star-btn" data-val="1">★</button>
+            <span class="star-label">Bad</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="2">★</button>
+            <span class="star-label">Weak</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="3">★</button>
+            <span class="star-label">Got it done</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="4">★</button>
+            <span class="star-label">Strong</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="5">★</button>
+            <span class="star-label">Elite</span>
+          </div>
+        </div>
+      </div>
+      <div class="rating-item">
+        <div class="rating-item-label">Combine &amp; Draft Prep</div>
+        <div class="rating-item-desc">Training resources, pro day/combine strategy, team contact, draft positioning.</div>
+        <div class="star-row" data-selected="-1">
+          <div class="star-col">
+            <button class="star-btn" data-val="1">★</button>
+            <span class="star-label">Bad</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="2">★</button>
+            <span class="star-label">Weak</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="3">★</button>
+            <span class="star-label">Got it done</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="4">★</button>
+            <span class="star-label">Strong</span>
+          </div>
+          <div class="star-col">
+            <button class="star-btn" data-val="5">★</button>
+            <span class="star-label">Elite</span>
+          </div>
+        </div>
+        <div class="rating-item-footer">
+          <button class="na-btn" onclick="toggleNA(this)">Doesn't apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 04</div>
+      <div class="form-section-title">Your Experience</div>
+      <div class="form-section-desc">Tell other players what it was like being represented by this agent.</div>
+    </div>
+    <textarea id="experienceText" class="field-input" placeholder="What stood out? What would you want someone considering this agent to know? Your words protect the next player."></textarea>
+    <div class="prompts">
+      <div class="prompt-item">What did they do well?</div>
+      <div class="prompt-item">What do you wish had been different?</div>
+      <div class="prompt-item">Was there a moment that defined the relationship, good or bad?</div>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 05</div>
+      <div class="form-section-title">Patterns</div>
+      <div class="form-section-desc">Tap all that apply. Your tags combined with others' tags show patterns no single review could.</div>
+    </div>
+    <p class="tags-label">Areas of Concern</p>
+    <div class="flags-grid">
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Didn't return calls or messages</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Made promises they didn't keep</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Disappeared during critical moments</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Contract terms weren't explained clearly</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Overstated their relationships</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Wasn't there when it mattered most</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Left me without options at key moments</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Not transparent about fees or commissions</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Pressured or rushed me to sign</span></div>
+      <div class="flag-item" onclick="toggleFlag(this)"><div class="flag-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="flag-label">Gave me bad advice I regretted</span></div>
+    </div>
+    <p class="tags-label">Notable Strengths</p>
+    <div class="strengths-grid">
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Always available</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Strong negotiator</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Honest &amp; direct</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Real relationships</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Long-term thinker</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Transparent on fees</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Secured endorsements &amp; off-field deals</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Kept me informed without me asking</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Had my back when I needed it</span></div>
+      <div class="strength-item" onclick="toggleStrength(this)"><div class="strength-check"><svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 3.5 6.5 9 1"/></svg></div><span class="strength-label">Handled the hard conversations</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 06</div>
+      <div class="form-section-title">Overall</div>
+    </div>
+    <div class="overall-wrap">
+      <div class="overall-stars" id="overallStars" data-selected="0">
+        <button class="overall-star" data-val="1">★</button>
+        <button class="overall-star" data-val="2">★</button>
+        <button class="overall-star" data-val="3">★</button>
+        <button class="overall-star" data-val="4">★</button>
+        <button class="overall-star" data-val="5">★</button>
+      </div>
+      <div class="overall-label" id="overallScoreLabel">Tap to rate</div>
+    </div>
+    <div class="recommend-wrap">
+      <div class="recommend-label-text">Would you recommend this agent to another player?</div>
+      <div class="recommend-options">
+        <button class="rec-btn" onclick="setRecommend('yes',this)">Yes</button>
+        <button class="rec-btn" onclick="setRecommend('no',this)">No</button>
+        <button class="rec-btn" onclick="setRecommend('depends',this)">Depends</button>
+      </div>
+      <div id="dependsField">
+        <input id="dependsExplanation" class="field-input" type="text" placeholder="Why? (optional)" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 07 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 07</div>
+      <div class="form-section-title">Verify You're a Pro</div>
+      <div class="form-section-desc">Your identity is never shown publicly. Verification protects the platform's integrity — fake reviews would destroy trust for everyone.</div>
+    </div>
+    <div class="verify-wrap">
+      <p style="font-size:0.82rem;color:var(--grey-light);font-weight:500;">Provide ONE of the following:</p>
+      <div class="verify-options">
+        <div class="verify-option">
+          <div class="verify-option-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram Handle
+          </div>
+          <input id="verifyInstagram" class="field-input" type="text" placeholder="@yourhandle" />
+          <p class="verify-note">We verify manually against public presence, league history, and agent-confirmed connections.</p>
+        </div>
+        <div class="verify-or">— or —</div>
+        <div class="verify-option">
+          <div class="verify-option-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email <span style="font-size:0.6rem;color:var(--cyan);font-weight:700;letter-spacing:0.06em;margin-left:0.3rem;">+ league updates</span>
+          </div>
+          <input id="verifyEmail" class="field-input" type="email" placeholder="your@email.com" />
+          <p class="verify-note">Any email works. <strong>If you provide this, we'll notify you when your league unlocks.</strong></p>
+        </div>
+      </div>
+      <p class="error-msg" id="verifyError">Please provide at least your Instagram handle or email address before submitting.</p>
+    </div>
+    <p style="font-size:0.75rem;color:rgba(122,155,181,0.5);margin-top:1rem;line-height:1.5;">Have questions about how your info is used? <a href="javascript:void(0)" onclick="document.getElementById('faqModal').classList.add('open')" style="color:var(--cyan);text-decoration:none;font-weight:600;">Read our FAQ →</a></p>
+  </div>
+
+  <!-- SECTION 08 -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="form-section-num">Section 08</div>
+      <div class="form-section-title">Confirm</div>
+    </div>
+    <div class="confirm-list">
+      <label class="confirm-item">
+        <input type="checkbox" id="confirm1" />
+        <span>I confirm this review reflects my direct experience as a represented player.</span>
+      </label>
+      <label class="confirm-item">
+        <input type="checkbox" id="confirm2" />
+        <span>I understand my identity will never be shown publicly.</span>
+      </label>
+      <label class="confirm-item">
+        <input type="checkbox" id="confirm3" />
+        <span>I understand reviews may be held pending verification to protect platform integrity.</span>
+      </label>
+    </div>
+    <p class="error-msg" id="confirmError">Please check all three boxes before submitting.</p>
+    
+    <!-- EARLY REVIEWER FEEDBACK -->
+    <div class="feedback-box">
+      <div class="feedback-header">
+        <div class="feedback-title">You're one of the first. Help us improve this.</div>
+        <div class="feedback-subtitle">What felt unclear? What took too long? What would you change?</div>
+      </div>
+      <textarea class="field-input" id="platformFeedback" placeholder="Optional — but your input shapes what other players experience next." style="height:100px;"></textarea>
+    </div>
+    
+    <div class="submit-row">
+      <div class="submit-anon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div class="submit-anon-text">
+          <strong>Verified. Never displayed.</strong>
+          Your identity confirms you're a pro. Never shown, shared, or visible to anyone publicly.
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitReview()">Submit Review</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ MODAL -->
+<div class="faq-modal" id="faqModal">
+  <div class="faq-modal-inner">
+    <div class="faq-modal-header">
+      <div class="faq-modal-title">Frequently <span>Asked.</span></div>
+      <button class="faq-modal-close" onclick="document.getElementById('faqModal').classList.remove('open')">← Back to Review</button>
+    </div>
+    <div class="faq-group">
+      <div class="faq-group-label">Anonymity &amp; Privacy</div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Is my review really anonymous?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Yes. Your review is published without any identifying information. No name, no handle, no league — nothing that connects it back to you publicly. The verification contact you provide is stored separately and used only to confirm you are a professional athlete.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Can my agent find out I submitted a review?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p><strong>No.</strong> Agents do not have access to reviewer identities under any circumstance. Your verification contact is never accessible to agents or any third party.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>What do you do with my Instagram or email?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Used solely to verify you are a professional athlete. If you provide email, we'll notify you when your league unlocks. We do not add you to any marketing list or share your contact with third parties.</p></div>
+      </div>
+    </div>
+    <div class="faq-group">
+      <div class="faq-group-label">Submitting a Review</div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>What happens after I submit?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Your review goes through a manual verification process. Once confirmed, it contributes to your league's database. When enough reviews exist in your sport, full access unlocks for everyone in that league.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Is this only for negative experiences?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p><strong>Not at all.</strong> ATHenticate is built to reward the right agents and hold the rest accountable. If your agent was excellent, that record matters just as much. Great agents deserve to be found.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Can I review more than one agent?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Yes. If you have worked with multiple agents, each experience is worth recording. Submit a separate review for each agent.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Can I edit or remove my review after submitting?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Yes. Contact us at <a href="mailto:contact@athenticate.co">contact@athenticate.co</a> and we will process your request within 30 days.</p></div>
+      </div>
+    </div>
+    <div class="faq-group">
+      <div class="faq-group-label">The Platform</div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>Is it free to submit a review?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p><strong>Always.</strong> Submitting a review is free for every professional athlete in every league. Full platform access requires a subscription when those features launch.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question"><h3>When does my league unlock?</h3><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="faq-answer"><p>Each league unlocks when enough verified reviews exist to make the database genuinely useful. The more players in your league who submit, the faster it opens.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo"><span>ATH</span>enticate</div>
+    <div class="footer-tagline">Players Protecting Players</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./faq.html">FAQ</a></li>
+    <li><a href="./privacy.html">Privacy</a></li>
+    <li><a href="./terms.html">Terms</a></li>
+    <li><a href="mailto:contact@athenticate.co">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function openMobileNav(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden';}
+  function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow='';}
+
+  function switchGender(gender) {
+    document.getElementById('genderMen').classList.toggle('active', gender==='men');
+    document.getElementById('genderWomen').classList.toggle('active', gender==='women');
+    document.getElementById('mensTabs').style.display = gender==='men' ? 'flex' : 'none';
+    document.getElementById('womensTabs').style.display = gender==='women' ? 'flex' : 'none';
+    const group = document.getElementById(gender==='men' ? 'mensTabs' : 'womensTabs');
+    group.querySelectorAll('.sport-tab').forEach(t=>t.classList.remove('active'));
+    group.querySelector('.sport-tab').classList.add('active');
+  }
+
+  function selectSport(el, sport) {
+    el.closest('.sport-tabs').querySelectorAll('.sport-tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function toggleFlag(el){el.classList.toggle('selected');}
+  function toggleStrength(el){el.classList.toggle('selected');}
+
+  function toggleEndedField(){
+    const row = document.getElementById('endedFieldRow');
+    row.style.display = document.getElementById('relFormer').checked ? 'grid' : 'none';
+    if(!document.getElementById('relFormer').checked){
+      document.querySelectorAll('input[name="howEnded"]').forEach(r=>r.checked=false);
+    }
+  }
+
+  function toggleNA(btn){
+    const item = btn.closest('.rating-item');
+    const row = item.querySelector('.star-row');
+    const active = btn.classList.toggle('active');
+    item.classList.toggle('na-active', active);
+    if(active){
+      row.dataset.selected = '-1';
+      row.querySelectorAll('.star-btn').forEach(s=>s.style.color='rgba(0,200,255,0.15)');
+    }
+  }
+
+  function setRecommend(val, el) {
+    document.querySelectorAll('.rec-btn').forEach(b=>b.className='rec-btn');
+    el.classList.add('active-'+val);
+    document.getElementById('dependsField').style.display = val==='depends' ? 'block' : 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Category star ratings
+    document.querySelectorAll('.ratings-grid .star-row').forEach(row => {
+      const stars = row.querySelectorAll('.star-btn');
+      const categoryLabel = row.closest('.rating-item').querySelector('.rating-item-label')?.textContent.trim() || 'category';
+      const refresh = () => {
+        const sel = parseInt(row.dataset.selected ?? -1);
+        stars.forEach((s) => {
+          const val = parseInt(s.dataset.val);
+          s.style.color = val<=sel ? 'var(--cyan)' : 'rgba(0,200,255,0.15)';
+        });
+      };
+      stars.forEach((star) => {
+        const val = parseInt(star.dataset.val);
+        star.setAttribute('aria-label', `Rate ${categoryLabel} ${val} out of 5`);
+        star.addEventListener('mouseenter', ()=>stars.forEach((s)=>{
+          const sVal = parseInt(s.dataset.val);
+          s.style.color = sVal<=val?'var(--cyan)':'rgba(0,200,255,0.15)';
+        }));
+        star.addEventListener('mouseleave', refresh);
+        star.addEventListener('click', ()=>{row.dataset.selected=val;refresh();});
+      });
+    });
+
+    // Overall stars
+    const overallLabels = ['Poor','Below Average','Average','Good','Excellent'];
+    const overallContainer = document.getElementById('overallStars');
+    const overallStars = document.querySelectorAll('#overallStars .overall-star');
+    const overallLabel = document.getElementById('overallScoreLabel');
+    const refreshOverall = ()=>{
+      const sel = parseInt(overallContainer.dataset.selected) || 0;
+      overallStars.forEach((s,j)=>s.style.color=(j+1)<=sel?'var(--cyan)':'rgba(0,200,255,0.15)');
+    };
+    overallStars.forEach((star,i)=>{
+      const val = i + 1;
+      star.setAttribute('aria-label', `Overall rating ${val} out of 5`);
+      star.addEventListener('mouseenter',()=>{
+        overallStars.forEach((s,j)=>s.style.color=(j+1)<=val?'var(--cyan)':'rgba(0,200,255,0.15)');
+        overallLabel.textContent=overallLabels[i];
+      });
+      star.addEventListener('mouseleave',()=>{
+        refreshOverall();
+        const sel = parseInt(overallContainer.dataset.selected) || 0;
+        overallLabel.textContent=sel>0?overallLabels[sel-1]:'Tap to rate';
+      });
+      star.addEventListener('click',()=>{
+        overallContainer.dataset.selected=val;
+        refreshOverall();
+        overallLabel.textContent=overallLabels[i];
+      });
+    });
+
+    // Progress bar
+    const sections = document.querySelectorAll('.form-section');
+    const sectionLabels = ['Sport & League','Agent','Ratings','Your Experience','Patterns','Overall','Verify','Confirm'];
+    function updateProgress() {
+      let current = 0;
+      sections.forEach((sec,i)=>{if(sec.getBoundingClientRect().top<=window.innerHeight*0.5)current=i;});
+      const pct = Math.round((current/7)*100);
+      const fill = document.getElementById('progressFill');
+      const label = document.getElementById('progressLabel');
+      const pctEl = document.getElementById('progressPercent');
+      if(fill) fill.style.width=pct+'%';
+      if(label) label.textContent='Section '+(current+1)+' of 8 — '+sectionLabels[current];
+      if(pctEl) pctEl.textContent=pct+'% Complete';
+    }
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+  });
+
+  async function submitReview() {
+    // Validation first
+    const instagram = document.getElementById('verifyInstagram').value.trim();
+    const email = document.getElementById('verifyEmail').value.trim();
+    const c1 = document.getElementById('confirm1').checked;
+    const c2 = document.getElementById('confirm2').checked;
+    const c3 = document.getElementById('confirm3').checked;
+
+    if (!instagram && !email) {
+      document.getElementById('verifyError').style.display='block';
+      document.getElementById('verifyInstagram').scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    document.getElementById('verifyError').style.display='none';
+
+    if (!c1 || !c2 || !c3) {
+      document.getElementById('confirmError').style.display='block';
+      document.getElementById('confirm1').scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    document.getElementById('confirmError').style.display='none';
+
+    // Collect all form data
+    const gender = document.getElementById('genderMen').classList.contains('active') ? 'men' : 'women';
+    const sport = document.querySelector('.sport-tab.active').textContent.trim();
+    
+    // Agent info - now using IDs
+    const agentName = document.getElementById('agentName').value.trim();
+    const agentAgency = document.getElementById('agentAgency').value.trim() || null;
+    
+    // Split agent name into first/last
+    const nameParts = agentName.split(' ');
+    const agentFirstName = nameParts[0] || '';
+    const agentLastName = nameParts.slice(1).join(' ') || '';
+    
+    // Years represented
+    const yearsStartValue = document.getElementById('yearsStart').value;
+    const yearsEndValue = document.getElementById('yearsEnd').value;
+    const yearsStart = yearsStartValue ? parseInt(yearsStartValue) : null;
+    const yearsEnd = yearsEndValue === 'Present' ? new Date().getFullYear() : (yearsEndValue ? parseInt(yearsEndValue) : null);
+
+    // Relationship context
+    const relationshipStatus = document.querySelector('input[name="relStatus"]:checked')?.value || null;
+    const firstAgent = document.querySelector('input[name="firstAgent"]:checked')?.value || null;
+    const howEnded = relationshipStatus === 'former' ? (document.querySelector('input[name="howEnded"]:checked')?.value || null) : null;
+
+    // Contract types (multi-select checkboxes)
+    const contractTypes = Array.from(document.querySelectorAll('input[name="contractType"]:checked')).map(el => el.value);
+
+    // Helper: normalize star-row selection to 1-5 or null (handles unselected "-1")
+    const cleanRating = (v) => {
+      const n = parseInt(v);
+      return (isNaN(n) || n < 1 || n > 5) ? null : n;
+    };
+
+    // Category ratings (1-5 stars). Column names MUST match current question labels.
+    const ratingRows = document.querySelectorAll('.ratings-grid .star-row');
+    const ratingCommunication = cleanRating(ratingRows[0]?.dataset.selected);
+    const ratingNegotiation = cleanRating(ratingRows[1]?.dataset.selected);
+    const ratingHonestyLoyalty = cleanRating(ratingRows[2]?.dataset.selected);
+    const ratingCareerDevelopment = cleanRating(ratingRows[3]?.dataset.selected);
+    const ratingCombineDraftPrep = cleanRating(ratingRows[4]?.dataset.selected);
+    
+    // Red flags and strengths (selected items)
+    const redFlags = Array.from(document.querySelectorAll('.flag-item.selected')).map(el => el.querySelector('.flag-label').textContent.trim());
+    const strengths = Array.from(document.querySelectorAll('.strength-item.selected')).map(el => el.querySelector('.strength-label').textContent.trim());
+    
+    // Experience text (single textarea, three prompts)
+    const experienceText = document.getElementById('experienceText').value.trim() || null;
+    
+    // Recommend
+    let recommend = null;
+    const recButtons = document.querySelectorAll('.rec-btn');
+    recButtons.forEach(btn => {
+      if (btn.classList.contains('active-yes')) recommend = 'yes';
+      else if (btn.classList.contains('active-no')) recommend = 'no';
+      else if (btn.classList.contains('active-depends')) recommend = 'depends';
+    });
+    
+    const recommendDependsReason = recommend === 'depends' ? (document.getElementById('dependsExplanation')?.value.trim() || null) : null;
+    
+    // Overall rating (read from container dataset, 1-5)
+    const overallRating = cleanRating(document.getElementById('overallStars').dataset.selected);
+
+    // Platform feedback (early reviewers, optional)
+    const platformFeedback = document.getElementById('platformFeedback')?.value.trim() || null;
+
+    // Submit to Supabase
+    try {
+      const { data, error } = await supabaseClient
+        .from('reviews')
+        .insert([{
+          gender: gender,
+          sport: sport,
+          agent_first_name: agentFirstName,
+          agent_last_name: agentLastName,
+          agent_agency: agentAgency,
+          relationship_status: relationshipStatus,
+          first_agent: firstAgent,
+          how_ended: howEnded,
+          contract_types: contractTypes.length > 0 ? contractTypes : null,
+          years_start: yearsStart,
+          years_end: yearsEnd,
+          rating_communication: ratingCommunication,
+          rating_negotiation: ratingNegotiation,
+          rating_honesty_loyalty: ratingHonestyLoyalty,
+          rating_career_development: ratingCareerDevelopment,
+          rating_combine_draft_prep: ratingCombineDraftPrep,
+          red_flags: redFlags.length > 0 ? redFlags : null,
+          strengths: strengths.length > 0 ? strengths : null,
+          experience_text: experienceText,
+          recommend: recommend,
+          recommend_depends_reason: recommendDependsReason,
+          overall_rating: overallRating,
+          verify_instagram: instagram || null,
+          verify_email: email || null,
+          platform_feedback: platformFeedback,
+          status: 'pending'
+        }]);
+
+      if (error) {
+        console.error('Supabase error:', error);
+        alert('Something went wrong submitting your review. Please try again or contact us.');
+        return;
+      }
+
+      // Success
+      if (email) document.getElementById('successEmailNote').style.display='block';
+      document.getElementById('successOverlay').classList.add('show');
+      window.scrollTo(0,0);
+      
+    } catch (err) {
+      console.error('Submission error:', err);
+      alert('Something went wrong. Please try again or contact us.');
+    }
+  }
+</script>
+</body>
+</html>
