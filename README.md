@@ -117,7 +117,7 @@ Athenticate/
 
 ## Contact
 
-**Website:** [athenticate.co](https://athenticate.co)
+**Website:** [athenticate.org](https://athenticate.org)
 **Built by:** ATHenticate
 
 ---
