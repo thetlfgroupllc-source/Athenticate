@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — ATHenticate</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="The full ATHenticate FAQ. Anonymity, verification, legal, moderation, and everything else players ask before submitting their first review.">
+<meta property="og:title" content="FAQ — ATHenticate">
+<meta property="og:description" content="The full ATHenticate FAQ. Anonymity, verification, legal, moderation, and everything else players ask before submitting their first review.">
+<meta property="og:url" content="https://athenticate.org/faq.html">
+<meta property="og:image" content="https://athenticate.org/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<link rel="canonical" href="https://athenticate.org/faq.html">
+<style>
+  :root {
+    --bg-deep: #020B18; --bg-mid: #061A2E; --bg-card: #071E36;
+    --cyan: #00C8FF; --teal: #0AEFFF;
+    --cyan-dim: rgba(0,200,255,0.10); --cyan-glow: rgba(0,200,255,0.35);
+    --white: #F0F8FF; --grey: #7A9BB5; --grey-light: #9BB8D0;
+    --border: rgba(0,200,255,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg-deep); color: var(--white); font-family: 'Saira', sans-serif; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,200,255,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(10,239,255,0.03) 0%, transparent 60%);
+  }
+  .circuit-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.05;
+    background-image: linear-gradient(var(--cyan) 1px, transparent 1px), linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+
+  /* NAV — matches index */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(2,11,24,0.9); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Chakra Petch', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--cyan); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--grey); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a.active { color: var(--white); }
+  .nav-submit-btn {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); border: none; padding: 0.6rem 1.4rem;
+    font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.25s; box-shadow: 0 0 20px rgba(0,200,255,0.2);
+    text-decoration: none; display: inline-block;
+  }
+  .nav-submit-btn:hover { box-shadow: 0 0 30px rgba(0,200,255,0.5); transform: translateY(-1px); }
+  .mobile-nav-toggle { display: none; background: transparent; border: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 0.5rem; }
+  .mobile-nav-toggle span { display: block; width: 22px; height: 2px; background: var(--cyan); }
+
+  .mobile-nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(2,11,24,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
+  }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-overlay a { color: var(--white); font-family: 'Chakra Petch', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+  .mobile-nav-overlay a:hover { color: var(--cyan); }
+  .mobile-nav-close { position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--white); font-size: 1.8rem; cursor: pointer; }
+
+  /* PAGE */
+  .page { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 9rem 2rem 4rem; }
+  .page-label { font-family: 'Chakra Petch', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+  .page-label::before { content: ''; width: 24px; height: 1px; background: var(--cyan); opacity: 0.6; }
+  .page h1 { font-family: 'Chakra Petch', sans-serif; font-size: clamp(2.8rem, 7vw, 4.8rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; margin-bottom: 1.2rem; letter-spacing: -0.01em; }
+  .page h1 span { color: var(--cyan); text-shadow: 0 0 30px rgba(0,200,255,0.3); }
+  .page-desc { color: var(--grey); font-size: 1.05rem; line-height: 1.7; margin-bottom: 4rem; max-width: 620px; }
+  .page-desc a { color: var(--cyan); text-decoration: none; }
+  .page-desc a:hover { text-decoration: underline; }
+
+  /* GROUP */
+  .faq-group { margin-bottom: 3.5rem; }
+  .faq-group-label {
+    font-family: 'Chakra Petch', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .faq-group-label .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border: 1px solid var(--cyan);
+    font-size: 0.68rem; font-weight: 800; color: var(--cyan);
+  }
+
+  /* ITEM — using native details like index */
+  .faq-item {
+    border: 1px solid var(--border); background: rgba(6,26,46,0.5);
+    margin-bottom: 0.7rem; overflow: hidden;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .faq-item:hover { border-color: rgba(0,200,255,0.30); }
+  .faq-item[open] { border-color: rgba(0,200,255,0.38); background: rgba(0,200,255,0.03); }
+  .faq-item[open]::before { content: ''; display: block; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+  .faq-item summary {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.6rem; cursor: pointer; gap: 1rem;
+    list-style: none; user-select: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary span.q {
+    font-family: 'Chakra Petch', sans-serif; font-size: 1.02rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); line-height: 1.35;
+  }
+  .faq-icon { width: 1.2rem; height: 1.2rem; color: var(--cyan); flex-shrink: 0; transition: transform 0.3s; }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+
+  .faq-body { padding: 0 1.6rem 1.4rem; }
+  .faq-body p { font-size: 0.93rem; color: var(--grey-light); line-height: 1.8; margin-bottom: 0.7rem; }
+  .faq-body p:last-child { margin-bottom: 0; }
+  .faq-body strong { color: var(--white); font-weight: 600; }
+  .faq-body a { color: var(--cyan); text-decoration: none; }
+  .faq-body a:hover { text-decoration: underline; }
+
+  /* CTA */
+  .faq-cta {
+    margin-top: 4rem; border: 1px solid rgba(0,200,255,0.25);
+    background: linear-gradient(135deg, rgba(0,200,255,0.05), rgba(10,239,255,0.02));
+    padding: 2.2rem 2.5rem;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    position: relative; text-align: center;
+  }
+  .faq-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+  .faq-cta h3 { font-family: 'Chakra Petch', sans-serif; font-size: 1.4rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 0.7rem; }
+  .faq-cta h3 span { color: var(--cyan); }
+  .faq-cta p { color: var(--grey); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.4rem; }
+  .faq-cta p strong { color: var(--white); font-weight: 500; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--cyan), var(--teal)); color: var(--bg-deep); border: none;
+    padding: 0.95rem 2.6rem; font-family: 'Chakra Petch', sans-serif; font-size: 1rem; font-weight: 900;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.25s; box-shadow: 0 6px 24px rgba(0,200,255,0.25);
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,200,255,0.45); }
+
+  /* FOOTER — matches index */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 0.25rem; }
+  .footer-logo { font-family: 'Chakra Petch', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.08em; }
+  .footer-logo span { color: var(--cyan); }
+  .footer-tagline { font-size: 0.65rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.14em; }
+  .footer-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.72rem; color: var(--grey); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .nav-submit-btn { display: none; }
+    .mobile-nav-toggle { display: flex; }
+    .page { padding: 7rem 1.5rem 4rem; }
+  }
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.2rem; }
+    .page { padding: 6rem 1.2rem 3rem; }
+    .page h1 { font-size: 2.6rem; }
+    .faq-item summary { padding: 1.05rem 1.2rem; }
+    .faq-item summary span.q { font-size: 0.92rem; }
+    .faq-body { padding: 0 1.2rem 1.1rem; }
+    footer { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
+    .footer-links { justify-content: center; gap: 0.8rem; }
+  }
+  @media (max-width: 480px) {
+    .faq-cta { padding: 1.5rem; }
+    .btn-primary { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="circuit-bg"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./faq.html" onclick="closeMobileNav()">FAQ</a>
+  <a href="./submit-review.html" onclick="closeMobileNav()">Submit Review</a>
+  <a href="mailto:admin@athenticate.org">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="./index.html"><span>ATH</span>enticate</a>
+  <ul class="nav-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./index.html#how">How It Works</a></li>
+    <li><a href="./faq.html" class="active">FAQ</a></li>
+  </ul>
+  <a class="nav-submit-btn" href="./submit-review.html">Submit Review</a>
+  <button class="mobile-nav-toggle" onclick="openMobileNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+  <div class="page-label">Straight Answers</div>
+  <h1>Everything<br>You're <span>Asking.</span></h1>
+  <p class="page-desc">The three questions from the homepage expanded, plus every follow-up we've been asked by players so far. If your question isn't here, email <a href="mailto:admin@athenticate.org">admin@athenticate.org</a> and we'll add it.</p>
+
+  <!-- GROUP 1: ANONYMITY -->
+  <div class="faq-group">
+    <div class="faq-group-label"><span class="num">01</span> Anonymity</div>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Can my agent find out I reviewed them?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>No. Your name, team, and position never appear anywhere on the platform, and there's no admin function that would let an agent request reviewer identities. What gets published is your league, your star ratings, your written review, and the tags you pick. That's the whole list. <strong>You verify once. After that, you're anonymous on every review you leave.</strong></p>
+        <p>On the backend, your name isn't stored on your review. It sits in a separate verification record, referenced only through controlled internal processes tied to specific integrity functions (duplicate prevention, update requests, responding to a flagged review). No agent-facing tool, admin dashboard, or public surface exposes reviewer names to anyone. That's the architecture we built on purpose.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">What actually shows up on a published review?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Your league. Your star ratings across each category. The written portion of your review. The tags you picked during submission. <strong>Nothing else.</strong></p>
+        <p>No year, no team, no position, no contract size, no signing window, no handle, no initials, no timestamp. If a detail could narrow the pool of possible authors, it doesn't get published.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">What if an agency or league tries to subpoena my identity?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>This is the question that sits closest to the real fear, so we'll answer it plainly. <strong>The review itself doesn't carry your name, and we hold less than you might think.</strong> What's stored is separated, minimized, and unreachable through any product or admin feature an agent or agency could use.</p>
+        <p>For what we do hold, the commitment is to challenge legal process where there are grounds, notify the affected reviewer when the law allows, and publish the outcome. The full legal response policy will be posted before the first sport goes live, so you can read exactly where we stand before you submit.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- GROUP 2: VERIFICATION -->
+  <div class="faq-group">
+    <div class="faq-group-label"><span class="num">02</span> Verification</div>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">How do you verify I'm actually a professional athlete?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Verification runs against official league rosters and the same public records leagues and teams already maintain. Once you're confirmed as a pro, we store only what's needed to prevent duplicate accounts and discard the rest. <strong>The verification record and the review record are kept separate inside the platform.</strong> That's an architecture decision, not a policy one.</p>
+        <p>The process is a one-time check: roster match plus a basic identity confirmation. No tax documents, no contract uploads, no personal financials. If your league isn't live yet, you can join the waitlist and we'll verify you when it opens.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Which leagues and levels are eligible?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Any current or former player on an official roster of a recognized professional league counts as eligible. Practice squad and two-way contracts count. International and developmental leagues count if they maintain verifiable rosters. College athletes who have signed with an agent to navigate the draft also qualify.</p>
+        <p>Leagues unlock one at a time. The waitlist on the homepage is the fastest way to find out when yours is live.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Why require verification at all? Doesn't that create risk?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Fair concern. Verification exists for one reason: <strong>without it, the reviews are worth nothing.</strong> A platform anyone can post on is a platform no one trusts. Players reading reviews need to know the signal is coming from other players, not from competing agencies, disgruntled ex-employees, or bots.</p>
+        <p>The risk you're pointing at is real, and it's exactly why verification and reviews live in separate systems. <strong>Your name isn't on your review.</strong> It sits in the verification record, referenced only through controlled internal processes. Confirming you're a pro and publishing what you wrote are handled as two separate problems, with two separate data paths.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- GROUP 3: LEGAL -->
+  <div class="faq-group">
+    <div class="faq-group-label"><span class="num">03</span> Legal</div>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Can I get sued for leaving a negative review?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Honest reviews of your own experience carry the same protections that apply on every review platform. What isn't protected is stating something as fact when you don't actually know it's true. <strong>Describe what you lived through and how it affected you. Don't make claims about things you didn't witness firsthand.</strong> Your identity is also never displayed publicly, so there's no named reviewer for anyone to target in the first place.</p>
+        <p>If an agent disputes a review's factual accuracy, they can flag it. Flagged reviews stay published unless there's evidence the claim is false. We don't pull reviews because an agent is upset. We pull them when something specific and verifiable is wrong.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">What's the line between opinion and something I could get in trouble for?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Opinion and lived experience are almost always protected. "He didn't return my calls for three weeks" is your experience. "He felt distracted and disengaged" is your opinion. Both belong on the platform.</p>
+        <p>Where it gets risky: stating a fact you don't actually know. "He stole money from me" is a factual claim that has to be true, and provable, to sit in that form. <strong>The simple version: write what happened to you, not what you suspect happened to someone else.</strong> If you're unsure whether a line crosses over, rephrase it as your experience rather than a fact about them.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- GROUP 4: THE REVIEW -->
+  <div class="faq-group">
+    <div class="faq-group-label"><span class="num">04</span> The Review Itself</div>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Will you edit or censor what I write?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>No. We don't soften tone, rewrite phrasing, or trim content because an agent looks bad in it. The only things that get removed are specific identifying details about you (if you accidentally include a team, a game, or a year that narrows the pool), slurs or personal attacks unrelated to the agent relationship, and factual claims that turn out to be false.</p>
+        <p><strong>A review that makes an agent look terrible and is also accurate gets published as written.</strong> That's the entire point of the platform.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Can I update a review later?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Yes. Updates are handled through a controlled manual process for security. Email <a href="mailto:admin@athenticate.org">admin@athenticate.org</a> with context about which review is yours. We verify the match internally, apply the change, and mark the review publicly as updated.</p>
+        <p>Updates are marked publicly so readers know the assessment evolved. Agents sometimes improve. The platform should reflect that.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Can an agent pay to remove a bad review?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p><strong>No. Never. Full stop.</strong> There's no tier of paid access that affects moderation. An agent cannot pay to remove reviews, reorder reviews, bury reviews, or influence the rating average. The only way a review comes down is if it's demonstrably false or violates the content rules, and that applies identically whether the agent is a top-five name or has never been heard of before.</p>
+        <p>If that ever changes, the platform stops being worth anything, and we know it.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- GROUP 5: PLATFORM -->
+  <div class="faq-group">
+    <div class="faq-group-label"><span class="num">05</span> The Platform</div>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">Who's behind ATHenticate?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Built by a former pro who saw the agent accountability gap from inside the system and got tired of watching the next generation of players walk into the same traps. Full team and advisory details will be published alongside the first sport launch.</p>
+        <p>What matters right now: <strong>no agent, agency, or league has equity, influence, or editorial input on this platform.</strong> That's a hard line.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="q">How is this funded?</span>
+        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-body">
+        <p>Independently funded at the start by the founding team. Longer term, the revenue model runs on verified agent profiles, subscription access for agents to respond and showcase their record, and premium data tools for players evaluating representation options. <strong>Submitting and reading reviews stays free for athletes. Always.</strong></p>
+        <p>No agent or agency subsidy. No league partnership that conditions how reviews are moderated. The funding structure is built so that nothing we might want to sell later can compromise what this platform is for.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- CTA -->
+  <div class="faq-cta">
+    <h3>Still Have <span>Questions?</span></h3>
+    <p><strong>Email us directly.</strong> Every FAQ entry on this page started as a real question from a real player. If yours isn't covered, it should be.</p>
+    <a href="mailto:admin@athenticate.org" class="btn-primary">Contact Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo"><span>ATH</span>enticate</div>
+    <div class="footer-tagline">Players Protecting Players</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="./submit-review.html">Submit Review</a></li>
+    <li><a href="./future-professionals.html">Future Pros</a></li>
+    <li><a href="./future-agents.html">For Agents</a></li>
+    <li><a href="./faq.html">FAQ</a></li>
+    <li><a href="./privacy.html">Privacy</a></li>
+    <li><a href="./terms.html">Terms</a></li>
+    <li><a href="mailto:admin@athenticate.org">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function openMobileNav(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden';}
+  function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow='';}
+</script>
+</body>
+</html>
