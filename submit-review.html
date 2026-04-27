@@ -674,27 +674,26 @@
           <input id="athleteLastName" class="field-input" type="text" placeholder="Last name" />
         </div>
       </div>
-      <p style="font-size:0.82rem;color:var(--grey-light);font-weight:500;margin-top:1.5rem;">Provide ONE of the following:</p>
       <div class="verify-options">
         <div class="verify-option">
           <div class="verify-option-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email <span style="font-size:0.6rem;color:var(--cyan);font-weight:700;letter-spacing:0.06em;margin-left:0.3rem;">required</span>
+          </div>
+          <input id="verifyEmail" class="field-input" type="email" placeholder="your@email.com" />
+          <p class="verify-note">Use the email from your league or team communications. <strong>Team-issued or agency-forwarded addresses carry the most weight.</strong> We'll send you a confirmation and notify you when your league unlocks.</p>
+        </div>
+        <div class="verify-or">— optional —</div>
+        <div class="verify-option">
+          <div class="verify-option-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            Instagram Handle
+            Instagram Handle <span style="font-size:0.6rem;color:var(--grey);font-weight:700;letter-spacing:0.06em;margin-left:0.3rem;">adds verification weight</span>
           </div>
           <input id="verifyInstagram" class="field-input" type="text" placeholder="@yourhandle" />
           <p class="verify-note">We'll cross-check against your league's verified roster.</p>
         </div>
-        <div class="verify-or">— or —</div>
-        <div class="verify-option">
-          <div class="verify-option-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Email <span style="font-size:0.6rem;color:var(--cyan);font-weight:700;letter-spacing:0.06em;margin-left:0.3rem;">+ league updates</span>
-          </div>
-          <input id="verifyEmail" class="field-input" type="email" placeholder="your@email.com" />
-          <p class="verify-note">Use the email from your league or team communications. <strong>Team-issued or agency-forwarded addresses carry the most weight.</strong> If you provide this, we'll also notify you when your league unlocks.</p>
-        </div>
       </div>
-      <p class="error-msg" id="verifyError">Please provide at least your Instagram handle or email address before submitting.</p>
+      <p class="error-msg" id="verifyError">Email is required before submitting.</p>
     </div>
     <p style="font-size:0.75rem;color:rgba(122,155,181,0.5);margin-top:1rem;line-height:1.5;">Have questions about how your info is used? <a href="javascript:void(0)" onclick="document.getElementById('faqModal').classList.add('open')" style="color:var(--cyan);text-decoration:none;font-weight:600;">Read our FAQ →</a></p>
   </div>
@@ -899,9 +898,9 @@
     const c2 = document.getElementById('confirm2').checked;
     const c3 = document.getElementById('confirm3').checked;
 
-    if (!instagram && !email) {
+    if (!email) {
       document.getElementById('verifyError').style.display='block';
-      document.getElementById('verifyInstagram').scrollIntoView({behavior:'smooth',block:'center'});
+      document.getElementById('verifyEmail').scrollIntoView({behavior:'smooth',block:'center'});
       return;
     }
     document.getElementById('verifyError').style.display='none';
@@ -1009,8 +1008,15 @@
         return;
       }
 
+      // Send confirmation email
+      fetch('https://pyodgmfrqfxsjdacsvzo.supabase.co/functions/v1/send-review-confirmation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      }).catch(err => console.error('Confirmation email error:', err));
+
       // Success
-      if (email) document.getElementById('successEmailNote').style.display='block';
+      document.getElementById('successEmailNote').style.display='block';
       document.getElementById('successOverlay').classList.add('show');
       window.scrollTo(0,0);
       
@@ -1021,4 +1027,6 @@
   }
 </script>
 </body>
+</html>
+
 </html>
