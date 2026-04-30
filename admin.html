@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — ATHenticate</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg-deep:#020B18;--bg-card:#071E36;--cyan:#00C8FF;--white:#F0F8FF;--grey:#7A9BB5;--grey-light:#9BB8D0;--border:rgba(0,200,255,0.18);--red:#FF4D6D;--green:#4DFFB8; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg-deep);color:var(--white);font-family:'Saira',sans-serif;min-height:100vh;}
+  .wrap{max-width:1100px;margin:0 auto;padding:2.5rem 2rem;}
+  h1{font-family:'Chakra Petch',sans-serif;font-size:2rem;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;}
+  h1 span{color:var(--cyan);}
+  .sub{color:var(--grey);font-size:0.85rem;margin-top:0.4rem;margin-bottom:2rem;}
+  .gate{max-width:380px;margin:8rem auto;padding:2rem;border:1px solid var(--border);background:var(--bg-card);}
+  .gate h2{font-family:'Chakra Petch',sans-serif;font-size:1.1rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;}
+  .row{display:flex;gap:0.5rem;align-items:center;}
+  input,select,textarea{font-family:'Saira',sans-serif;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--white);padding:0.7rem 0.9rem;width:100%;font-size:0.9rem;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);}
+  button{font-family:'Chakra Petch',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.7rem 1rem;background:var(--cyan);color:#02121f;border:none;cursor:pointer;}
+  button.secondary{background:transparent;color:var(--white);border:1px solid var(--border);}
+  button.danger{background:var(--red);color:#fff;}
+  button.success{background:var(--green);color:#02121f;}
+  .toolbar{display:flex;gap:0.5rem;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;}
+  .review{border:1px solid var(--border);background:var(--bg-card);padding:1.4rem;margin-bottom:1.2rem;}
+  .review h3{font-family:'Chakra Petch',sans-serif;font-size:1rem;letter-spacing:0.05em;color:var(--cyan);margin-bottom:0.8rem;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.8rem 1.5rem;font-size:0.85rem;}
+  .grid div{line-height:1.5;}
+  .grid .k{color:var(--grey);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:0.15rem;}
+  .grid .v{color:var(--white);}
+  .review-text{margin-top:1rem;padding:0.9rem;background:rgba(0,0,0,0.25);border-left:2px solid var(--cyan);font-size:0.88rem;line-height:1.6;color:var(--grey-light);white-space:pre-wrap;}
+  .actions{display:flex;gap:0.5rem;margin-top:1.2rem;flex-wrap:wrap;}
+  .empty{text-align:center;color:var(--grey);padding:4rem 1rem;border:1px dashed var(--border);}
+  .err{color:var(--red);font-size:0.85rem;margin-top:0.6rem;}
+  .badge{display:inline-block;padding:0.2rem 0.6rem;font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(0,200,255,0.12);color:var(--cyan);}
+  .badge.warn{background:rgba(255,77,109,0.15);color:var(--red);}
+  .badge.ok{background:rgba(77,255,184,0.12);color:var(--green);}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <h2>Admin <span style="color:var(--cyan);">Sign-in</span></h2>
+  <input id="pw" type="password" placeholder="Admin password" autocomplete="off" />
+  <div class="row" style="margin-top:0.8rem;">
+    <button onclick="signIn()">Enter</button>
+  </div>
+  <p id="gateErr" class="err" style="display:none;">Wrong password.</p>
+</div>
+
+<div id="app" class="wrap" style="display:none;">
+  <h1>Review <span>Queue</span></h1>
+  <p class="sub">Manually verify athletes against league rosters before publishing.</p>
+
+  <div class="toolbar">
+    <select id="statusFilter" style="max-width:240px;">
+      <option value="email_confirmed">Email confirmed — ready to verify</option>
+      <option value="pending">Pending — email not yet confirmed</option>
+      <option value="verified">Verified (published)</option>
+      <option value="rejected">Rejected</option>
+    </select>
+    <button class="secondary" onclick="loadReviews()">Refresh</button>
+    <span id="count" style="color:var(--grey);font-size:0.8rem;margin-left:auto;"></span>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://pyodgmfrqfxsjdacsvzo.supabase.co';
+  let ADMIN_PW = '';
+
+  function signIn() {
+    const v = document.getElementById('pw').value.trim();
+    if (!v) return;
+    ADMIN_PW = v;
+    sessionStorage.setItem('athAdminPw', v);
+    document.getElementById('gateErr').style.display = 'none';
+    loadReviews();
+  }
+
+  async function loadReviews() {
+    document.getElementById('list').innerHTML = '<p class="sub">Loading…</p>';
+    const status = document.getElementById('statusFilter').value;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/admin-list-pending?status=${encodeURIComponent(status)}`, {
+        headers: { 'x-admin-password': ADMIN_PW },
+      });
+      if (res.status === 401) {
+        document.getElementById('app').style.display = 'none';
+        document.getElementById('gate').style.display = 'block';
+        document.getElementById('gateErr').style.display = 'block';
+        sessionStorage.removeItem('athAdminPw');
+        return;
+      }
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      const json = await res.json();
+      render(json.reviews || []);
+    } catch (e) {
+      document.getElementById('list').innerHTML = `<p class="err">Failed to load: ${e.message}</p>`;
+    }
+  }
+
+  function escape(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function render(rows) {
+    document.getElementById('count').textContent = `${rows.length} review${rows.length === 1 ? '' : 's'}`;
+    if (!rows.length) {
+      document.getElementById('list').innerHTML = '<div class="empty">No reviews in this state.</div>';
+      return;
+    }
+    const html = rows.map(r => {
+      const insta = r.verify_instagram ? `<a href="https://instagram.com/${escape(r.verify_instagram.replace(/^@/,''))}" target="_blank" style="color:var(--cyan);">${escape(r.verify_instagram)}</a>` : '—';
+      const statusBadge = r.status === 'verified' ? 'ok' : r.status === 'rejected' ? 'warn' : '';
+      const ratings = `Comm ${r.rating_communication ?? '–'} · Negot ${r.rating_negotiation ?? '–'} · Honesty ${r.rating_honesty_loyalty ?? '–'} · Career ${r.rating_career_development ?? '–'} · Draft ${r.rating_combine_draft_prep ?? '–'} · Overall ${r.overall_rating ?? '–'}`;
+      return `
+      <div class="review" data-id="${r.id}">
+        <h3>${escape(r.athlete_first_name)} ${escape(r.athlete_last_name)} <span class="badge ${statusBadge}">${escape(r.status)}</span></h3>
+        <div class="grid">
+          <div><span class="k">Sport / Gender</span><span class="v">${escape(r.sport)} / ${escape(r.gender)}</span></div>
+          <div><span class="k">Team</span><span class="v">${escape(r.verify_team || '—')}</span></div>
+          <div><span class="k">Seasons</span><span class="v">${escape(r.verify_seasons || '—')}</span></div>
+          <div><span class="k">Email</span><span class="v">${escape(r.verify_email)}</span></div>
+          <div><span class="k">Instagram</span><span class="v">${insta}</span></div>
+          <div><span class="k">Email confirmed</span><span class="v">${r.email_confirmed_at ? new Date(r.email_confirmed_at).toLocaleString() : '—'}</span></div>
+          <div><span class="k">Submitted</span><span class="v">${new Date(r.created_at).toLocaleString()}</span></div>
+          <div><span class="k">Agent</span><span class="v">${escape(r.agent_first_name)} ${escape(r.agent_last_name)}${r.agent_agency ? ' — ' + escape(r.agent_agency) : ''}</span></div>
+          <div><span class="k">Years repped</span><span class="v">${escape(r.years_start ?? '–')}–${escape(r.years_end ?? '–')}</span></div>
+          <div><span class="k">Ratings</span><span class="v">${ratings}</span></div>
+        </div>
+        ${r.experience_text ? `<div class="review-text">${escape(r.experience_text)}</div>` : ''}
+        ${r.status === 'email_confirmed' || r.status === 'pending' ? `
+        <div class="actions">
+          <button class="success" onclick="updateReview(${r.id}, 'verify')">Approve & Publish</button>
+          <button class="danger"  onclick="rejectReview(${r.id})">Reject…</button>
+        </div>` : r.status === 'rejected' && r.rejection_reason ? `
+        <div class="review-text" style="border-left-color:var(--red);"><strong>Rejection reason:</strong> ${escape(r.rejection_reason)}</div>` : ''}
+      </div>`;
+    }).join('');
+    document.getElementById('list').innerHTML = html;
+  }
+
+  async function updateReview(id, action, reason) {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/admin-update-review`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': ADMIN_PW },
+        body: JSON.stringify({ id, action, reason, verified_by: 'admin' }),
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        alert(j.error || 'Update failed');
+        return;
+      }
+      loadReviews();
+    } catch (e) {
+      alert('Update failed: ' + e.message);
+    }
+  }
+
+  function rejectReview(id) {
+    const reason = prompt('Reason for rejection (shown only in admin records):');
+    if (reason === null) return;
+    updateReview(id, 'reject', reason);
+  }
+
+  document.getElementById('statusFilter').addEventListener('change', loadReviews);
+  document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') signIn(); });
+
+  // Restore session
+  const saved = sessionStorage.getItem('athAdminPw');
+  if (saved) { ADMIN_PW = saved; loadReviews(); }
+</script>
+</body>
+</html>
