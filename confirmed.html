@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Confirmed — ATHenticate</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg-deep:#020B18;--bg-card:#071E36;--cyan:#00C8FF;--white:#F0F8FF;--grey:#7A9BB5;--grey-light:#9BB8D0;--border:rgba(0,200,255,0.18);--red:#FF4D6D;--green:#4DFFB8; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg-deep);color:var(--white);font-family:'Saira',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,200,255,0.06) 0%,transparent 70%);}
+  .card{position:relative;z-index:1;max-width:520px;width:100%;border:1px solid var(--border);background:var(--bg-card);padding:3rem 2.4rem;text-align:center;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+  .icon{width:64px;height:64px;margin:0 auto 1.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,200,255,0.08);border:1px solid var(--cyan);}
+  .icon svg{width:32px;height:32px;color:var(--cyan);}
+  .icon.err{background:rgba(255,77,109,0.08);border-color:var(--red);}
+  .icon.err svg{color:var(--red);}
+  h1{font-family:'Chakra Petch',sans-serif;font-size:1.8rem;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.6rem;}
+  h1 span{color:var(--cyan);}
+  p{color:var(--grey-light);font-size:0.95rem;line-height:1.65;margin-bottom:1rem;}
+  a.btn{display:inline-block;margin-top:1.5rem;padding:0.9rem 1.8rem;background:var(--cyan);color:#02121f;font-family:'Chakra Petch',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;}
+  .muted{color:var(--grey);font-size:0.78rem;margin-top:1.2rem;}
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="icon" id="icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h1 id="title">Confirming<span>…</span></h1>
+  <p id="msg">One second — checking your link.</p>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://pyodgmfrqfxsjdacsvzo.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM';
+
+  function setSuccess(already) {
+    document.getElementById('title').innerHTML = already ? 'Already <span>Confirmed</span>' : 'Email <span>Confirmed</span>';
+    document.getElementById('msg').innerHTML = already
+      ? 'You\'ve already confirmed this review. Sit tight — our team will verify and publish it within a few days.'
+      : 'You\'re all set. Your review is now in the verification queue. We\'ll publish it anonymously once we\'ve confirmed you against league rosters — usually within a few days.<br><br>Players Protecting Players.';
+    document.getElementById('card').insertAdjacentHTML('beforeend',
+      '<a class="btn" href="./index.html">Back to ATHenticate</a>' +
+      '<p class="muted">You can close this tab.</p>');
+  }
+
+  function setError(message) {
+    const icon = document.getElementById('icon');
+    icon.classList.add('err');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    document.getElementById('title').innerHTML = 'Link <span style="color:var(--red);">Invalid</span>';
+    document.getElementById('msg').textContent = message || 'This confirmation link is invalid or has expired. If you submitted a review, contact admin@athenticate.org and we\'ll sort it out.';
+    document.getElementById('card').insertAdjacentHTML('beforeend',
+      '<a class="btn" href="./index.html">Back to ATHenticate</a>');
+  }
+
+  (async () => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+    if (!token) { setError('Missing confirmation token.'); return; }
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/confirm-review`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+        body: JSON.stringify({ token }),
+      });
+      const j = await res.json().catch(() => ({}));
+      if (res.ok && j.success) setSuccess(!!j.already);
+      else setError(j.error);
+    } catch (e) {
+      setError('Network error. Please try the link again or contact admin@athenticate.org.');
+    }
+  })();
+</script>
+</body>
+</html>
