@@ -285,11 +285,13 @@
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
-  const supabaseClient = supabase.createClient(
-    'https://pyodgmfrqfxsjdacsvzo.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM'
-  );
+  const SUPABASE_URL = 'https://pyodgmfrqfxsjdacsvzo.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM';
+  // Replace with your real Turnstile site key from https://dash.cloudflare.com/?to=/:account/turnstile
+  const TURNSTILE_SITE_KEY = '1x00000000000000000000AA'; // test key — always passes; swap for prod key
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 </script>
 </head>
 <body>
@@ -300,7 +302,7 @@
   <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
   <h2>Review<br><span>Submitted.</span></h2>
   <p><strong>You just protected the next player</strong> who doesn't know what you know. That's exactly what this is built for.</p>
-  <p class="success-email-note" id="successEmailNote">✓ We'll email you when full access to your league is available.</p>
+  <p class="success-email-note" id="successEmailNote">✓ Check your email — confirm the link we just sent so we can verify and publish your review.</p>
   <div class="share-box">
     <div class="share-box-label">Heard a teammate talk about their agent — good or bad? Send them this link.</div>
     <p>Every review gets your league closer to full access.</p>
@@ -685,7 +687,7 @@
     <div class="form-section-header">
       <div class="form-section-num">Section 07</div>
       <div class="form-section-title">Verify You're a Pro</div>
-      <div class="form-section-desc">Your identity is never shown publicly. Verification protects the platform's integrity — fake reviews would destroy trust for everyone.</div>
+      <div class="form-section-desc">Your identity is never shown publicly. Reviews go live only after we verify you against league rosters — usually within a few days. Fake reviews would destroy trust for everyone.</div>
     </div>
     <div class="verify-wrap">
       <p style="font-size:0.82rem;color:var(--grey-light);font-weight:500;margin-bottom:1rem;">Your name (for our records only — never shown publicly):</p>
@@ -699,6 +701,43 @@
           <input id="athleteLastName" class="field-input" type="text" placeholder="Last name" />
         </div>
         <p class="error-msg" id="nameError" style="grid-column:1/-1;">First and last name are required for verification.</p>
+      </div>
+      <div class="field-row" style="margin-top:1rem;">
+        <div class="field">
+          <label class="field-label">Most Recent Team <span style="font-size:0.6rem;color:var(--cyan);font-weight:700;letter-spacing:0.06em;margin-left:0.3rem;">required</span></label>
+          <select id="verifyTeam" class="field-input">
+            <option value="" disabled selected>Select your team</option>
+          </select>
+          <input id="verifyTeamOther" class="field-input" type="text" placeholder="Type your team or country" style="display:none;margin-top:0.5rem;" />
+        </div>
+        <div class="field">
+          <label class="field-label">Season(s) <span style="font-size:0.6rem;color:var(--cyan);font-weight:700;letter-spacing:0.06em;margin-left:0.3rem;">required</span></label>
+          <div class="date-range">
+            <select id="verifySeasonStart" class="field-input">
+              <option value="" disabled selected>From</option>
+              <option>2000</option><option>2001</option><option>2002</option><option>2003</option>
+              <option>2004</option><option>2005</option><option>2006</option><option>2007</option>
+              <option>2008</option><option>2009</option><option>2010</option><option>2011</option>
+              <option>2012</option><option>2013</option><option>2014</option><option>2015</option>
+              <option>2016</option><option>2017</option><option>2018</option><option>2019</option>
+              <option>2020</option><option>2021</option><option>2022</option><option>2023</option>
+              <option>2024</option><option>2025</option><option>2026</option>
+            </select>
+            <span class="date-range-sep">to</span>
+            <select id="verifySeasonEnd" class="field-input">
+              <option value="" disabled selected>To</option>
+              <option>2000</option><option>2001</option><option>2002</option><option>2003</option>
+              <option>2004</option><option>2005</option><option>2006</option><option>2007</option>
+              <option>2008</option><option>2009</option><option>2010</option><option>2011</option>
+              <option>2012</option><option>2013</option><option>2014</option><option>2015</option>
+              <option>2016</option><option>2017</option><option>2018</option><option>2019</option>
+              <option>2020</option><option>2021</option><option>2022</option><option>2023</option>
+              <option>2024</option><option>2025</option><option>2026</option>
+              <option>Present</option>
+            </select>
+          </div>
+        </div>
+        <p class="error-msg" id="rosterError" style="grid-column:1/-1;">Team and season(s) are required so we can confirm you against rosters.</p>
       </div>
       <div class="verify-options">
         <div class="verify-option">
@@ -764,6 +803,7 @@
       <ul class="missing-list" id="missingList"></ul>
     </div>
 
+    <div id="turnstileWrap" style="display:flex;justify-content:center;margin:1.5rem 0 0.5rem;"></div>
     <div class="submit-row">
       <div class="submit-anon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -874,9 +914,61 @@
     group.querySelector('.sport-tab').classList.add('active');
   }
 
+  const TEAMS_BY_SPORT = {
+    NFL: ['Arizona Cardinals','Atlanta Falcons','Baltimore Ravens','Buffalo Bills','Carolina Panthers','Chicago Bears','Cincinnati Bengals','Cleveland Browns','Dallas Cowboys','Denver Broncos','Detroit Lions','Green Bay Packers','Houston Texans','Indianapolis Colts','Jacksonville Jaguars','Kansas City Chiefs','Las Vegas Raiders','Los Angeles Chargers','Los Angeles Rams','Miami Dolphins','Minnesota Vikings','New England Patriots','New Orleans Saints','New York Giants','New York Jets','Philadelphia Eagles','Pittsburgh Steelers','San Francisco 49ers','Seattle Seahawks','Tampa Bay Buccaneers','Tennessee Titans','Washington Commanders'],
+    NBA: ['Atlanta Hawks','Boston Celtics','Brooklyn Nets','Charlotte Hornets','Chicago Bulls','Cleveland Cavaliers','Dallas Mavericks','Denver Nuggets','Detroit Pistons','Golden State Warriors','Houston Rockets','Indiana Pacers','LA Clippers','Los Angeles Lakers','Memphis Grizzlies','Miami Heat','Milwaukee Bucks','Minnesota Timberwolves','New Orleans Pelicans','New York Knicks','Oklahoma City Thunder','Orlando Magic','Philadelphia 76ers','Phoenix Suns','Portland Trail Blazers','Sacramento Kings','San Antonio Spurs','Toronto Raptors','Utah Jazz','Washington Wizards'],
+    MLB: ['Arizona Diamondbacks','Atlanta Braves','Baltimore Orioles','Boston Red Sox','Chicago Cubs','Chicago White Sox','Cincinnati Reds','Cleveland Guardians','Colorado Rockies','Detroit Tigers','Houston Astros','Kansas City Royals','Los Angeles Angels','Los Angeles Dodgers','Miami Marlins','Milwaukee Brewers','Minnesota Twins','New York Mets','New York Yankees','Oakland Athletics','Philadelphia Phillies','Pittsburgh Pirates','San Diego Padres','San Francisco Giants','Seattle Mariners','St. Louis Cardinals','Tampa Bay Rays','Texas Rangers','Toronto Blue Jays','Washington Nationals'],
+    NHL: ['Anaheim Ducks','Boston Bruins','Buffalo Sabres','Calgary Flames','Carolina Hurricanes','Chicago Blackhawks','Colorado Avalanche','Columbus Blue Jackets','Dallas Stars','Detroit Red Wings','Edmonton Oilers','Florida Panthers','Los Angeles Kings','Minnesota Wild','Montreal Canadiens','Nashville Predators','New Jersey Devils','New York Islanders','New York Rangers','Ottawa Senators','Philadelphia Flyers','Pittsburgh Penguins','San Jose Sharks','Seattle Kraken','St. Louis Blues','Tampa Bay Lightning','Toronto Maple Leafs','Utah Hockey Club','Vancouver Canucks','Vegas Golden Knights','Washington Capitals','Winnipeg Jets'],
+    MLS: ['Atlanta United','Austin FC','CF Montréal','Charlotte FC','Chicago Fire','Colorado Rapids','Columbus Crew','D.C. United','FC Cincinnati','FC Dallas','Houston Dynamo','Inter Miami','LA Galaxy','LAFC','Minnesota United','Nashville SC','New England Revolution','New York City FC','New York Red Bulls','Orlando City','Philadelphia Union','Portland Timbers','Real Salt Lake','San Diego FC','San Jose Earthquakes','Seattle Sounders','Sporting Kansas City','St. Louis City','Toronto FC','Vancouver Whitecaps'],
+    EPL: ['Arsenal','Aston Villa','Bournemouth','Brentford','Brighton','Burnley','Chelsea','Crystal Palace','Everton','Fulham','Ipswich Town','Leeds United','Leicester City','Liverpool','Luton Town','Manchester City','Manchester United','Newcastle United','Norwich City','Nottingham Forest','Sheffield United','Southampton','Tottenham Hotspur','Watford','West Ham','Wolverhampton'],
+    CFL: ['BC Lions','Calgary Stampeders','Edmonton Elks','Hamilton Tiger-Cats','Montreal Alouettes','Ottawa Redblacks','Saskatchewan Roughriders','Toronto Argonauts','Winnipeg Blue Bombers'],
+    XFL: ['Arlington Renegades','Birmingham Stallions','DC Defenders','Houston Roughnecks','Memphis Showboats','Michigan Panthers','San Antonio Brahmas','St. Louis BattleHawks'],
+    WNBA: ['Atlanta Dream','Chicago Sky','Connecticut Sun','Dallas Wings','Golden State Valkyries','Indiana Fever','Las Vegas Aces','Los Angeles Sparks','Minnesota Lynx','New York Liberty','Phoenix Mercury','Seattle Storm','Washington Mystics'],
+    NWSL: ['Angel City FC','Bay FC','Chicago Stars','Houston Dash','Kansas City Current','NJ/NY Gotham FC','North Carolina Courage','Orlando Pride','Portland Thorns','Racing Louisville','San Diego Wave','Seattle Reign','Utah Royals','Washington Spirit'],
+    WSL: ['Arsenal','Aston Villa','Brighton','Chelsea','Crystal Palace','Everton','Leicester City','Liverpool','Manchester City','Manchester United','Tottenham Hotspur','West Ham'],
+    PWHL: ['Boston Fleet','Minnesota Frost','Montreal Victoire','New York Sirens','Ottawa Charge','Toronto Sceptres'],
+    LOVB: ['LOVB Atlanta','LOVB Austin','LOVB Houston','LOVB Madison','LOVB Omaha','LOVB Salt Lake'],
+    AU: ['AU Basketball','AU Lacrosse','AU Pickleball','AU Softball','AU Volleyball'],
+    WTA: []
+  };
+
+  let currentSport = 'NFL';
+
+  function populateTeams(sport) {
+    const sel = document.getElementById('verifyTeam');
+    if (!sel) return;
+    const teams = TEAMS_BY_SPORT[sport] || [];
+    const labelEl = sel.closest('.field')?.querySelector('.field-label');
+    const isIndividual = sport === 'WTA';
+    if (labelEl) {
+      labelEl.firstChild.nodeValue = isIndividual ? 'Country / Region ' : 'Most Recent Team ';
+    }
+    sel.innerHTML = '<option value="" disabled selected>' + (isIndividual ? 'Select "Other" to enter country' : 'Select your team') + '</option>';
+    teams.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t; opt.textContent = t;
+      sel.appendChild(opt);
+    });
+    const otherOpt = document.createElement('option');
+    otherOpt.value = '__other__'; otherOpt.textContent = 'Other / Not listed';
+    sel.appendChild(otherOpt);
+    document.getElementById('verifyTeamOther').style.display = 'none';
+    document.getElementById('verifyTeamOther').value = '';
+  }
+
+  document.addEventListener('change', function(e){
+    if (e.target && e.target.id === 'verifyTeam') {
+      const other = document.getElementById('verifyTeamOther');
+      other.style.display = e.target.value === '__other__' ? 'block' : 'none';
+      if (e.target.value !== '__other__') other.value = '';
+    }
+  });
+
   function selectSport(el, sport) {
     el.closest('.sport-tabs').querySelectorAll('.sport-tab').forEach(t=>t.classList.remove('active'));
     el.classList.add('active');
+    currentSport = sport;
+    populateTeams(sport);
   }
 
   function toggleFlag(el){el.classList.toggle('selected');}
@@ -888,7 +980,24 @@
     document.getElementById('dependsField').style.display = val==='depends' ? 'block' : 'none';
   }
 
+  let turnstileToken = '';
+  function renderTurnstile() {
+    if (!window.turnstile || !document.getElementById('turnstileWrap')) return;
+    document.getElementById('turnstileWrap').innerHTML = '';
+    window.turnstile.render('#turnstileWrap', {
+      sitekey: TURNSTILE_SITE_KEY,
+      theme: 'dark',
+      callback: (token) => { turnstileToken = token; },
+      'error-callback': () => { turnstileToken = ''; },
+      'expired-callback': () => { turnstileToken = ''; },
+    });
+  }
+  window.onloadTurnstileCallback = renderTurnstile;
+
   document.addEventListener('DOMContentLoaded', function() {
+    populateTeams(currentSport);
+    const tryRender = () => { if (window.turnstile) renderTurnstile(); else setTimeout(tryRender, 200); };
+    tryRender();
     // Category star ratings
     document.querySelectorAll('.ratings-grid .star-row').forEach(row => {
       const stars = row.querySelectorAll('.star-btn');
@@ -952,6 +1061,14 @@
     const email = document.getElementById('verifyEmail').value.trim();
     const athleteFirstNameVal = document.getElementById('athleteFirstName').value.trim();
     const athleteLastNameVal = document.getElementById('athleteLastName').value.trim();
+    const verifyTeamSelect = document.getElementById('verifyTeam').value;
+    const verifyTeamOtherVal = document.getElementById('verifyTeamOther').value.trim();
+    const verifyTeamVal = verifyTeamSelect === '__other__' ? verifyTeamOtherVal : (verifyTeamSelect || '');
+    const verifySeasonStartVal = document.getElementById('verifySeasonStart').value;
+    const verifySeasonEndVal = document.getElementById('verifySeasonEnd').value;
+    const verifySeasonsVal = (verifySeasonStartVal && verifySeasonEndVal)
+      ? (verifySeasonStartVal === verifySeasonEndVal ? verifySeasonStartVal : verifySeasonStartVal + '–' + verifySeasonEndVal)
+      : '';
     const c1 = document.getElementById('confirm1').checked;
     const c2 = document.getElementById('confirm2').checked;
     const c3 = document.getElementById('confirm3').checked;
@@ -1102,6 +1219,26 @@
       }
     } else {
       document.getElementById('nameError').style.display='none';
+    }
+
+    // --- Team & Season(s) ---
+    if (!verifyTeamVal || !verifySeasonStartVal || !verifySeasonEndVal) {
+      document.getElementById('rosterError').style.display='block';
+      if (!verifyTeamVal) {
+        missing.push({ section: 'Verify', label: 'Your team', target: document.getElementById(verifyTeamSelect === '__other__' ? 'verifyTeamOther' : 'verifyTeam') });
+      }
+      if (!verifySeasonStartVal) {
+        missing.push({ section: 'Verify', label: 'Season start year', target: document.getElementById('verifySeasonStart') });
+      }
+      if (!verifySeasonEndVal) {
+        missing.push({ section: 'Verify', label: 'Season end year', target: document.getElementById('verifySeasonEnd') });
+      }
+      if (!firstError) {
+        firstError = document.getElementById('rosterError');
+        firstErrorElement = document.getElementById('verifyTeam');
+      }
+    } else {
+      document.getElementById('rosterError').style.display='none';
     }
 
     // --- Email ---
@@ -1284,62 +1421,48 @@
       athlete_last_name: athleteLastName,
       verify_instagram: instagram || null,
       verify_email: email,
+      verify_team: verifyTeamVal,
+      verify_seasons: verifySeasonsVal,
       platform_feedback: platformFeedback,
       status: 'pending'
     };
 
-    console.log('Submitting payload:', payload);
+    delete payload.status; // server sets this
 
-    // Submit to Supabase
+    if (!turnstileToken) {
+      alert('Please complete the verification challenge before submitting.');
+      return;
+    }
+
     try {
-      const { data, error } = await supabaseClient
-        .from('reviews')
-        .insert([payload]);
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-review`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({ ...payload, turnstile_token: turnstileToken }),
+      });
 
-      if (error) {
-        console.error('Supabase error:', error);
-        console.error('Error details:', error.message, error.details, error.hint);
-        
-        // User-friendly error messages
-        let userMessage = 'Something went wrong submitting your review. ';
-        
-        if (error.message && error.message.includes('not-null constraint')) {
-          userMessage = 'Please make sure all required fields are filled out before submitting.';
-        } else if (error.message && error.message.includes('duplicate')) {
-          userMessage = 'It looks like you may have already submitted a review for this agent.';
-        } else if (error.code === '23505') {
-          userMessage = 'A review with this information already exists.';
+      const result = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (res.status === 429) {
+          alert('Too many submissions from your network. Please try again later.');
+        } else if (res.status === 400 && /captcha/i.test(result.error || '')) {
+          alert('Verification challenge failed. Please refresh and try again.');
         } else {
-          userMessage += 'Please try again or contact us at admin@athenticate.org if the problem continues.';
+          alert(result.error || 'Something went wrong submitting your review. Please try again or contact admin@athenticate.org.');
         }
-        
-        alert(userMessage);
+        if (window.turnstile) window.turnstile.reset();
+        turnstileToken = '';
         return;
       }
 
-      // Send confirmation email
-      console.log('Attempting to send confirmation email to:', email);
-      if (email) {
-        fetch('https://pyodgmfrqfxsjdacsvzo.supabase.co/functions/v1/send-review-confirmation', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM'
-          },
-          body: JSON.stringify({ email: email })
-        })
-        .then(res => res.json())
-        .then(data => console.log('Email confirmation response:', data))
-        .catch(err => console.error('Confirmation email error:', err));
-      } else {
-        console.error('No email address to send confirmation to');
-      }
-
-      // Success
       document.getElementById('successEmailNote').style.display='block';
       document.getElementById('successOverlay').classList.add('show');
       window.scrollTo(0,0);
-      
+
     } catch (err) {
       console.error('Submission error:', err);
       alert('Something went wrong: ' + err.message + '. Please try again or contact us.');
