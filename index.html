@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The first player-driven accountability system in professional sports. Professional athletes rate and review their agents: anonymously, securely, and free.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ATHenticate | Players Protecting Players">
+<meta property="og:description" content="The first player-driven accountability system in professional sports. Professional athletes rate and review their agents: anonymously, securely, and free.">
+<meta property="og:url" content="https://athenticate.org/">
+<meta property="og:image" content="https://athenticate.org/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ATHenticate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@athenticate">
+<meta name="twitter:creator" content="@athenticate">
+<meta name="twitter:title" content="ATHenticate | Players Protecting Players">
+<meta name="twitter:description" content="The first player-driven accountability system in professional sports. Professional athletes rate and review their agents: anonymously, securely, and free.">
+<meta name="twitter:image" content="https://athenticate.org/og-image.jpg">
+<link rel="canonical" href="https://athenticate.org/">
+<title>ATHenticate | Players Protecting Players</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #020B18;
+    --bg-mid: #061A2E;
+    --cyan: #00C8FF;
+    --teal: #0AEFFF;
+    --cyan-dim: rgba(0,200,255,0.10);
+    --cyan-glow: rgba(0,200,255,0.35);
+    --white: #F0F8FF;
+    --grey: #7A9BB5;
+    --grey-light: #9BB8D0;
+    --border: rgba(0,200,255,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg-deep); color: var(--white); font-family: 'Saira', sans-serif; overflow-x: hidden; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,200,255,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(10,239,255,0.03) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .circuit-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.06;
+    background-image: linear-gradient(var(--cyan) 1px, transparent 1px), linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(2,11,24,0.9); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Chakra Petch', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--cyan); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--grey); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-submit-btn {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); border: none; padding: 0.6rem 1.4rem;
+    font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.25s; box-shadow: 0 0 20px rgba(0,200,255,0.2);
+    text-decoration: none; display: inline-block;
+  }
+  .nav-submit-btn:hover { box-shadow: 0 0 30px rgba(0,200,255,0.5); transform: translateY(-1px); }
+  .nav-outline-btn {
+    background: transparent; border: 1.5px solid rgba(0,200,255,0.35); color: var(--cyan);
+    padding: 0.55rem 1.2rem; font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(7px 0%, 100% 0%, calc(100% - 7px) 100%, 0% 100%);
+    transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .nav-outline-btn:hover { background: var(--cyan-dim); border-color: var(--cyan); }
+  .nav-btn-group { display: flex; align-items: center; gap: 0.6rem; }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 3rem;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border); background: var(--cyan-dim);
+    padding: 0.4rem 1.2rem; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 2rem; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    animation: fadeDown 0.8s ease both;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 6px var(--cyan); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+  .hero h1 {
+    font-family: 'Chakra Petch', sans-serif; font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 900; line-height: 0.92; letter-spacing: -0.01em; text-transform: uppercase;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+  .hero h1 .ath { color: var(--cyan); text-shadow: 0 0 40px rgba(0,200,255,0.5), 0 0 80px rgba(0,200,255,0.2); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--grey); font-weight: 300;
+    margin-top: 1.5rem; max-width: 580px; line-height: 1.65;
+    animation: fadeUp 0.9s ease 0.35s both;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .hero-submit-cta { margin-top: 2.8rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; animation: fadeUp 0.9s ease 0.5s both; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--cyan), var(--teal)); color: var(--bg-deep); border: none;
+    padding: 1.1rem 3rem; font-family: 'Chakra Petch', sans-serif; font-size: 1.2rem; font-weight: 900;
+    letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.25s; box-shadow: 0 8px 40px rgba(0,200,255,0.35);
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(0,200,255,0.55); }
+  .hero-note { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.06em; }
+  .hero-note span { color: var(--cyan); font-weight: 600; }
+  .btn-ghost {
+    background: transparent; color: var(--grey); border: none; padding: 0;
+    font-family: 'Saira', sans-serif; font-size: 0.88rem; cursor: pointer;
+    transition: color 0.2s; text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-color: rgba(122,155,181,0.4);
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 3rem;
+    border-top: 1px solid var(--border); animation: fadeUp 0.9s ease 0.65s both;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Chakra Petch', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--cyan); line-height: 1; }
+  .stat-label { font-size: 0.72rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.3rem; }
+
+  /* SUBMIT SECTION */
+  .submit-section {
+    position: relative; z-index: 1;
+    background: linear-gradient(135deg, rgba(6,26,46,0.95) 0%, rgba(2,11,24,0.95) 100%);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 6rem 4rem;
+  }
+  .submit-inner { max-width: 860px; margin: 0 auto; }
+  .section-label { font-family: 'Chakra Petch', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.7rem; }
+  .section-title { font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; text-transform: uppercase; line-height: 1; margin-bottom: 1rem; }
+  .section-desc { color: var(--grey); font-size: 1rem; line-height: 1.7; max-width: 600px; }
+
+  .sport-tabs { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.8rem 0; }
+  .sport-tab {
+    background: rgba(6,26,46,0.8); border: 1px solid var(--border); color: var(--grey);
+    padding: 0.5rem 1.2rem; font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .sport-tab:hover { color: var(--white); background: rgba(0,200,255,0.08); }
+  .sport-tab.active { background: var(--cyan-dim); color: var(--cyan); border-color: rgba(0,200,255,0.35); }
+
+  .review-form-card {
+    border: 1px solid var(--border); background: rgba(0,200,255,0.02);
+    padding: 2.5rem; clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    position: relative;
+  }
+  .review-form-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+  .form-input {
+    background: rgba(6,26,46,0.9); border: 1px solid var(--border); color: var(--white);
+    padding: 0.75rem 1rem; font-family: 'Saira', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s; width: 100%;
+  }
+  .form-input:focus { border-color: rgba(0,200,255,0.5); }
+  .form-input::placeholder { color: rgba(122,155,181,0.45); }
+  textarea.form-input { height: 100px; resize: none; }
+  select.form-input { cursor: pointer; }
+
+  .rating-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1rem; }
+  .rating-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .rating-label-text { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+  .star-row { display: flex; gap: 4px; }
+  .star-btn { background: none; border: none; cursor: pointer; padding: 0; color: rgba(0,200,255,0.18); font-size: 1.3rem; transition: color 0.15s, transform 0.1s; line-height: 1; }
+  .star-btn:hover { transform: scale(1.2); }
+
+  .form-submit-row { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+  .form-anon-note { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--grey); }
+  .form-anon-note svg { color: var(--cyan); width: 0.95rem; height: 0.95rem; flex-shrink: 0; }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--teal)); color: var(--bg-deep); border: none;
+    padding: 0.85rem 2.5rem; font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.25s; box-shadow: 0 6px 28px rgba(0,200,255,0.3);
+  }
+  .btn-submit:hover { box-shadow: 0 10px 36px rgba(0,200,255,0.5); transform: translateY(-2px); }
+
+  .unlock-banner {
+    margin-top: 2rem; border: 1px solid rgba(0,200,255,0.2);
+    background: rgba(0,200,255,0.04); padding: 1.5rem 2rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .unlock-banner-inner { display: flex; align-items: flex-start; gap: 1rem; }
+  .unlock-icon { width: 1.4rem; height: 1.4rem; color: var(--cyan); flex-shrink: 0; margin-top: 0.15rem; }
+  .unlock-banner h4 { font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+  .unlock-banner p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+  .unlock-banner p strong { color: var(--cyan); font-weight: 600; }
+
+  /* HOW IT WORKS */
+  .how-section { position: relative; z-index: 1; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 6rem 4rem; }
+  .how-inner { max-width: 1100px; margin: 0 auto; }
+  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 3.5rem; position: relative; }
+  .steps::before { content: ''; position: absolute; top: 2.4rem; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,200,255,0.3), transparent); }
+  .step { text-align: center; padding: 0 1rem; }
+  .step-num {
+    width: 4.8rem; height: 4.8rem; border-radius: 50%; border: 1.5px solid var(--cyan);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--cyan);
+    margin: 0 auto 1.5rem; background: var(--bg-deep); position: relative; z-index: 1;
+    box-shadow: 0 0 20px rgba(0,200,255,0.12); transition: all 0.3s;
+  }
+  .step:hover .step-num { background: var(--cyan-dim); box-shadow: 0 0 30px rgba(0,200,255,0.28); }
+  .step h4 { font-family: 'Chakra Petch', sans-serif; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .step p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+
+  /* SECTION WRAP */
+  .section-wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+
+  /* WHY */
+  .why-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; max-width: 700px; margin-top: 3rem; }
+  .why-points { display: flex; flex-direction: column; gap: 1.2rem; }
+  .why-point {
+    display: flex; gap: 1rem; align-items: flex-start; padding: 1.2rem 1.4rem;
+    border: 1px solid var(--border); background: rgba(6,26,46,0.5);
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .why-point:hover { border-color: rgba(0,200,255,0.35); background: rgba(0,200,255,0.04); }
+  .point-icon { width: 1.6rem; height: 1.6rem; flex-shrink: 0; color: var(--cyan); margin-top: 0.1rem; }
+  .point-icon svg { width: 100%; height: 100%; }
+  .point-text h4 { font-family: 'Chakra Petch', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .point-text p { font-size: 0.85rem; color: var(--grey); line-height: 1.55; }
+  .why-visual { display: flex; align-items: center; justify-content: center; }
+  .orb { width: 300px; height: 300px; border-radius: 50%; border: 1.5px solid rgba(0,200,255,0.2); display: flex; align-items: center; justify-content: center; position: relative; }
+  .orb::before { content: ''; position: absolute; inset: 22px; border-radius: 50%; border: 1px solid rgba(0,200,255,0.1); }
+  .orb::after { content: ''; position: absolute; inset: 44px; border-radius: 50%; background: radial-gradient(circle, rgba(0,200,255,0.07) 0%, transparent 70%); animation: orbPulse 3s ease-in-out infinite; }
+  @keyframes orbPulse { 0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(1.05);opacity:1} }
+  .orb-text { text-align: center; z-index: 1; }
+  .orb-text .big { font-family: 'Chakra Petch', sans-serif; font-size: 4.5rem; font-weight: 900; color: var(--cyan); line-height: 1; text-shadow: 0 0 40px rgba(0,200,255,0.5); }
+  .orb-text .label { font-size: 0.78rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.12em; }
+
+  /* FEATURES */
+  .features-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.4rem; margin-top: 3rem; }
+  .feature-card {
+    border: 1px solid var(--border); background: rgba(6,26,46,0.5); padding: 1.8rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0; transition: opacity 0.3s; }
+  .feature-card:hover { border-color: rgba(0,200,255,0.28); background: rgba(0,200,255,0.03); transform: translateY(-3px); }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-icon { width: 2.2rem; height: 2.2rem; margin-bottom: 1rem; color: var(--cyan); }
+  .feature-icon svg { width: 100%; height: 100%; }
+  .feature-card h3 { font-family: 'Chakra Petch', sans-serif; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .feature-card p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+
+  /* SAMPLE REVIEWS */
+  .review-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-top: 3rem; }
+  .review-card { border: 1px solid var(--border); background: rgba(6,26,46,0.7); padding: 1.8rem; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+  .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .reviewer-info { display: flex; align-items: center; gap: 0.8rem; }
+  .reviewer-avatar { width: 38px; height: 38px; background: var(--cyan-dim); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .reviewer-meta h5 { font-family: 'Chakra Petch', sans-serif; font-size: 0.92rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .reviewer-meta span { font-size: 0.73rem; color: var(--grey); }
+  .anon-badge { font-size: 0.62rem; background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2); color: var(--cyan); padding: 0.2rem 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .stars { display: flex; gap: 3px; margin-bottom: 0.8rem; }
+  .star { color: var(--cyan); font-size: 0.9rem; }
+  .star.empty { color: rgba(0,200,255,0.18); }
+  .review-text { font-size: 0.86rem; color: var(--grey); line-height: 1.6; font-style: italic; }
+  .review-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+  .tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); color: var(--grey); padding: 0.2rem 0.6rem; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); }
+
+  /* REVIEW CARD EXTRAS */
+  .reviewer-avatar svg { width: 18px; height: 18px; color: var(--cyan); }
+  .review-disclaimer { margin-top: 2.2rem; text-align: center; font-size: 0.82rem; color: var(--grey); letter-spacing: 0.02em; line-height: 1.6; }
+  .review-disclaimer strong { color: var(--cyan); font-weight: 600; }
+
+  /* IDENTITY PROTECTION */
+  .protection-section {
+    position: relative; z-index: 1;
+    padding: 6rem 4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .protection-inner { max-width: 1100px; margin: 0 auto; }
+
+  .principles-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+    margin-top: 3.5rem;
+  }
+  .principle-card {
+    position: relative;
+    border: 1px solid var(--border);
+    background: rgba(6,26,46,0.5);
+    padding: 1.8rem 1.8rem 1.8rem 2rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .principle-card::before {
+    content: ''; position: absolute; top: 1.8rem; left: 0;
+    width: 3px; height: 42px; background: var(--cyan); opacity: 0.7;
+  }
+  .principle-card:hover { border-color: rgba(0,200,255,0.3); background: rgba(0,200,255,0.03); }
+  .principle-card:hover::before { opacity: 1; box-shadow: 0 0 10px rgba(0,200,255,0.5); }
+  .principle-card h4 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 0.6rem;
+  }
+  .principle-card p { font-size: 0.88rem; color: var(--grey); line-height: 1.65; }
+
+  @media (max-width: 900px) {
+    .protection-section { padding: 4rem 1.5rem; }
+    .principles-grid { grid-template-columns: 1fr; }
+  }
+
+  /* FAQ TEASER */
+  .faq-section {
+    position: relative; z-index: 1;
+    padding: 6rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+  .faq-inner { max-width: 820px; margin: 0 auto; }
+  .faq-list {
+    margin-top: 2.5rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+  }
+  .faq-item {
+    border: 1px solid var(--border);
+    background: rgba(6,26,46,0.4);
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .faq-item[open] { border-color: rgba(0,200,255,0.3); background: rgba(0,200,255,0.03); }
+  .faq-item:hover { border-color: rgba(0,200,255,0.22); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.2rem 1.6rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    letter-spacing: 0.03em; text-transform: uppercase;
+    color: var(--white);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon {
+    flex-shrink: 0; width: 1.1rem; height: 1.1rem;
+    color: var(--cyan);
+    transition: transform 0.25s ease;
+  }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+  .faq-body {
+    padding: 0 1.6rem 1.4rem 1.6rem;
+    font-size: 0.92rem; color: var(--grey-light);
+    line-height: 1.7;
+  }
+  .faq-body strong { color: var(--white); font-weight: 600; }
+  .faq-more {
+    margin-top: 2rem; text-align: center;
+  }
+  .faq-more a {
+    color: var(--cyan); text-decoration: none;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border-bottom: 1px solid rgba(0,200,255,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .faq-more a:hover { border-color: var(--cyan); }
+
+  @media (max-width: 900px) {
+    .faq-section { padding: 4rem 1.5rem; }
+    .faq-item summary { padding: 1rem 1.2rem; font-size: 0.95rem; }
+    .faq-body { padding: 0 1.2rem 1.2rem 1.2rem; font-size: 0.88rem; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* WAITLIST */
+  .cta-section { position: relative; z-index: 1; padding: 7rem 4rem; text-align: center; background: linear-gradient(135deg, rgba(0,200,255,0.04) 0%, transparent 50%, rgba(10,239,255,0.02) 100%); border-top: 1px solid var(--border); overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,200,255,0.05) 0%, transparent 70%); pointer-events: none; }
+  .cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .cta-inner h2 { font-family: 'Chakra Petch', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; margin-bottom: 1.2rem; }
+  .cta-inner h2 span { color: var(--cyan); }
+  .cta-inner p { color: var(--grey); font-size: 1rem; line-height: 1.7; }
+  .waitlist-form { display: flex; max-width: 460px; margin: 2rem auto 0; }
+  .waitlist-input { flex: 1; background: rgba(6,26,46,0.9); border: 1.5px solid var(--border); border-right: none; color: var(--white); padding: 0.85rem 1.2rem; font-family: 'Saira', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .waitlist-input:focus { border-color: rgba(0,200,255,0.5); }
+  .waitlist-input::placeholder { color: var(--grey); }
+  .waitlist-btn { background: linear-gradient(135deg, var(--cyan), var(--teal)); color: var(--bg-deep); border: none; padding: 0.85rem 1.6rem; font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .waitlist-btn:hover { box-shadow: 0 0 24px rgba(0,200,255,0.5); }
+  .form-note { font-size: 0.73rem; color: var(--grey); margin-top: 0.8rem; }
+
+  /* FOOTER */
+
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)} }
+
+  /* ── MISSION SECTION ── */
+  .mission-section {
+    position: relative; z-index: 1;
+    padding: 7rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse 90% 75% at 50% 50%, rgba(7,22,40,0.85) 0%, rgba(2,11,24,1) 75%),
+      #020B18;
+    overflow: hidden;
+  }
+  .mission-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 55% 55% at center, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 55% 55% at center, black 0%, transparent 75%);
+    pointer-events: none;
+  }
+  .mission-section::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 680px; height: 380px;
+    max-width: 90%;
+    background: radial-gradient(ellipse at center, rgba(0,200,255,0.09) 0%, rgba(0,200,255,0.03) 40%, transparent 70%);
+    pointer-events: none;
+    filter: blur(30px);
+  }
+  .mission-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .mission-inner::before,
+  .mission-inner::after {
+    content: '';
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border-color: rgba(0,200,255,0.5);
+    pointer-events: none;
+  }
+  .mission-inner::before {
+    top: 0; left: 0;
+    border-top: 1.5px solid;
+    border-left: 1.5px solid;
+  }
+  .mission-inner::after {
+    bottom: 0; right: 0;
+    border-bottom: 1.5px solid;
+    border-right: 1.5px solid;
+  }
+  .mission-divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    margin: 0 auto;
+    opacity: 0.7;
+  }
+
+  /* ── FUTURE SECTION ── */
+  .future-section {
+    position: relative; z-index: 1;
+    background: linear-gradient(135deg, rgba(6,26,46,0.95) 0%, rgba(2,11,24,0.95) 100%);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 6rem 4rem;
+  }
+  .future-inner { max-width: 1100px; margin: 0 auto; }
+  .future-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .future-card {
+    border: 1px solid var(--border); background: rgba(6,26,46,0.6);
+    padding: 2.5rem; clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    position: relative; overflow: hidden; transition: border-color 0.3s, background 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .future-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+  .future-card:hover { border-color: rgba(0,200,255,0.3); background: rgba(0,200,255,0.04); }
+  .future-card-icon { width: 2rem; height: 2rem; color: var(--cyan); margin-bottom: 1.2rem; }
+  .future-card-icon svg { width: 100%; height: 100%; }
+  .future-card-tag { font-family: 'Chakra Petch', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+  .future-card-title { font-family: 'Chakra Petch', sans-serif; font-size: 1.7rem; font-weight: 900; text-transform: uppercase; line-height: 1; margin-bottom: 1rem; }
+  .future-card-desc { font-size: 0.88rem; color: var(--grey); line-height: 1.65; margin-bottom: 1.5rem; }
+  .future-card-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; flex: 1; }
+  .future-card-list li { font-size: 0.84rem; color: var(--grey-light); display: flex; align-items: center; gap: 0.6rem; }
+  .future-card-list li::before { content: ''; width: 5px; height: 5px; background: var(--cyan); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px rgba(0,200,255,0.5); }
+  .future-card-btn {
+    display: inline-block; align-self: flex-start;
+    background: transparent; border: 1.5px solid rgba(0,200,255,0.3); color: var(--cyan);
+    padding: 0.7rem 1.6rem; font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .future-card-btn:hover { background: var(--cyan-dim); border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,200,255,0.2); }
+
+  @media (max-width: 900px) {
+    .future-section { padding: 4rem 1.5rem; }
+    .future-cards { grid-template-columns: 1fr; }
+  }
+
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none !important; }
+    .nav-btn-group { gap: 0.4rem; }
+    .nav-submit-btn { padding: 0.5rem 0.9rem; font-size: 0.75rem; letter-spacing: 0.06em; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+    .nav-outline-btn { display: none !important; }
+    .mobile-nav-toggle { display: flex; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
+    .hero-stats { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .stat-num { font-size: 1.6rem; }
+    .hero-note { font-size: 0.7rem; text-align: center; padding: 0 1rem; }
+    .submit-section, .how-section, .cta-section { padding: 3rem 1.5rem; }
+    .section-wrap { padding: 3rem 1.5rem; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .steps::before { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-visual { display: none; }
+    .features-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .review-preview { grid-template-columns: 1fr; }
+    .future-section { padding: 3rem 1.5rem; }
+    .future-cards { grid-template-columns: 1fr; }
+    .cta-section { padding: 4rem 1.5rem; }
+    .waitlist-form { flex-direction: column; }
+    .waitlist-input { border-right: 1.5px solid var(--border); }
+    .mission-section { padding: 4rem 1.5rem; }
+    .mission-inner { padding: 2.2rem 1.2rem; gap: 1.5rem; }
+    .mission-inner::before,
+    .mission-inner::after { width: 28px; height: 28px; }
+  }
+  @media (max-width: 480px) {
+    .nav-outline-btn { display: none !important; }
+    .hero { padding: 5rem 1.2rem 2.5rem; }
+    .hero h1 { font-size: clamp(2.4rem, 13vw, 3.5rem); }
+    .hero-sub { font-size: 0.95rem; }
+    .btn-primary { padding: 0.9rem 2rem; font-size: 1rem; width: 100%; text-align: center; }
+    .steps { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1rem; }
+    .stat-num { font-size: 1.4rem; }
+    .section-title { font-size: 1.8rem; }
+    .mission-section { padding: 3rem 1rem; }
+    .features-grid { gap: 0.7rem; }
+    .feature-card { padding: 1.2rem; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+    .feature-icon { width: 1.8rem; height: 1.8rem; margin-bottom: 0.7rem; }
+    .feature-card h3 { font-size: 0.95rem; }
+    .feature-card p { font-size: 0.78rem; line-height: 1.5; }
+    .waitlist-form { flex-direction: column; }
+    .waitlist-btn { width: 100%; }
+  }
+
+  /* MOBILE NAV */
+  .mobile-nav-toggle {
+    display: none; background: none; border: 1px solid rgba(0,200,255,0.25); cursor: pointer;
+    flex-direction: column; align-items: center; gap: 4px; padding: 6px 10px;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    transition: border-color 0.2s;
+  }
+  .mobile-nav-toggle:hover { border-color: rgba(0,200,255,0.5); }
+  .mobile-nav-toggle span {
+    display: block; width: 20px; height: 2px;
+    background: var(--white); border-radius: 2px; transition: all 0.3s;
+  }
+  .mobile-nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(2,11,24,0.97); backdrop-filter: blur(18px);
+    flex-direction: column; align-items: center; justify-content: flex-start; gap: 1.4rem;
+    padding: calc(5rem + env(safe-area-inset-top)) 2rem calc(3rem + env(safe-area-inset-bottom));
+    overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  }
+  .mobile-nav-overlay a { font-size: 1.6rem; }
+  .mobile-nav-overlay.open { display: flex; }
+  .mobile-nav-overlay a {
+    font-family: 'Chakra Petch', sans-serif; font-size: 2rem; font-weight: 900;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-nav-overlay a:hover { color: var(--cyan); }
+  .mobile-nav-overlay .mobile-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--teal));
+    color: var(--bg-deep); padding: 0.9rem 2.5rem;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    font-size: 1.1rem;
+  }
+  .mobile-nav-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; color: var(--grey); font-size: 1.5rem;
+    cursor: pointer; line-height: 1; transition: color 0.2s;
+  }
+  .mobile-nav-close:hover { color: var(--white); }
+  @media (max-width: 900px) {
+    .mobile-nav-toggle { display: flex; }
+    .nav-links { display: none !important; }
+    .nav-btn-group { gap: 0.4rem; }
+    .nav-submit-btn { padding: 0.5rem 0.9rem; font-size: 0.75rem; letter-spacing: 0.06em; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+    .nav-outline-btn { padding: 0.45rem 0.8rem; font-size: 0.72rem; letter-spacing: 0.05em; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%); }
+  }
+  @media (max-width: 480px) {
+    .nav-outline-btn { display: none !important; }
+    .nav-submit-btn { padding: 0.55rem 1rem; font-size: 0.8rem; }
+  }
+
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.8rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 0.2rem; }
+  .footer-logo { font-family: 'Chakra Petch', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.08em; }
+  .footer-logo span { color: var(--cyan); }
+  .footer-tagline { font-size: 0.65rem; color: var(--grey); text-transform: uppercase; letter-spacing: 0.14em; }
+  .footer-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.72rem; color: var(--grey); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+  @media (max-width: 600px) {
+    footer { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
+    .footer-links { justify-content: center; gap: 0.8rem; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+<script>
+  const supabaseClient = supabase.createClient(
+    'https://pyodgmfrqfxsjdacsvzo.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM'
+  );
+</script>
+</head>
+<body>
+<div class="circuit-bg"></div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="./index.html" onclick="closeMobileNav()">Home</a>
+  <a href="./index.html#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="./index.html#features" onclick="closeMobileNav()">Features</a>
+  <a href="./index.html#future" onclick="closeMobileNav()">What's Coming</a>
+  <a href="./future-professionals.html" onclick="closeMobileNav()">Future Pros</a>
+  <a href="./future-agents.html" onclick="closeMobileNav()">For Agents</a>
+  <a href="./index.html#waitlist" onclick="closeMobileNav()">Waitlist</a>
+  <a href="./submit-review.html" class="mobile-submit" onclick="closeMobileNav()">Submit a Review</a>
+</div>
+<script>
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="./index.html"><span>ATH</span>enticate</a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#future">What's Coming</a></li>
+    <li><a href="#waitlist">Waitlist</a></li>
+  </ul>
+  <div class="nav-btn-group">
+    <a class="nav-outline-btn" href="./future-professionals.html">Future Pros</a>
+    <a class="nav-outline-btn" href="./future-agents.html">For Agents</a>
+    <a class="nav-submit-btn" href="./submit-review.html">Submit a Review</a>
+  </div>
+<button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Players Protecting Players</div>
+  <h1><span class="ath">ATH</span>enticate<br>Your Agent</h1>
+  <p class="hero-sub">
+    The first player-driven accountability system in professional sports. <strong>You're not just reviewing an agent. You're reshaping the industry.</strong>
+  </p>
+  <div class="hero-submit-cta">
+    <a class="btn-primary" href="./submit-review.html">Rate Your Agent</a>
+    <p class="hero-note"><span>Always free to review</span> &nbsp;·&nbsp; Identity verified, never displayed publicly &nbsp;·&nbsp; Takes 5 minutes</p>
+    <button class="btn-ghost" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Not ready to review? Join the waitlist →</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">Private</div><div class="stat-label">Identity Never Displayed</div></div>
+    <div class="stat"><div class="stat-num">Verified</div><div class="stat-label">Player Experiences</div></div>
+    <div class="stat"><div class="stat-num">Always Free</div><div class="stat-label">To Review</div></div>
+  </div>
+</div>
+
+<!-- SUBMIT REVIEW -->
+
+
+<!-- HOW IT WORKS -->
+<div class="how-section" id="how">
+  <div class="how-inner reveal">
+    <div class="section-label">The Process</div>
+    <h2 class="section-title">Simple. Anonymous. Yours.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Select Your League</h4>
+        <p>Choose the sport and league you competed in professionally when working with this agent.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Rate Your Agent</h4>
+        <p>Share what working with them was really like: the good, the bad, what you wish you'd known.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Your League Goes Live</h4>
+        <p>Once your sport hits enough reviews, agent profiles, ratings, and every review go live for players in your league.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Players Win</h4>
+        <p>The next player walks into that agent meeting knowing exactly who they're dealing with.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDENTITY PROTECTION -->
+<div class="protection-section" id="protection">
+  <div class="protection-inner reveal">
+    <div class="section-label">Built for Anonymity</div>
+    <h2 class="section-title">Your Name Never<br>Touches Your Review.</h2>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <h4>Verify Once. Anonymous After.</h4>
+        <p>One check to confirm you played pro. From there, every review you leave is detached from your name, your team, and your history.</p>
+      </div>
+      <div class="principle-card">
+        <h4>No Backdoor for Anyone</h4>
+        <p>There's no admin function that lets agents request reviewer identities. Same goes for leagues, teams, and media.</p>
+      </div>
+      <div class="principle-card">
+        <h4>Minimum Data Stored</h4>
+        <p>We only hold what's needed to confirm you played pro. Everything else gets discarded. Smaller data footprint, smaller attack surface.</p>
+      </div>
+      <div class="principle-card">
+        <h4>Your Words, Protected</h4>
+        <p>Before a review goes live, it's scanned for accidentally identifying details (a specific game, a notable injury, a one-off situation) and flagged for revision if anything could point back to you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY IT MATTERS -->
+<div class="section-wrap reveal" style="border-bottom:1px solid var(--border)">
+  <div class="section-label">Why ATHenticate</div>
+  <div class="why-grid">
+    <div>
+      <h2 class="section-title">Athletes Deserve<br>Better Information</h2>
+      <div class="why-points" style="margin-top:2rem;">
+        <div class="why-point">
+          <div class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div class="point-text">
+            <h4>No Shared Record Exists</h4>
+            <p>Agents move between clients and leagues with no accountability trail. Player experiences stay private because there's been nowhere safe to share them.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="8" x2="21" y2="8"/><polyline points="17 4 21 8 17 12"/><line x1="18" y1="16" x2="14" y2="16"/><polyline points="16 14 14 16 16 18"/></svg></div>
+          <div class="point-text">
+            <h4>Information Only Flows One Way</h4>
+            <p>Agents arrive at recruiting meetings with full scouting reports: film, stats, references, character notes. Athletes walk in with a name. That gap closes here.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="point-text">
+            <h4>Patterns Need Numbers</h4>
+            <p>One review is a story. Many reviews surface patterns. The only way repeat behavior stops is if players who've lived it leave a record.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="point-text">
+            <h4>The Next Player Deserves Better</h4>
+            <p>Young professionals sign based on who knows who. ATHenticate gives them something more reliable: a real, player-sourced picture of who an agent actually is before they sign.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="point-text">
+            <h4>Your Story Has Real Value</h4>
+            <p>Whether your agent exceeded expectations or fell short, sharing that helps someone else make a smarter decision. That's the whole idea.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section-wrap reveal" id="features">
+  <div class="section-label">Built for Players</div>
+  <h2 class="section-title">What Makes ATHenticate<br>Different</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <h3>Verified Reviews</h3>
+      <p>Every review is tied to a confirmed professional athlete. No fake submissions, no outsiders. Real feedback from real players only.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3>Direct Connection</h3>
+      <p>Verified profiles, secure messaging, open availability windows, and scheduled video calls: all in one place. No cold calls. No intermediaries. Just the right fit.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg></div>
+      <h3>Match Intelligence</h3>
+      <p>A pairing engine built on verified player reviews. Instead of signing with whomever made the biggest pitch, you get matched with agents whose actual client record fits your game and your goals.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <h3>Multi-Category Ratings</h3>
+      <p>Rate on communication, contract negotiation, loyalty, and more. Not just a single number.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
+      <h3>No Paid Placement</h3>
+      <p>Agents can't pay to boost a rating, hide a negative review, or rank above a better-rated peer. The ranking reflects the record. Nothing else.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>Players-Only Access</h3>
+      <p>Verified pros write the reviews, and verified pros are the only ones who can read them. No public browse, no media scraping, no agent access. The record stays inside the community it's built for.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION STATEMENT -->
+<div class="mission-section">
+  <div class="mission-inner reveal">
+
+    <p style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700;line-height:1.3;"><span style="color:var(--white);">The sport doesn't fail players.</span><br><span style="color:var(--cyan);">The people around it do.</span></p>
+
+    <div class="mission-divider"></div>
+
+    <p style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1rem,2vw,1.3rem);font-weight:600;line-height:1.6;color:var(--grey);">No more guessing. Now there's a record.</p>
+
+    <p style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.5rem,4vw,2.4rem);font-weight:900;line-height:1.2;letter-spacing:0.01em;"><span style="color:#F0F8FF;">One review protects one player.</span><br><span style="color:#00C8FF;">A thousand reviews protect a generation.</span></p>
+
+    <div class="mission-divider"></div>
+
+    <p style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:600;line-height:1.5;color:var(--grey-light);">You experienced it.<br>Someone else doesn't have to.</p>
+
+    <div class="mission-divider"></div>
+
+    <p style="font-family:'Chakra Petch',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;line-height:1.3;color:var(--white);letter-spacing:0.02em;">Reward the right agents.<br><span style="color:var(--cyan);">Hold the rest accountable.</span></p>
+
+  </div>
+</div>
+
+<!-- FUTURE ATHLETES & AGENTS -->
+<div class="future-section" id="future">
+  <div class="future-inner reveal">
+    <div class="section-label">Coming Soon</div>
+    <h2 class="section-title">Built for Everyone<br>in the Game</h2>
+    <p class="section-desc" style="margin-bottom:3rem">ATHenticate is built for everyone in the game, not just current pros. Here's what's coming for the next generation of professionals and the agents who represent them.</p>
+    <div class="future-cards">
+      <div class="future-card">
+        <div class="future-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="future-card-tag">Future Professionals</div>
+        <h3 class="future-card-title">Preparing to Go Pro</h3>
+        <p class="future-card-desc">The database being built right now will be the resource you need before you ever take a meeting with an agent. ATHenticate is building toward a platform where college athletes can search verified agent reviews, connect with the right representation, and walk into the most important signing of their career fully informed.</p>
+        <a class="future-card-btn" href="./future-professionals.html">See the Vision →</a>
+      </div>
+      <div class="future-card future-card-agent">
+        <div class="future-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="future-card-tag">For Agents</div>
+        <h3 class="future-card-title">Agents Who Stand<br>Behind Their Work</h3>
+        <p class="future-card-desc">ATHenticate isn't built against agents. It rewards the ones who deserve it. Agent features launch once the review database has real depth. When they do, a verified profile built from honest player reviews will be the most credible thing an agent can have.</p>
+        <a class="future-card-btn" href="./future-agents.html">See the Vision →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ TEASERS -->
+<div class="faq-section" id="faq">
+  <div class="faq-inner reveal">
+    <div class="section-label">Straight Answers</div>
+    <h2 class="section-title">The Questions<br>Players Ask First</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>
+          <span>Can my agent find out I reviewed them?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <div class="faq-body">
+          No. Your name, team, and position never appear anywhere on the platform, and there's no admin function that would let an agent request reviewer identities. What gets published is your league, your star ratings, your written review, and the tags you pick. That's the whole list. <strong>You verify once. After that, you're anonymous on every review you leave.</strong>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>How do you verify I'm actually a professional athlete?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <div class="faq-body">
+          Verification runs against official league rosters and the same public records leagues and teams already maintain. Once you're confirmed as a pro, we store only what's needed to prevent duplicate accounts and discard the rest. <strong>The verification record and the review record are kept separate inside the platform.</strong> That's an architecture decision, not a policy one.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>Who's behind ATHenticate?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <div class="faq-body">
+          Built by a former NFL player who saw the agent accountability gap from inside the system and got tired of watching the next generation walk into the same traps. <strong>No agent, agency, or league has equity, influence, or editorial input on this platform.</strong> Full team and advisory details will be published alongside the first sport launch.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-more">
+      <a href="./faq.html">Read the full FAQ →</a>
+    </div>
+  </div>
+</div>
+
+<!-- WAITLIST -->
+<div class="cta-section" id="waitlist">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="text-align:center">Stay in the Loop</div>
+    <h2>Stay in the Loop.<br><span>Be First In.</span></h2>
+    <p>Join the waitlist and we'll let you know the moment your sport unlocks so you're first in to search agents and read what other players have shared.</p>
+    <div id="waitlistForm" class="waitlist-form">
+      <input id="waitlistEmail" class="waitlist-input" type="email" placeholder="Your email address" />
+      <button class="waitlist-btn" onclick="submitWaitlist()">Join Now</button>
+    </div>
+    <p id="waitlistSuccess" style="display:none; color: #00E5A0; text-align: center; margin-top: 1rem; font-size: 0.9rem;">✓ You're on the list! We'll email you when your sport goes live.</p>
+    <p id="waitlistError" style="display:none; color: #FF6B6B; text-align: center; margin-top: 1rem; font-size: 0.9rem;">Something went wrong. Try again or email us directly.</p>
+    <p id="waitlistNote" class="form-note">No spam. Just a heads-up when your league goes live.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo"><span>ATH</span>enticate</div>
+    <div class="footer-tagline">Players Protecting Players</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="./submit-review.html">Submit Review</a></li>
+    <li><a href="./future-professionals.html">Future Pros</a></li>
+    <li><a href="./future-agents.html">For Agents</a></li>
+    <li><a href="./faq.html">FAQ</a></li>
+    <li><a href="./privacy.html">Privacy</a></li>
+    <li><a href="./terms.html">Terms</a></li>
+    <li><a href="mailto:admin@athenticate.org">Contact</a></li>
+  </ul>
+</footer>
+<script>
+  // Scroll reveal; fade up on first entry into viewport
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('in-view'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+<script>
+async function submitWaitlist() {
+  const email = document.getElementById('waitlistEmail').value.trim();
+  const btn = event.target;
+  const successMsg = document.getElementById('waitlistSuccess');
+  const errorMsg = document.getElementById('waitlistError');
+  
+  // Hide any previous messages
+  successMsg.style.display = 'none';
+  errorMsg.style.display = 'none';
+  
+  // Basic validation
+  if (!email || !email.includes('@')) {
+    errorMsg.textContent = 'Please enter a valid email address.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+  
+  // Disable button during submit
+  btn.disabled = true;
+  btn.textContent = 'Joining...';
+  
+  try {
+    const { data, error } = await supabaseClient
+      .from('waitlist')
+      .insert([{ email: email }]);
+    
+    if (error) {
+      // Check for duplicate email
+      if (error.code === '23505') {
+        errorMsg.textContent = 'This email is already on the waitlist.';
+      } else {
+        errorMsg.textContent = 'Something went wrong. Try again or email us directly.';
+      }
+      errorMsg.style.display = 'block';
+    } else {
+      // Send confirmation email
+      fetch('https://pyodgmfrqfxsjdacsvzo.supabase.co/functions/v1/send-waitlist-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5b2RnbWZycWZ4c2pkYWNzdnpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjEzMjEsImV4cCI6MjA5MjE5NzMyMX0.5kMRc1xlR3I1lKKCwofaGj_wNQeoP6UHlx045Lz79IM',
+        },
+        body: JSON.stringify({ record: { email } })
+      })
+      .then(res => res.json())
+      .then(data => console.log('Waitlist email response:', data))
+      .catch(err => console.error('Waitlist confirmation email error:', err));
+      // Success - hide form to avoid redundancy with confirmation email
+      document.getElementById('waitlistForm').style.display = 'none';
+      document.getElementById('waitlistNote').style.display = 'none';
+      successMsg.style.display = 'block';
+      document.getElementById('waitlistEmail').value = '';
+      return;
+    }
+  } catch (err) {
+    errorMsg.style.display = 'block';
+  } finally {
+    // Re-enable button
+    btn.disabled = false;
+    btn.textContent = 'Join Now';
+  }
+}
+</script>
+</body>
+</html>
